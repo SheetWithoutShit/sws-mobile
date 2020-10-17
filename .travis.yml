@@ -1,0 +1,13 @@
+language: node_js
+
+node_js: 14.3
+cache: yarn
+
+install:
+  - yarn install
+script:
+  - yarn lint
+
+branches:
+  only:
+  - master
