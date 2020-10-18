@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         width: "50%",
     },
     button: {
-        backgroundColor: COLORS.darkGreen,
+        backgroundColor: COLORS.green,
         width: 140,
         height: 40,
         display: "flex",
