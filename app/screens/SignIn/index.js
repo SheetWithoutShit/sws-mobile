@@ -6,7 +6,9 @@ import COLORS from "@utils/colors"
 
 
 const SignIn = () => {
+    // eslint-disable-next-line
     const [email, setEmail] = useState("E-mail")
+    // eslint-disable-next-line
     const [password, setPassword] = useState("Password")
 
     return (
