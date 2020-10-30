@@ -4,7 +4,7 @@ const COLORS = {
     green: "#00844C",
     lightGreen: "#F9FFFE",
     grey: "#C6C6C6",
-    red: "#C60000",
+    red: "#CB6060",
 }
 
 export default COLORS

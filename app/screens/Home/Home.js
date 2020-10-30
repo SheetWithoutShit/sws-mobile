@@ -1,8 +1,8 @@
 import React from "react"
 import { View, Text, TouchableOpacity } from "react-native"
 
-import { TrendingUpIcon, PersonIcon, SpeedometerIcon } from "@utils/icons"
-import { TOUCH_OPACITY, TRANSACTIONS_SCREEN } from "@utils/constants"
+import Icon from "@utils/icon"
+import { TOUCH_OPACITY, TRANSACTIONS_SCREEN, LIMITS_SCREEN } from "@utils/constants"
 
 import styles from "./style"
 
@@ -12,13 +12,17 @@ const Home = ({ navigation }) => {
         <View style={styles.container}>
             <View style={styles.menu}>
                 <TouchableOpacity activeOpacity={TOUCH_OPACITY} style={styles.smallButton}>
-                    <PersonIcon/>
+                    <Icon name="person" width="50" height="50"/>
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={TOUCH_OPACITY} style={styles.smallButton}>
-                    <TrendingUpIcon/>
+                    <Icon name="trending-up" width="60" height="60"/>
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity={TOUCH_OPACITY} style={styles.smallButton}>
-                    <SpeedometerIcon/>
+                <TouchableOpacity
+                    activeOpacity={TOUCH_OPACITY}
+                    style={styles.smallButton}
+                    onPress={() => navigation.navigate(LIMITS_SCREEN)}
+                >
+                    <Icon name="speedometer" width="60" height="60"/>
                 </TouchableOpacity>
                 <TouchableOpacity
                     activeOpacity={TOUCH_OPACITY}

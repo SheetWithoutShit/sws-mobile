@@ -100,28 +100,28 @@ const MOCK_TRANSACTIONS = [
     },
 ]
 
+const renderDayTransactions = ({ item }) => {
+    const date = moment(item.date, DATE_FORMAT).calendar(CALENDAR_FORMAT)
+    return (
+        <View style={styles.dayTransactions} key={item.date}>
+            <Text style={styles.date}>{date}</Text>
+            {item.transactions.map(transaction => (
+                <View style={styles.transaction} key={transaction.id}>
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.info}>{transaction.info}</Text>
+                        <Text style={styles.category}>{transaction.category_name}</Text>
+                    </View>
+                    <View style={styles.amountContainer}>
+                        <Text style={styles.amount}>{transaction.amount} ₴</Text>
+                    </View>
+                </View>
+            ))}
+        </View>
+    )
+}
+
 
 const Transactions = () => {
-    const renderDayTransactions = ({ item }) => {
-        const date = moment(item.date, DATE_FORMAT).calendar(CALENDAR_FORMAT)
-        return (
-            <View style={styles.dayTransactions} key={item.date}>
-                <Text style={styles.date}>{date}</Text>
-                {item.transactions.map(transaction => (
-                    <View style={styles.transaction} key={transaction.id}>
-                        <View style={styles.infoContainer}>
-                            <Text style={styles.info}>{transaction.info}</Text>
-                            <Text style={styles.category}>{transaction.category_name}</Text>
-                        </View>
-                        <View style={styles.amountContainer}>
-                            <Text style={styles.amount}>{transaction.amount} ₴</Text>
-                        </View>
-                    </View>
-                ))}
-            </View>
-        )
-    }
-
     // mocking transactions data; todo: implement api calling
     const transactionsByDates = {}
     MOCK_TRANSACTIONS.forEach(item => {
