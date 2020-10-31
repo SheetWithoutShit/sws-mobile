@@ -8,6 +8,7 @@ import LimitEdit from "@screens/Limits/LimitEdit/LimitEdit"
 import Settings from "@screens/Settings/Settings"
 import Profile from "@screens/Profile/Profile"
 import DeleteAccount from "@screens/Settings/DeleteAccount/DeleteAccount"
+import ReportDaily from "@screens/Reports/ReportDaily/ReportDaily"
 import {
     TRANSACTIONS_SCREEN,
     HOME_SCREEN,
@@ -16,6 +17,7 @@ import {
     SETTINGS_SCREEN,
     PROFILE_SCREEN,
     DELETE_ACCOUNT_SCREEN,
+    REPORT_DAILY_SCREEN,
 } from "@utils/constants"
 
 
@@ -34,6 +36,7 @@ const Routes = () => (
         <Stack.Screen name={LIMIT_EDIT_SCREEN} component={LimitEdit}/>
         <Stack.Screen name={SETTINGS_SCREEN} component={Settings}/>
         <Stack.Screen name={DELETE_ACCOUNT_SCREEN} component={DeleteAccount}/>
+        <Stack.Screen name={REPORT_DAILY_SCREEN} component={ReportDaily}/>
     </Stack.Navigator>
 )
 
