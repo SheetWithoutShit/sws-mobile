@@ -1,10 +1,12 @@
 import React from "react"
 import { View, Text, FlatList } from "react-native"
-
 import moment from "moment"
 
+import Header from "@components/Header/Header"
 import { DATE_FORMAT, DATETIME_FORMAT } from "@utils/time"
+
 import styles from "./style"
+
 
 const CALENDAR_FORMAT = {
     sameDay: "[Today]",
@@ -140,9 +142,7 @@ const Transactions = () => {
     const currentDate = moment().format("ll")
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.currentDate}>{currentDate}</Text>
-            </View>
+            <Header text={currentDate}/>
             <FlatList
                 data={transactions}
                 renderItem={renderDayTransactions}

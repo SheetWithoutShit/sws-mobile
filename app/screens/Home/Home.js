@@ -2,7 +2,12 @@ import React from "react"
 import { View, Text, TouchableOpacity } from "react-native"
 
 import Icon from "@utils/icon"
-import { TOUCH_OPACITY, TRANSACTIONS_SCREEN, LIMITS_SCREEN } from "@utils/constants"
+import {
+    TOUCH_OPACITY,
+    TRANSACTIONS_SCREEN,
+    LIMITS_SCREEN,
+    PROFILE_SCREEN,
+} from "@utils/constants"
 
 import styles from "./style"
 
@@ -11,7 +16,11 @@ const Home = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.menu}>
-                <TouchableOpacity activeOpacity={TOUCH_OPACITY} style={styles.smallButton}>
+                <TouchableOpacity
+                    activeOpacity={TOUCH_OPACITY}
+                    style={styles.smallButton}
+                    onPress={() => navigation.navigate(PROFILE_SCREEN)}
+                >
                     <Icon name="person" width="50" height="50"/>
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={TOUCH_OPACITY} style={styles.smallButton}>

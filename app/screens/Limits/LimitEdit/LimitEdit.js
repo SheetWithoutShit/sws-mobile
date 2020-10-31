@@ -1,8 +1,12 @@
 import React, { useState } from "react"
-import { View, Text, TouchableOpacity, TextInput } from "react-native"
-import PickerSelect from "react-native-picker-select"
+import { View, Text } from "react-native"
 
-import { LIMITS_SCREEN, TOUCH_OPACITY } from "@utils/constants"
+import Header from "@components/Header/Header"
+import Dropdown from "@components/Inputs/Dropdown"
+import BorderInput from "@components/Inputs/BorderInput"
+import ColorButton from "@components/Buttons/ColorButton"
+import TextButton from "@components/Buttons/TextButton"
+
 import styles from "./style"
 
 
@@ -26,67 +30,45 @@ const LimitEdit = ({ route, navigation }) => {
     const isValid = category && parseFloat(limit)
     const title = route.params.isEdit ? "Edit limit": "Create a limit"
 
+    const handleChangeCategory = (value, index) => {
+        setCategory(value)
+        index ? setInfo(MOCK_CATEGORIES[index - 1].info) : setInfo(DEFAULT_CATEGORY_INFO)
+    }
+
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.title}>{title}</Text>
-            </View>
+            <Header text={title} icon="limit" isSecondary={true}/>
             <View style={styles.editContainer}>
-                <View>
-                    <Text style={styles.label}>Category</Text>
-                    <PickerSelect
-                        style={{
-                            inputIOS: styles.input,
-                            inputAndroid: styles.input,
-                            placeholder: styles.categoryPlaceholder,
-                        }}
-                        useNativeAndroidPickerStyle={false}
-                        onValueChange={(value, index) => {
-                            setCategory(value)
-                            setInfo(MOCK_CATEGORIES[index - 1].info)
-                        }}
-                        placeholder={{ label: "Select a category..." }}
-                        blurOnSubmit={true}
-                        items={MOCK_CATEGORIES}
-                    />
-                </View>
+                <Dropdown
+                    label="Category"
+                    placeholder="Select a category..."
+                    items={MOCK_CATEGORIES}
+                    handleChange={handleChangeCategory}
+                />
                 <Text style={[
                     styles.info,
                     DEFAULT_CATEGORY_INFO === info && styles.defaultInfo,
                 ]}>
                     {info}
                 </Text>
-                <View>
-                    <Text style={styles.label}>Limit ₴</Text>
-                    <TextInput
-                        style={styles.input}
-                        keyboardType="number-pad"
-                        onChangeText={(value) => setLimit(value.replace(/[^0-9]/g, ""))}
-                        value={limit}
-                    />
-                </View>
+                <BorderInput
+                    label="Limit ₴"
+                    keyboard="number-pad"
+                    handleChange={(value) => setLimit(value.replace(/[^0-9]/g, ""))}
+                    value={limit}
+                />
                 <View style={styles.buttonsContainer}>
-                    <TouchableOpacity
-                        activeOpacity={TOUCH_OPACITY}
-                        style={[styles.button]}
-                        onPress={() => navigation.navigate(LIMITS_SCREEN)}
-                    >
-                        <Text style={[styles.buttonText, styles.cancelText]}>
-                            Cancel
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        activeOpacity={TOUCH_OPACITY}
-                        style={[
-                            styles.button,
-                            isValid ? styles.okButton : styles.okButtonDisabled,
-                        ]}
+                    <TextButton
+                        label="Cancel"
+                        size="small"
+                        handlePress={() => navigation.goBack()}
+                    />
+                    <ColorButton
+                        label="OK"
+                        color="green"
+                        size="small"
                         disabled={!isValid}
-                    >
-                        <Text style={[styles.buttonText, styles.okText]}>
-                            OK
-                        </Text>
-                    </TouchableOpacity>
+                    />
                 </View>
             </View>
         </View>

@@ -1,8 +1,10 @@
 import React from "react"
 import { View, Text, FlatList, TouchableOpacity } from "react-native"
 
+import Header from "@components/Header/Header"
+import ColorButton from "@components/Buttons/ColorButton"
+import MessageInfo from "@components/Messages/MessageInfo"
 import COLORS from "@utils/colors"
-import Icon from "@utils/icon"
 import { LIMIT_EDIT_SCREEN, TOUCH_OPACITY } from "@utils/constants"
 
 import styles from "./style"
@@ -39,9 +41,13 @@ const MOCK_LIMITS = [
         "info": "Taxi services",
     },
 ]
+const EMPTY_LIMITS_MESSAGE = "\t\t\tIf you want to limit your spending for some \
+category you can set it here and receives\
+an appropriate notification if the limit was exceeded. \
+Let's start with your first limit."
 
 
-const LimitsList = ({ navigation }) => {
+const Limits = ({ navigation }) => {
 
     const renderLimit = ({ item }) => {
         const amount = parseFloat(item.amount)
@@ -63,34 +69,28 @@ const LimitsList = ({ navigation }) => {
     }
 
     const AddLimit = () => (
-        <TouchableOpacity
-            activeOpacity={TOUCH_OPACITY}
-            style={styles.addButtonContainer}
-            onPress={() => navigation.navigate(LIMIT_EDIT_SCREEN, { isEdit: false })}
-        >
-            <Text style={styles.addButtonText}>Add Limit</Text>
-        </TouchableOpacity>
+        <ColorButton
+            size="medium"
+            color="green"
+            label="Add Limit"
+            handlePress={() => navigation.navigate(LIMIT_EDIT_SCREEN, { isEdit: false })}
+        />
     )
 
     if (!MOCK_LIMITS.length) {
         return (
             <View style={styles.container}>
-                <Text style={styles.message}>
-                    If you want to limit your spending for some
-                    category you can set it here and receives
-                    an appropriate notification if the limit was exceeded.
-                    Let's start with your first limit.
-                </Text>
+                <MessageInfo text={EMPTY_LIMITS_MESSAGE} style={{ marginBottom: 10 }}/>
                 <AddLimit/>
             </View>
         )
     }
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <Icon name="speedometer" height="18" width="24" color={COLORS.green}/>
-                <Text style={styles.title}> Limits</Text>
-            </View>
+            <Header
+                icon={{ name: "speedometer", height: "18", width: "24", color: COLORS.green }}
+                text="Limits"
+            />
             <FlatList
                 contentContainerStyle={styles.limitsContainer}
                 data={MOCK_LIMITS}
@@ -98,9 +98,10 @@ const LimitsList = ({ navigation }) => {
                 keyExtractor={(item) => item.id}
                 ListFooterComponent={AddLimit}
                 showsVerticalScrollIndicator={false}
+                ListFooterComponentStyle={styles.addButton}
             />
         </View>
     )
 }
 
-export default LimitsList
+export default Limits
