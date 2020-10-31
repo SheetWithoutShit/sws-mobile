@@ -31,7 +31,7 @@ const config = {
         "no-debugger": "error",
         "no-console": "error",
         "no-alert": "error",
-        "no-magic-numbers": "error",
+        "no-magic-numbers": ["error", {"ignoreArrayIndexes": true, "ignore": [1]}],
         "no-multi-spaces": "error",
         "no-unused-vars": ["error", {"vars": "local", "varsIgnorePattern": "React"}],
         "no-multiple-empty-lines": ["error", {"max": 2}],

@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         width: 300,
     },
-    limitGreen: {
+    limit: {
         width: 140,
         height: 110,
         backgroundColor: COLORS.green,
@@ -49,15 +49,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     limitRed: {
-        width: 140,
-        height: 110,
         backgroundColor: COLORS.red,
-        borderRadius: 15,
-        margin: 5,
-        justifyContent: "center",
-        alignItems: "center",
     },
-    amountGreen: {
+    amount: {
         fontFamily: FONTS.cairoBold,
         fontSize: 28,
         color: COLORS.white,
