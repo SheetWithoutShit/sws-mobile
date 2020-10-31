@@ -3,6 +3,7 @@ import { View, Text, FlatList, TouchableOpacity } from "react-native"
 
 import COLORS from "@utils/colors"
 import Icon from "@utils/icon"
+import { LIMIT_EDIT_SCREEN, TOUCH_OPACITY } from "@utils/constants"
 
 import styles from "./style"
 
@@ -39,28 +40,38 @@ const MOCK_LIMITS = [
     },
 ]
 
-const AddLimit = () => (
-    <TouchableOpacity style={styles.addButtonContainer}>
-        <Text style={styles.addButtonText}>Add Limit</Text>
-    </TouchableOpacity>
-)
 
-const renderLimit = ({ item }) => {
-    const amount = parseFloat(item.amount)
-    const spend = parseFloat(item.spend)
-    const limitStyle = amount >= spend ? styles.limitGreen : styles.limitRed
-    return (
+const LimitsList = ({ navigation }) => {
+
+    const renderLimit = ({ item }) => {
+        const amount = parseFloat(item.amount)
+        const spend = parseFloat(item.spend)
+        return (
+            <TouchableOpacity
+                activeOpacity={TOUCH_OPACITY}
+                key={item.id}
+                style={[
+                    styles.limit,
+                    amount < spend && styles.limitRed,
+                ]}
+                onPress={() => navigation.navigate(LIMIT_EDIT_SCREEN, { isEdit: true })}
+            >
+                <Text style={styles.amount}>{amount}</Text>
+                <Text style={styles.category}>{item.name.replace("and", "&")}</Text>
+            </TouchableOpacity>
+        )
+    }
+
+    const AddLimit = () => (
         <TouchableOpacity
-            key={item.id}
-            style={limitStyle}
+            activeOpacity={TOUCH_OPACITY}
+            style={styles.addButtonContainer}
+            onPress={() => navigation.navigate(LIMIT_EDIT_SCREEN, { isEdit: false })}
         >
-            <Text style={styles.amountGreen}>{amount}</Text>
-            <Text style={styles.category}>{item.name.replace("and", "&")}</Text>
+            <Text style={styles.addButtonText}>Add Limit</Text>
         </TouchableOpacity>
     )
-}
 
-const Limits = () => {
     if (!MOCK_LIMITS.length) {
         return (
             <View style={styles.container}>
@@ -92,4 +103,4 @@ const Limits = () => {
     )
 }
 
-export default Limits
+export default LimitsList
