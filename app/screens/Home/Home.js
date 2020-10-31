@@ -7,6 +7,7 @@ import {
     TRANSACTIONS_SCREEN,
     LIMITS_SCREEN,
     PROFILE_SCREEN,
+    REPORT_DAILY_SCREEN,
 } from "@utils/constants"
 
 import styles from "./style"
@@ -23,7 +24,11 @@ const Home = ({ navigation }) => {
                 >
                     <Icon name="person" width="50" height="50"/>
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity={TOUCH_OPACITY} style={styles.smallButton}>
+                <TouchableOpacity
+                    activeOpacity={TOUCH_OPACITY}
+                    style={styles.smallButton}
+                    onPress={() => navigation.navigate(REPORT_DAILY_SCREEN)}
+                >
                     <Icon name="trending-up" width="60" height="60"/>
                 </TouchableOpacity>
                 <TouchableOpacity
