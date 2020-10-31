@@ -7,6 +7,8 @@ const ICONS_FILES = {
     "person": require("@assets/icons/person.svg"),
     "trending-up": require("@assets/icons/trending-up.svg"),
     "speedometer": require( "@assets/icons/speedometer.svg"),
+    "settings": require( "@assets/icons/settings.svg"),
+    "exit": require( "@assets/icons/exit.svg"),
 }
 
 const Icon = ({ width, height, name, color }) => {
