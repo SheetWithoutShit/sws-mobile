@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     limitRed: {
         backgroundColor: COLORS.red,
     },
-    amount: {
+    balance: {
         fontFamily: FONTS.cairoBold,
         fontSize: 28,
         color: COLORS.black,

@@ -5,6 +5,7 @@ import Home from "@screens/Home/Home"
 import Transactions from "@screens/Transactions/Transactions"
 import Limits from "@screens/Limits/Limits"
 import LimitEdit from "@screens/Limits/LimitEdit/LimitEdit"
+import LimitDetails from "@screens/Limits/LimitDetails/LimitDetails"
 import Settings from "@screens/Settings/Settings"
 import Profile from "@screens/Profile/Profile"
 import DeleteAccount from "@screens/Settings/DeleteAccount/DeleteAccount"
@@ -14,6 +15,7 @@ import {
     HOME_SCREEN,
     LIMITS_SCREEN,
     LIMIT_EDIT_SCREEN,
+    LIMIT_DETAILS_SCREEN,
     SETTINGS_SCREEN,
     PROFILE_SCREEN,
     DELETE_ACCOUNT_SCREEN,
@@ -34,6 +36,7 @@ const Routes = () => (
         <Stack.Screen name={TRANSACTIONS_SCREEN} component={Transactions} />
         <Stack.Screen name={LIMITS_SCREEN} component={Limits}/>
         <Stack.Screen name={LIMIT_EDIT_SCREEN} component={LimitEdit}/>
+        <Stack.Screen name={LIMIT_DETAILS_SCREEN} component={LimitDetails}/>
         <Stack.Screen name={SETTINGS_SCREEN} component={Settings}/>
         <Stack.Screen name={DELETE_ACCOUNT_SCREEN} component={DeleteAccount}/>
         <Stack.Screen name={REPORT_DAILY_SCREEN} component={ReportDaily}/>

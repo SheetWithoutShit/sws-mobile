@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity } from "react-native"
 import ReportHeader from "@screens/Reports/ReportHeader"
 import Pie from "@components/Charts/Pie/Pie"
 import Bar from "@components/Charts/Bar/Bar"
-import { TOUCH_OPACITY } from "@utils/constants";
+import { TOUCH_OPACITY } from "@utils/constants"
 import styles from "./style"
 
 

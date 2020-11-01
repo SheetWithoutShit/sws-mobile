@@ -1,28 +1,15 @@
 import React from "react"
 import { View } from "react-native"
-import moment from "moment"
 
 import Header from "@components/Header/Header"
+import Pie from "@components/Charts/Pie/Pie"
 import TransactionsList from "@components/App/TransactionsList/TransactionsList"
+import { LIMIT_EDIT_SCREEN } from "@utils/constants"
 
 import styles from "./style"
 
 
 const MOCK_TRANSACTIONS = [
-    {
-        "id": "A1vVPVMbevHyWMEW",
-        "amount": "158.00",
-        "info": "Від: 535129****7175",
-        "timestamp": "2020.10.27 15:06:57",
-        "category_name": "Other",
-    },
-    {
-        "id": "uPA8ydjTmLWrk96g",
-        "amount": "-78.00",
-        "info": "Bolt",
-        "timestamp": "2020.10.26 11:30:07",
-        "category_name": "Taxi",
-    },
     {
         "id": "oFLLRJQ0Y3-VAeSk",
         "amount": "-19.60",
@@ -33,58 +20,51 @@ const MOCK_TRANSACTIONS = [
     {
         "id": "knrZskdlKpNWGCAP",
         "amount": "-158.00",
-        "info": "LC Waikiki",
+        "info": "Ашан",
         "timestamp": "2020.10.17 15:05:22",
-        "category_name": "Clothes and Shoes",
-    },
-    {
-        "id": "6VWiThpNe2MoAuHG",
-        "amount": "-232.00",
-        "info": "LC Waikiki",
-        "timestamp": "2020.10.17 14:29:15",
-        "category_name": "Clothes and Shoes",
+        "category_name": "Products & Supermarkets",
     },
     {
         "id": "wzDXuJi3m3ntFQkw",
         "amount": "-100.00",
-        "info": "roll bar Sorrymama",
+        "info": "Something cool",
         "timestamp": "2020.10.17 19:51:50",
-        "category_name": "Cafes and Restaurants",
+        "category_name": "Products & Supermarkets",
     },
     {
         "id": "o1re0JFU3sYy8jTZ",
         "amount": "-150.70",
         "info": "АТБ",
         "timestamp": "2020.10.14 19:20:41",
-        "category_name": "Products and Supermarkets",
+        "category_name": "Products & Supermarkets",
     },
     {
         "id": "gH3SNqgfxESvcEgG",
         "amount": "-80.50",
-        "info": "Опалення",
+        "info": "АТБ",
         "timestamp": "2020.10.13 21:51:26",
-        "category_name": "Other",
+        "category_name": "Products & Supermarkets",
     },
     {
         "id": "47kvB2dTaJmzXqgP",
         "amount": "-194.16",
-        "info": "Електроенергія",
+        "info": "Сільпо",
         "timestamp": "2020.10.13 21:51:25",
-        "category_name": "Other",
+        "category_name": "OtProducts & Products & Supermarkets",
     },
     {
         "id": "Q3nogFANBH4wtL5L",
         "amount": "-285.78",
-        "info": "Гаряча вода",
+        "info": "Сільпо",
         "timestamp": "2020.10.13 21:51:25",
-        "category_name": "Other",
+        "category_name": "Products & Supermarkets",
     },
     {
         "id": "07uqFoRxWKe0WLka",
         "amount": "-72.16",
-        "info": "Газ",
+        "info": "Сільпо",
         "timestamp": "2020.10.13 21:51:25",
-        "category_name": "Other",
+        "category_name": "Products & Supermarkets",
     },
     {
         "id": "VWxctxe3pLZWN9gm",
@@ -96,14 +76,22 @@ const MOCK_TRANSACTIONS = [
 ]
 
 
-const Transactions = () => {
-    const currentDate = moment().format("ll")
+const LimitDetails = ({ route, navigation }) => {
+    const { limit } = route.params
     return (
         <View style={styles.container}>
-            <Header text={currentDate}/>
+            <Header text={limit.name.replace("and", "&")}/>
+            <View style={styles.pieContainer}>
+                <Pie
+                    progress={0.4}
+                    spend={limit.spend}
+                    balance={limit.balance}
+                    handleTextPress={() => navigation.navigate(LIMIT_EDIT_SCREEN, { isEdit: true })}
+                />
+            </View>
             <TransactionsList transactions={MOCK_TRANSACTIONS}/>
         </View>
     )
 }
 
-export default Transactions
+export default LimitDetails

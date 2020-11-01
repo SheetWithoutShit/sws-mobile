@@ -4,6 +4,7 @@ import { View } from "react-native"
 import Header from "@components/Header/Header"
 import ColorButton from "@components/Buttons/ColorButton"
 import { DELETE_ACCOUNT_SCREEN } from "@utils/constants"
+import COLORS from "@utils/colors"
 import Icon from "@utils/icon"
 
 import styles from "./style"
@@ -14,7 +15,7 @@ const Settings = ({ navigation }) => {
         <View style={styles.container}>
             <Header
                 text="Settings"
-                icon={{ name: "settings" }}
+                icon={{ name: "settings", color: COLORS.gold }}
                 isSecondary={true}
             />
             <View style={styles.menu}>
@@ -44,7 +45,7 @@ const Settings = ({ navigation }) => {
                     label="Logout"
                     color="gold"
                 >
-                    <Icon name="exit"/>
+                    <Icon name="exit" color={COLORS.black} />
                 </ColorButton>
             </View>
         </View>

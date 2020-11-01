@@ -6,7 +6,7 @@ import FONTS from "@utils/fonts"
 
 const styles = StyleSheet.create({
     pie: {
-        height: 290,
+        height: 280,
     },
     labelsContainer: {
         position: "absolute",
@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
     },
     spend: {
         color: COLORS.gold,
-        fontSize: 36,
-        height: 45,
+        fontSize: 28,
+        height: 35,
     },
     balance: {
         color: COLORS.white,

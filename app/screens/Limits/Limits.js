@@ -5,7 +5,7 @@ import Header from "@components/Header/Header"
 import ColorButton from "@components/Buttons/ColorButton"
 import MessageInfo from "@components/Messages/MessageInfo"
 import COLORS from "@utils/colors"
-import { LIMIT_EDIT_SCREEN, TOUCH_OPACITY } from "@utils/constants"
+import { LIMIT_DETAILS_SCREEN, LIMIT_EDIT_SCREEN, TOUCH_OPACITY } from "@utils/constants"
 
 import styles from "./style"
 
@@ -14,28 +14,28 @@ import styles from "./style"
 const MOCK_LIMITS = [
     {
         "id": 1,
-        "amount": "5000.00",
+        "balance": "5000.00",
         "spend": "800.00",
         "name": "Products and Supermarkets",
         "info": "Goods and services in supermarkets and specialty stores selling food and beverages",
     },
     {
         "id": 3,
-        "amount": "300.00",
+        "balance": "300.00",
         "spend": "800.00",
         "name": "Cinema",
         "info": "Cinema services and goods, rent and purchase of goods in related stores",
     },
     {
         "id": 4,
-        "amount": "1250.00",
+        "balance": "1250.00",
         "spend": "800.00",
         "name": "Clothes and Shoes",
         "info": "Goods and services in specialized shops of clothes, footwear",
     },
     {
         "id": 2,
-        "amount": "500.00",
+        "balance": "500.00",
         "spend": "800.00",
         "name": "Taxi",
         "info": "Taxi services",
@@ -50,7 +50,7 @@ Let's start with your first limit."
 const Limits = ({ navigation }) => {
 
     const renderLimit = ({ item }) => {
-        const amount = parseFloat(item.amount)
+        const balance = parseFloat(item.balance)
         const spend = parseFloat(item.spend)
         return (
             <TouchableOpacity
@@ -58,11 +58,11 @@ const Limits = ({ navigation }) => {
                 key={item.id}
                 style={[
                     styles.limit,
-                    amount < spend && styles.limitRed,
+                    balance < spend && styles.limitRed,
                 ]}
-                onPress={() => navigation.navigate(LIMIT_EDIT_SCREEN, { isEdit: true })}
+                onPress={() => navigation.navigate(LIMIT_DETAILS_SCREEN, { limit: item })}
             >
-                <Text style={styles.amount}>{amount}</Text>
+                <Text style={styles.balance}>{balance}</Text>
                 <Text style={styles.category}>{item.name.replace("and", "&")}</Text>
             </TouchableOpacity>
         )

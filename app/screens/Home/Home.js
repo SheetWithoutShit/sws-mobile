@@ -1,7 +1,7 @@
 import React from "react"
 import { View, Text, TouchableOpacity } from "react-native"
 
-import Icon from "@utils/icon"
+import IconButton from "@components/Buttons/IconButton"
 import {
     TOUCH_OPACITY,
     TRANSACTIONS_SCREEN,
@@ -17,27 +17,24 @@ const Home = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.menu}>
-                <TouchableOpacity
-                    activeOpacity={TOUCH_OPACITY}
-                    style={styles.smallButton}
-                    onPress={() => navigation.navigate(PROFILE_SCREEN)}
-                >
-                    <Icon name="person" width="50" height="50"/>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    activeOpacity={TOUCH_OPACITY}
-                    style={styles.smallButton}
-                    onPress={() => navigation.navigate(REPORT_DAILY_SCREEN)}
-                >
-                    <Icon name="trending-up" width="60" height="60"/>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    activeOpacity={TOUCH_OPACITY}
-                    style={styles.smallButton}
-                    onPress={() => navigation.navigate(LIMITS_SCREEN)}
-                >
-                    <Icon name="speedometer" width="60" height="60"/>
-                </TouchableOpacity>
+                <IconButton
+                    icon={{ name: "person", height: "50", width: "50" }}
+                    style={{ margin: 5 }}
+                    color="gold"
+                    handlePress={() => navigation.navigate(PROFILE_SCREEN)}
+                />
+                <IconButton
+                    icon={{ name: "trending-up", height: "60", width: "60" }}
+                    style={{ margin: 5 }}
+                    color="gold"
+                    handlePress={() => navigation.navigate(REPORT_DAILY_SCREEN)}
+                />
+                <IconButton
+                    icon={{ name: "speedometer", height: "60", width: "60" }}
+                    style={{ margin: 5 }}
+                    color="gold"
+                    handlePress={() => navigation.navigate(LIMITS_SCREEN)}
+                />
                 <TouchableOpacity
                     activeOpacity={TOUCH_OPACITY}
                     style={styles.largeButton}

@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     message: {
         fontFamily: FONTS.cairoRegular,
         fontSize: 18,
-        color: COLORS.black,
+        color: COLORS.white,
         lineHeight: 24,
         width: 300,
         textAlign: "justify",
