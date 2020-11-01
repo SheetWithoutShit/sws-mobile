@@ -6,7 +6,7 @@ import COLORS from "@utils/colors"
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: COLORS.lightGreen,
+        backgroundColor: COLORS.black,
         alignItems: "center",
     },
     menu: {

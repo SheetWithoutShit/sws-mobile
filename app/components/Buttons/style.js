@@ -58,6 +58,16 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: COLORS.gold,
     },
+
+    // icon button stuff
+    iconButton: {
+        height: 85,
+        width: 85,
+        backgroundColor: COLORS.gold,
+        borderRadius: 15,
+        justifyContent: "center",
+        alignItems: "center",
+    },
 })
 
 export default styles

@@ -1,15 +1,17 @@
 import React from "react"
-import { View, Text, Dimensions } from "react-native"
+import { View, Text, Dimensions, TouchableOpacity } from "react-native"
 import { ProgressCircle } from "react-native-svg-charts"
 
+import { TOUCH_OPACITY } from "@utils/constants"
 import COLORS from "@utils/colors"
+
 import styles from "./style"
 
 
 const STROKE_WIDTH = 50
 const CORNER_RADIUS = 5
 
-const Pie = ({ progress, spend, balance }) => {
+const Pie = ({ progress, spend, balance, handleTextPress }) => {
     const progressColor = progress < 1 ? COLORS.gold : COLORS.red
 
     const deviceWidth = Dimensions.get("window").width
@@ -31,8 +33,13 @@ const Pie = ({ progress, spend, balance }) => {
                     // eslint-disable-next-line
                     { left: deviceWidth / 2 - labelWidth / 2 },
                 ]}>
-                <Text style={[styles.label, styles.spend]}>{spend} ₴</Text>
-                <Text style={[styles.label, styles.balance]}>{balance} ₴</Text>
+                <TouchableOpacity
+                    activeOpacity={TOUCH_OPACITY}
+                    onPress={handleTextPress}
+                >
+                    <Text style={[styles.label, styles.spend]}>{spend} ₴</Text>
+                    <Text style={[styles.label, styles.balance]}>{balance} ₴</Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
