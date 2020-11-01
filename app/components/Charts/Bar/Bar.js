@@ -15,7 +15,7 @@ const Bar = ({ data }) => {
             yMin={Y_MIN}
             yMax={Math.max(...data)}
             data={data}
-            svg={{ fill: COLORS.white }}
+            svg={{ fill: COLORS.black }}
             spacingInner={SPACING_INNER}
         />
     )

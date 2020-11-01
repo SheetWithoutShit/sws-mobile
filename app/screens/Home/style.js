@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: COLORS.lightGreen,
+        backgroundColor: COLORS.black,
     },
     menu: {
         width: 285,
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     smallButton: {
         height: 85,
         width: 85,
-        backgroundColor: COLORS.green,
+        backgroundColor: COLORS.gold,
         margin: 5,
         borderRadius: 15,
         justifyContent: "center",
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     largeButton: {
         width: 275,
         height: 110,
-        backgroundColor: COLORS.green,
+        backgroundColor: COLORS.gold,
         margin: 5,
         borderRadius: 15,
         justifyContent: "center",
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     balance: {
         fontSize: 44,
         fontFamily: FONTS.cairoBold,
-        color: COLORS.white,
+        color: COLORS.black,
     },
 })
 

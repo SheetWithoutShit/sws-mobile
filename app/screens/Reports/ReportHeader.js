@@ -12,16 +12,16 @@ const ReportHeader = ({ screen }) => {
             <ColorButton
                 label="Day"
                 size="small"
-                color="green"
+                color={screen === "Day" ? "black": "gold"}
                 disabled={screen === "Day"}
                 style={styles.reportHeaderButton}
             />
             <ColorButton
                 label="Month"
                 size="small"
-                color="green"
+                color={screen === "Month" ? "black": "gold"}
                 disabled={screen === "Month"}
-                style={styles.reportHeaderButton}
+                style={styles.reportHeaderActiveButton}
             />
         </View>
     )

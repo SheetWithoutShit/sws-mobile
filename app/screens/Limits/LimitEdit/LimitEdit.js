@@ -65,7 +65,7 @@ const LimitEdit = ({ route, navigation }) => {
                     />
                     <ColorButton
                         label="OK"
-                        color="green"
+                        color={isValid ? "gold" : "grey"}
                         size="small"
                         disabled={!isValid}
                     />

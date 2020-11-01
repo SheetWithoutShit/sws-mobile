@@ -12,14 +12,14 @@ import FONTS from "@utils/fonts"
 const styles = StyleSheet.create({
     app: {
         height: "100%",
-        backgroundColor: COLORS.lightGreen,
+        backgroundColor: COLORS.black,
         paddingTop: 35,
     },
     wordmark: {
         textAlign: "center",
         fontFamily: FONTS.cairoBold,
         fontSize: 16,
-        color: COLORS.green,
+        color: COLORS.gold,
     },
 })
 

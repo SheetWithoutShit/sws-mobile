@@ -71,7 +71,7 @@ const Limits = ({ navigation }) => {
     const AddLimit = () => (
         <ColorButton
             size="medium"
-            color="green"
+            color="gold"
             label="Add Limit"
             handlePress={() => navigation.navigate(LIMIT_EDIT_SCREEN, { isEdit: false })}
         />
@@ -88,7 +88,7 @@ const Limits = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Header
-                icon={{ name: "speedometer", height: "18", width: "24", color: COLORS.green }}
+                icon={{ name: "speedometer", height: "18", width: "24", color: COLORS.gold }}
                 text="Limits"
             />
             <FlatList

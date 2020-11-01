@@ -4,6 +4,7 @@ import { View, Text, TouchableOpacity } from "react-native"
 import ReportHeader from "@screens/Reports/ReportHeader"
 import Pie from "@components/Charts/Pie/Pie"
 import Bar from "@components/Charts/Bar/Bar"
+import { TOUCH_OPACITY } from "@utils/constants";
 import styles from "./style"
 
 
@@ -19,14 +20,14 @@ const ReportDaily = ( ) => {
                 balance={365.00.toFixed(2)}
             />
             <View style={styles.detailsContainer}>
-                <TouchableOpacity style={styles.details}>
+                <TouchableOpacity style={styles.details} activeOpacity={TOUCH_OPACITY}>
                     <Text style={styles.detailsText}>Spends</Text>
                     <View style={styles.detailsChart}>
                         {/* eslint-disable-next-line*/}
                         <Bar data={[10, 20, 30, 40, 50, 60, 50]}/>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.details}>
+                <TouchableOpacity style={styles.details} activeOpacity={TOUCH_OPACITY}>
                     <Text style={styles.detailsText}>Savings</Text>
                     <View style={styles.detailsChart}>
                         {/* eslint-disable-next-line*/}

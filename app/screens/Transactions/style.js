@@ -7,21 +7,21 @@ import FONTS from "@utils/fonts"
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: COLORS.lightGreen,
+        backgroundColor: COLORS.black,
     },
     header: {
         alignItems: "center",
     },
     currentDate: {
         fontFamily: FONTS.cairoRegular,
-        color: COLORS.black,
+        color: COLORS.gold,
         fontSize: 20,
     },
 
     // transaction cards stuff
     date: {
         fontFamily: FONTS.cairoRegular,
-        color: COLORS.black,
+        color: COLORS.white,
         fontSize: 16,
         height: 22, // todo: figure out height for text components
     },
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     transaction: {
         flex: 1,
         flexDirection: "row",
-        backgroundColor: COLORS.green,
+        backgroundColor: COLORS.gold,
         borderRadius: 5,
         marginTop: 5,
         height: 50,
@@ -43,16 +43,15 @@ const styles = StyleSheet.create({
     infoContainer: {
         justifyContent: "center",
         paddingLeft: 10,
-        width: "70%",
     },
     info: {
-        color: COLORS.white,
+        color: COLORS.black,
         fontFamily: FONTS.cairoBold,
         fontSize: 16,
         height: 22,
     },
     category: {
-        color: COLORS.white,
+        color: COLORS.black,
         fontFamily: FONTS.cairoRegular,
         fontSize: 14,
     },
@@ -63,7 +62,7 @@ const styles = StyleSheet.create({
         paddingRight: 5,
     },
     amount: {
-        color: COLORS.white,
+        color: COLORS.black,
         fontFamily: FONTS.cairoBold,
         fontSize: 16,
     },

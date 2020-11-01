@@ -20,11 +20,19 @@ const styles = StyleSheet.create({
     },
 
     // button colors
-    green: {
-        backgroundColor: COLORS.green,
+    gold: {
+        backgroundColor: COLORS.gold,
     },
     red: {
         backgroundColor: COLORS.red,
+    },
+    black: {
+        backgroundColor: COLORS.black,
+        borderWidth: 1,
+        borderColor: COLORS.gold,
+    },
+    grey: {
+        backgroundColor: COLORS.grey,
     },
 
     // color button stuff
@@ -34,13 +42,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         borderRadius: 10,
     },
-    colorButtonDisabled: {
-        backgroundColor: COLORS.grey,
-    },
     colorButtonText: {
         fontFamily: FONTS.cairoBold,
         fontSize: 20,
-        color: COLORS.white,
+        color: COLORS.black,
     },
 
     // text button stuff
@@ -51,7 +56,7 @@ const styles = StyleSheet.create({
     textButtonLabel: {
         fontFamily: FONTS.cairoBold,
         fontSize: 16,
-        color: COLORS.black,
+        color: COLORS.gold,
     },
 })
 

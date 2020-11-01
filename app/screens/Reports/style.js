@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
         margin: 5,
         width: 100,
     },
+    reportHeaderActiveButton: {
+        margin: 5,
+        width: 100,
+    },
 })
 
 export default styles

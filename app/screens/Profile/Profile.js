@@ -10,7 +10,7 @@ const Profile = ({ navigation }) => {
         <View>
             <ColorButton
                 size="medium"
-                color="green"
+                color="gold"
                 label="Settings"
                 handlePress={() => navigation.navigate(SETTINGS_SCREEN)}
             />

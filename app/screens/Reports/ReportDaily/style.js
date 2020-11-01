@@ -7,16 +7,16 @@ import FONTS from "@utils/fonts"
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: COLORS.lightGreen,
+        backgroundColor: COLORS.black,
     },
 
     // details stuff
     detailsContainer: {
-        marginTop: 50,
+        marginTop: 30,
         alignItems: "center",
     },
     details: {
-        backgroundColor: COLORS.green,
+        backgroundColor: COLORS.gold,
         width: 325,
         height: 80,
         marginTop: 15,
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         fontSize: 24,
         fontFamily: FONTS.cairoBold,
-        color: COLORS.white,
+        color: COLORS.black,
     },
     detailsChart: {
         width: "60%",

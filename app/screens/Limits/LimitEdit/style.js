@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        backgroundColor: COLORS.lightGreen,
+        backgroundColor: COLORS.black,
     },
 
     // edit form stuff
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     info: {
         fontFamily: FONTS.cairoRegular,
         fontSize: 16,
-        color: COLORS.black,
+        color: COLORS.white,
         lineHeight: 20,
         textAlign: "justify",
     },
