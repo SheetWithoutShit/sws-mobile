@@ -2,17 +2,18 @@ import React from "react"
 import { View, Text, TouchableOpacity } from "react-native"
 
 import ReportHeader from "@screens/Reports/ReportHeader"
-import Pie from "@components/Charts/Pie/Pie"
+import ProgressPie from "@components/Charts/ProgressPie/ProgressPie"
 import Bar from "@components/Charts/Bar/Bar"
 import { TOUCH_OPACITY } from "@utils/constants"
+
 import styles from "./style"
 
 
-const ReportDaily = ( ) => {
+const ReportDaily = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <ReportHeader screen="Day"/>
-            <Pie
+            <ReportHeader screen="Day" navigation={navigation}/>
+            <ProgressPie
                 progress={0.4}
                 // eslint-disable-next-line
                 spend={64.50.toFixed(2)}

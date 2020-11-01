@@ -2,7 +2,7 @@ import React from "react"
 import { View } from "react-native"
 
 import Header from "@components/Header/Header"
-import Pie from "@components/Charts/Pie/Pie"
+import ProgressPie from "@components/Charts/ProgressPie/ProgressPie"
 import TransactionsList from "@components/App/TransactionsList/TransactionsList"
 import { LIMIT_EDIT_SCREEN } from "@utils/constants"
 
@@ -82,7 +82,7 @@ const LimitDetails = ({ route, navigation }) => {
         <View style={styles.container}>
             <Header text={limit.name.replace("and", "&")}/>
             <View style={styles.pieContainer}>
-                <Pie
+                <ProgressPie
                     progress={0.4}
                     spend={limit.spend}
                     balance={limit.balance}

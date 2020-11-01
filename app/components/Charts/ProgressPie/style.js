@@ -11,13 +11,21 @@ const styles = StyleSheet.create({
     labelsContainer: {
         position: "absolute",
         width: 150,
-        top: 90,
+        top: 100,
     },
     label: {
         textAlign: "center",
         fontFamily: FONTS.cairoBold,
+    },
+    spend: {
         color: COLORS.gold,
-        fontSize: 48,
+        fontSize: 28,
+        height: 35,
+    },
+    balance: {
+        color: COLORS.white,
+        fontSize: 18,
+        height: 25,
     },
 })
 
