@@ -1,10 +1,14 @@
 const COLORS = {
     black: "#444444",
-    white: "#FFFFFF",
-    green: "#00844C",
+    white: "#DFDFDF",
+    grey: "#A6A6A6",
+    red: "#B06150",
+    gold: "#D9BB6E",
+    darkGold: "#6F6857",
+
+    // deprecated
     lightGreen: "#F9FFFE",
-    grey: "#C6C6C6",
-    red: "#CB6060",
+    green: "#00844C",
 }
 
 export default COLORS
