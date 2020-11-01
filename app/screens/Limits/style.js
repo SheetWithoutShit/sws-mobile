@@ -7,7 +7,7 @@ import FONTS from "@utils/fonts"
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: COLORS.lightGreen,
+        backgroundColor: COLORS.black,
         alignItems: "center",
         justifyContent: "center",
     },
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     limit: {
         width: 140,
         height: 110,
-        backgroundColor: COLORS.green,
+        backgroundColor: COLORS.gold,
         borderRadius: 15,
         margin: 5,
         justifyContent: "center",
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     amount: {
         fontFamily: FONTS.cairoBold,
         fontSize: 28,
-        color: COLORS.white,
+        color: COLORS.black,
         height: 30,
         lineHeight: 8,
         textAlignVertical: "bottom",
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     category: {
         fontFamily: FONTS.cairoRegular,
         fontSize: 14,
-        color: COLORS.white,
+        color: COLORS.black,
         textAlign: "center",
         width: 90,
         height: 30,

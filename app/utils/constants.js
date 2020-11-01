@@ -1,4 +1,4 @@
-export const TOUCH_OPACITY = 0.5
+export const TOUCH_OPACITY = 0.8
 
 // Screens names
 export const HOME_SCREEN = "Home"

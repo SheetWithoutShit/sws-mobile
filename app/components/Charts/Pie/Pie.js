@@ -10,7 +10,7 @@ const STROKE_WIDTH = 50
 const CORNER_RADIUS = 5
 
 const Pie = ({ progress, spend, balance }) => {
-    const progressColor = progress < 1 ? COLORS.green : COLORS.red
+    const progressColor = progress < 1 ? COLORS.gold : COLORS.red
 
     const deviceWidth = Dimensions.get("window").width
     const labelWidth = styles.labelsContainer.width
@@ -21,6 +21,7 @@ const Pie = ({ progress, spend, balance }) => {
                 style={styles.pie}
                 progress={progress}
                 progressColor={progressColor}
+                backgroundColor={COLORS.darkGold}
                 strokeWidth={STROKE_WIDTH}
                 cornerRadius={CORNER_RADIUS}
             />

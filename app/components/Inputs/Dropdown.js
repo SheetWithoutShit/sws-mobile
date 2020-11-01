@@ -13,7 +13,7 @@ const Dropdown = ({ label, items, placeholder, handleChange, style }) => {
                 style={{
                     inputIOS: styles.input,
                     inputAndroid: styles.input,
-                    placeholder: styles.placeholder,
+                    placeholder: styles.dropdownPlaceholder,
                     style,
                 }}
                 useNativeAndroidPickerStyle={false}

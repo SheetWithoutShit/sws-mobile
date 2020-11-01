@@ -8,22 +8,22 @@ const styles = StyleSheet.create({
     label: {
         fontFamily: FONTS.cairoBold,
         fontSize: 16,
-        color: COLORS.black,
+        color: COLORS.gold,
     },
     input: {
         borderRadius: 5,
         borderWidth: 2,
-        borderColor: COLORS.black,
+        borderColor: COLORS.gold,
         height: 40,
         marginBottom: 10,
         paddingLeft: 15,
         fontFamily: FONTS.cairoBold,
         fontSize: 16,
-        color: COLORS.black,
+        color: COLORS.white,
     },
-    categoryPlaceholder: {
+    dropdownPlaceholder: {
         fontFamily: FONTS.cairoRegular,
-        fontWeight: "normal",
+        color: COLORS.grey,
     },
 })
 

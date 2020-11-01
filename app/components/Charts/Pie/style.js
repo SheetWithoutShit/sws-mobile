@@ -16,13 +16,14 @@ const styles = StyleSheet.create({
     label: {
         textAlign: "center",
         fontFamily: FONTS.cairoBold,
-        color: COLORS.black,
     },
     spend: {
+        color: COLORS.gold,
         fontSize: 36,
         height: 45,
     },
     balance: {
+        color: COLORS.white,
         fontSize: 18,
         height: 25,
     },

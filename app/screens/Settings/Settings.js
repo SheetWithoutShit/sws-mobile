@@ -21,13 +21,13 @@ const Settings = ({ navigation }) => {
                 <ColorButton
                     size="large"
                     label="Change Email"
-                    color="green"
+                    color="gold"
                     style={{ margin: 5 }}
                 />
                 <ColorButton
                     size="large"
                     label="Change Password"
-                    color="green"
+                    color="gold"
                     style={{ margin: 5 }}
                 />
                 <ColorButton
@@ -42,7 +42,7 @@ const Settings = ({ navigation }) => {
                 <ColorButton
                     size="large"
                     label="Logout"
-                    color="green"
+                    color="gold"
                 >
                     <Icon name="exit"/>
                 </ColorButton>
