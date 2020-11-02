@@ -9,6 +9,11 @@ const ICONS_FILES = {
     "speedometer": require( "@assets/icons/speedometer.svg"),
     "settings": require( "@assets/icons/settings.svg"),
     "exit": require( "@assets/icons/exit.svg"),
+    "monobank": require( "@assets/icons/monobank.svg"),
+    "piggy": require( "@assets/icons/piggy.svg"),
+    "notifications": require( "@assets/icons/notifications.svg"),
+    "success": require( "@assets/icons/success.svg"),
+    "question": require( "@assets/icons/question.svg"),
 }
 
 const Icon = ({ width, height, name, color }) => {

@@ -4,8 +4,8 @@ import { View, Text } from "react-native"
 import Header from "@components/Header/Header"
 import Dropdown from "@components/Inputs/Dropdown"
 import BorderInput from "@components/Inputs/BorderInput"
-import ColorButton from "@components/Buttons/ColorButton"
-import TextButton from "@components/Buttons/TextButton"
+import Button from "@components/Buttons/Button"
+import COLORS from "@utils/colors"
 
 import styles from "./style"
 
@@ -37,7 +37,11 @@ const LimitEdit = ({ route, navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Header text={title} icon="limit" isSecondary={true}/>
+            <Header
+                text={title}
+                icon={{ name: "speedometer", height: "18", width: "24", color: COLORS.gold }}
+                isSecondary={true}
+            />
             <View style={styles.editContainer}>
                 <Dropdown
                     label="Category"
@@ -58,12 +62,15 @@ const LimitEdit = ({ route, navigation }) => {
                     value={limit}
                 />
                 <View style={styles.buttonsContainer}>
-                    <TextButton
+                    <Button
                         label="Cancel"
+                        color="none"
                         size="small"
+                        labelColor="gold"
+                        labelStyle={styles.cancelButton}
                         handlePress={() => navigation.goBack()}
                     />
-                    <ColorButton
+                    <Button
                         label="OK"
                         color={isValid ? "gold" : "grey"}
                         size="small"

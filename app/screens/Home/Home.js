@@ -1,9 +1,8 @@
 import React from "react"
-import { View, Text, TouchableOpacity } from "react-native"
+import { View } from "react-native"
 
-import IconButton from "@components/Buttons/IconButton"
+import Button from "@components/Buttons/Button"
 import {
-    TOUCH_OPACITY,
     TRANSACTIONS_SCREEN,
     LIMITS_SCREEN,
     PROFILE_SCREEN,
@@ -17,31 +16,31 @@ const Home = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.menu}>
-                <IconButton
+                <Button
                     icon={{ name: "person", height: "50", width: "50" }}
-                    style={{ margin: 5 }}
-                    color="gold"
+                    buttonStyle={styles.smallButton}
+                    size="square"
                     handlePress={() => navigation.navigate(PROFILE_SCREEN)}
                 />
-                <IconButton
+                <Button
                     icon={{ name: "trending-up", height: "60", width: "60" }}
-                    style={{ margin: 5 }}
-                    color="gold"
+                    buttonStyle={styles.smallButton}
+                    size="square"
                     handlePress={() => navigation.navigate(REPORT_DAILY_SCREEN)}
                 />
-                <IconButton
+                <Button
                     icon={{ name: "speedometer", height: "60", width: "60" }}
-                    style={{ margin: 5 }}
-                    color="gold"
+                    buttonStyle={styles.smallButton}
+                    size="square"
                     handlePress={() => navigation.navigate(LIMITS_SCREEN)}
                 />
-                <TouchableOpacity
-                    activeOpacity={TOUCH_OPACITY}
-                    style={styles.largeButton}
-                    onPress={() => navigation.navigate(TRANSACTIONS_SCREEN)}
+                <Button
+                    labelStyle={styles.balance}
+                    label="-354.50 ₴"
+                    buttonStyle={styles.largeButton}
+                    handlePress={() => navigation.navigate(TRANSACTIONS_SCREEN)}
                 >
-                    <Text style={styles.balance}>-354.50 ₴</Text>
-                </TouchableOpacity>
+                </Button>
             </View>
         </View>
     )

@@ -1,11 +1,11 @@
 import React from "react"
-import { View, Text, FlatList, TouchableOpacity } from "react-native"
+import { View, Text, FlatList } from "react-native"
 
 import Header from "@components/Header/Header"
-import ColorButton from "@components/Buttons/ColorButton"
+import Button from "@components/Buttons/Button"
 import MessageInfo from "@components/Messages/MessageInfo"
 import COLORS from "@utils/colors"
-import { LIMIT_DETAILS_SCREEN, LIMIT_EDIT_SCREEN, TOUCH_OPACITY } from "@utils/constants"
+import { LIMIT_DETAILS_SCREEN, LIMIT_EDIT_SCREEN } from "@utils/constants"
 
 import styles from "./style"
 
@@ -41,7 +41,8 @@ const MOCK_LIMITS = [
         "info": "Taxi services",
     },
 ]
-const EMPTY_LIMITS_MESSAGE = "\t\t\tIf you want to limit your spending for some \
+const EMPTY_LIMITS_MESSAGE = "\
+\t\t\tIf you want to limit your spending for some \
 category you can set it here and receives\
 an appropriate notification if the limit was exceeded. \
 Let's start with your first limit."
@@ -53,25 +54,21 @@ const Limits = ({ navigation }) => {
         const balance = parseFloat(item.balance)
         const spend = parseFloat(item.spend)
         return (
-            <TouchableOpacity
-                activeOpacity={TOUCH_OPACITY}
-                key={item.id}
-                style={[
-                    styles.limit,
-                    balance < spend && styles.limitRed,
-                ]}
-                onPress={() => navigation.navigate(LIMIT_DETAILS_SCREEN, { limit: item })}
+            <Button
+                size="largeSquare"
+                color={balance < spend ? "darkGold": "gold"}
+                buttonStyle={styles.limit}
+                handlePress={() => navigation.navigate(LIMIT_DETAILS_SCREEN, { limit: item })}
             >
                 <Text style={styles.balance}>{balance}</Text>
                 <Text style={styles.category}>{item.name.replace("and", "&")}</Text>
-            </TouchableOpacity>
+            </Button>
         )
     }
 
     const AddLimit = () => (
-        <ColorButton
+        <Button
             size="medium"
-            color="gold"
             label="Add Limit"
             handlePress={() => navigation.navigate(LIMIT_EDIT_SCREEN, { isEdit: false })}
         />

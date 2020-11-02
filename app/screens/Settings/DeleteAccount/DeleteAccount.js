@@ -3,8 +3,7 @@ import { View } from "react-native"
 
 import Header from "@components/Header/Header"
 import MessageInfo from "@components/Messages/MessageInfo"
-import ColorButton from "@components/Buttons/ColorButton"
-import TextButton from "@components/Buttons/TextButton"
+import Button from "@components/Buttons/Button"
 
 import styles from "./style"
 
@@ -24,12 +23,15 @@ const DeleteAccount = ({ navigation }) => {
             <View>
                 <MessageInfo text={DELETE_MESSAGE}/>
                 <View style={styles.buttonsContainer}>
-                    <TextButton
+                    <Button
                         label="Cancel"
                         size="small"
+                        color="none"
+                        labelColor="gold"
+                        labelStyle={styles.cancelButton}
                         handlePress={() => navigation.goBack()}
                     />
-                    <ColorButton
+                    <Button
                         label="YES"
                         size="small"
                         color="red"

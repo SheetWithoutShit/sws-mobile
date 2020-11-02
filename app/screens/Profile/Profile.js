@@ -1,19 +1,84 @@
 import React from "react"
-import { View } from "react-native"
+import { View, Text } from "react-native"
 
-import ColorButton from "@components/Buttons/ColorButton"
+import Header from "@components/Header/Header"
+import COLORS from "@utils/colors"
+import Icon from "@utils/icon"
+import Stepper from "@components/Stepper/Stepper"
+import Button from "@components/Buttons/Button"
 import { SETTINGS_SCREEN } from "@utils/constants"
+
+import styles from "./style"
 
 
 const Profile = ({ navigation }) => {
+    const steps = [
+        { label: "Registered", event: () => {} },
+        { label: "Monobank access", event: () => {} },
+        { label: "Set up budget", event: () => {} },
+        { label: "Enable telegram bot", event: () => {} },
+        { label: "Ready to use!", event: () => {} },
+    ]
     return (
-        <View>
-            <ColorButton
-                size="medium"
-                color="gold"
-                label="Settings"
-                handlePress={() => navigation.navigate(SETTINGS_SCREEN)}
+        <View style={styles.container}>
+            <Header
+                text="Ihor Titomir"
+                icon={{ name: "person", height: "24", width: "24", color: COLORS.gold }}
+                isSecondary={true}
             />
+            <View style={styles.menu}>
+                <Button
+                    size="largeSquare"
+                    color="gold"
+                    buttonStyle={styles.button}
+                    label="Monobank"
+                    labelStyle={styles.buttonText}
+                    icon={{ name: "monobank" }}
+                >
+                    <View style={[styles.label, styles.labelSuccess]}>
+                        <Icon name="success"/>
+                    </View>
+                </Button>
+                <Button
+                    size="largeSquare"
+                    color="gold"
+                    buttonStyle={styles.button}
+                    label="Budget"
+                    labelStyle={styles.buttonText}
+                    icon={{ name: "piggy" }}
+                >
+                    <View style={styles.label}>
+                        <Icon name="question"/>
+                    </View>
+                </Button>
+                <Button
+                    size="largeSquare"
+                    color="gold"
+                    buttonStyle={styles.button}
+                    label="Notifications"
+                    labelStyle={styles.buttonText}
+                    icon={{ name: "notifications" }}
+                >
+                    <View style={styles.label}>
+                        <Icon name="question"/>
+                    </View>
+                </Button>
+                <Button
+                    size="largeSquare"
+                    color="black"
+                    handlePress={() => navigation.navigate(SETTINGS_SCREEN)}
+                    buttonStyle={styles.button}
+                >
+                    <Icon name="settings" color={COLORS.gold}/>
+                    <Text style={[styles.buttonText, styles.settingsText]}>Settings</Text>
+                </Button>
+            </View>
+            <View style={styles.stepper}>
+                <Stepper
+                    stepPosition={2}
+                    steps={steps}
+                />
+            </View>
         </View>
     )
 }

@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     wordmark: {
         textAlign: "center",
         fontFamily: FONTS.cairoBold,
-        fontSize: 16,
+        fontSize: 20,
         color: COLORS.gold,
     },
 })

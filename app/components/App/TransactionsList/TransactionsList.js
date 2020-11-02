@@ -2,6 +2,7 @@ import React from "react"
 import { View, Text, FlatList } from "react-native"
 import moment from "moment"
 
+import Button from "@components/Buttons/Button"
 import { DATE_FORMAT, DATETIME_FORMAT } from "@utils/time"
 
 import styles from "./style"
@@ -21,7 +22,9 @@ const renderDayTransactions = ({ item }) => {
         <View style={styles.dayTransactions} key={item.date}>
             <Text style={styles.date}>{date}</Text>
             {item.transactions.map(transaction => (
-                <View style={styles.transaction} key={transaction.id}>
+                <Button
+                    buttonStyle={styles.transaction}
+                >
                     <View style={styles.infoContainer}>
                         <Text style={styles.info}>{transaction.info}</Text>
                         <Text style={styles.category}>{transaction.category_name}</Text>
@@ -29,7 +32,7 @@ const renderDayTransactions = ({ item }) => {
                     <View style={styles.amountContainer}>
                         <Text style={styles.amount}>{transaction.amount} ₴</Text>
                     </View>
-                </View>
+                </Button>
             ))}
         </View>
     )

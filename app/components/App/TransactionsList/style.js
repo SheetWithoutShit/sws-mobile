@@ -17,9 +17,7 @@ const styles = StyleSheet.create({
         marginRight: 20,
     },
     transaction: {
-        flex: 1,
         flexDirection: "row",
-        backgroundColor: COLORS.gold,
         borderRadius: 5,
         marginTop: 5,
         height: 50,
