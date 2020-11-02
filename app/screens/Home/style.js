@@ -15,14 +15,13 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         flexWrap: "wrap",
     },
+    smallButton: {
+        margin: 5,
+    },
     largeButton: {
         width: 275,
         height: 110,
-        backgroundColor: COLORS.gold,
         margin: 5,
-        borderRadius: 15,
-        justifyContent: "center",
-        alignItems: "center",
     },
     balance: {
         fontSize: 44,

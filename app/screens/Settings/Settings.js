@@ -1,8 +1,8 @@
 import React from "react"
-import { View } from "react-native"
+import { View, Text } from "react-native"
 
 import Header from "@components/Header/Header"
-import ColorButton from "@components/Buttons/ColorButton"
+import Button from "@components/Buttons/Button"
 import { DELETE_ACCOUNT_SCREEN } from "@utils/constants"
 import COLORS from "@utils/colors"
 import Icon from "@utils/icon"
@@ -19,34 +19,29 @@ const Settings = ({ navigation }) => {
                 isSecondary={true}
             />
             <View style={styles.menu}>
-                <ColorButton
+                <Button
                     size="large"
                     label="Change Email"
-                    color="gold"
-                    style={{ margin: 5 }}
+                    buttonStyle={styles.button}
                 />
-                <ColorButton
+                <Button
                     size="large"
                     label="Change Password"
-                    color="gold"
-                    style={{ margin: 5 }}
+                    buttonStyle={styles.button}
                 />
-                <ColorButton
+                <Button
                     size="large"
                     label="Delete an account"
                     color="red"
                     handlePress={() => navigation.navigate(DELETE_ACCOUNT_SCREEN)}
-                    style={{ margin: 5 }}
+                    buttonStyle={styles.button}
                 />
             </View>
             <View style={styles.logout}>
-                <ColorButton
-                    size="large"
-                    label="Logout"
-                    color="gold"
-                >
+                <Button size="large" buttonStyle={styles.logoutButton}>
                     <Icon name="exit" color={COLORS.black} />
-                </ColorButton>
+                    <Text style={styles.logoutText}>Logout</Text>
+                </Button>
             </View>
         </View>
     )

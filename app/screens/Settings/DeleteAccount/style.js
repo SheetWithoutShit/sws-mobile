@@ -16,6 +16,9 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "flex-end",
     },
+    cancelButton: {
+        fontSize: 16,
+    },
 })
 
 export default styles
