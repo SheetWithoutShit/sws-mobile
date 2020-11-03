@@ -16,6 +16,7 @@ import ReportDaily from "@screens/Reports/ReportDaily/ReportDaily"
 import ReportMonth from "@screens/Reports/ReportMonth/ReportMonth"
 import EmailChange from "@screens/Settings/EmailChange/EmailChange"
 import PasswordChange from "@screens/Settings/PasswordChange/PasswordChange"
+import Budget from "@screens/Budget/Budget"
 import {
     TRANSACTIONS_SCREEN,
     HOME_SCREEN,
@@ -32,11 +33,13 @@ import {
     REPORT_MONTH_SCREEN,
     EMAIL_CHANGE_SCREEN,
     PASSWORD_CHANGE_SCREEN,
+    BUDGET_SCREEN,
 } from "@utils/constants"
 
 
 const NAVIGATOR_OPTIONS = { headerShown: false }
 const SCREEN_OPTIONS = { cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }
+
 const Routes = () => {
     const Stack = createStackNavigator()
     return (
@@ -46,6 +49,7 @@ const Routes = () => {
             <Stack.Screen name={SIGNUP_SCREEN} component={SignUp} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={FORGOT_PASSWORD_SCREEN} component={ForgotPassword} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={PROFILE_SCREEN} component={Profile} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={BUDGET_SCREEN} component={Budget} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={TRANSACTIONS_SCREEN} component={Transactions} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={LIMITS_SCREEN} component={Limits} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={LIMIT_EDIT_SCREEN} component={LimitEdit} options={SCREEN_OPTIONS}/>

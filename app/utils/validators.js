@@ -38,3 +38,19 @@ export const validateEmail = (value) => {
     }
     return errors.length ? errors : null
 }
+
+export const validateSavings = (value) => {
+    const errors = []
+    if (value < 0 || value > 100) {
+        errors.push("Savings is out of range (0-100).")
+    }
+    return errors.length ? errors : null
+}
+
+export const validateIncome = (value) => {
+    const errors = []
+    if (value < 0) {
+        errors.push("Income must be positive value.")
+    }
+    return errors.length ? errors : null
+}
