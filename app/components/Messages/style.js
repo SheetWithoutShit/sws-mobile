@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: COLORS.white,
         lineHeight: 24,
-        width: 300,
+        width: 288,
         textAlign: "justify",
     },
 })

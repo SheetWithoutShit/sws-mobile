@@ -3,7 +3,7 @@ import { View, Text } from "react-native"
 
 import Header from "@components/Header/Header"
 import Dropdown from "@components/Inputs/Dropdown"
-import BorderInput from "@components/Inputs/BorderInput"
+import Input from "@components/Inputs/Input"
 import Button from "@components/Buttons/Button"
 import COLORS from "@utils/colors"
 
@@ -25,7 +25,7 @@ const MOCK_CATEGORIES = [
 const LimitEdit = ({ route, navigation }) => {
     const [category, setCategory] = useState(null)
     const [info, setInfo] = useState(DEFAULT_CATEGORY_INFO)
-    const [limit, setLimit] = useState("0")
+    const [limit, setLimit] = useState(null)
 
     const isValid = category && parseFloat(limit)
     const title = route.params.isEdit ? "Edit limit": "Create a limit"
@@ -55,10 +55,11 @@ const LimitEdit = ({ route, navigation }) => {
                 ]}>
                     {info}
                 </Text>
-                <BorderInput
+                <Input
                     label="Limit ₴"
                     keyboard="number-pad"
-                    handleChange={(value) => setLimit(value.replace(/[^0-9]/g, ""))}
+                    placeholder="0"
+                    handleChange={(value) => setLimit(value.replace(/[^0-9]]/g, ""))}
                     value={limit}
                 />
                 <View style={styles.buttonsContainer}>
@@ -71,7 +72,7 @@ const LimitEdit = ({ route, navigation }) => {
                         handlePress={() => navigation.goBack()}
                     />
                     <Button
-                        label="OK"
+                        label="Submit"
                         color={isValid ? "gold" : "grey"}
                         size="small"
                         disabled={!isValid}

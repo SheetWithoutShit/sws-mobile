@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
 
 export const buttonSizes = StyleSheet.create({
     small: {
-        width: 75,
+        width: 90,
         height: 40,
     },
     medium: {

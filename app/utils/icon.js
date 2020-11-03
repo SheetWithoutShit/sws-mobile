@@ -14,6 +14,8 @@ const ICONS_FILES = {
     "notifications": require( "@assets/icons/notifications.svg"),
     "success": require( "@assets/icons/success.svg"),
     "question": require( "@assets/icons/question.svg"),
+    "email": require( "@assets/icons/email.svg"),
+    "lock": require( "@assets/icons/lock.svg"),
 }
 
 const Icon = ({ width, height, name, color }) => {

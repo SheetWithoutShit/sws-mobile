@@ -46,7 +46,6 @@ const Button = ({
     handlePress,
     children,
     disabled = false,
-
 }) => {
     return (
         <TouchableOpacity

@@ -3,9 +3,13 @@ import { View, Text } from "react-native"
 
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
-import { DELETE_ACCOUNT_SCREEN } from "@utils/constants"
 import COLORS from "@utils/colors"
 import Icon from "@utils/icon"
+import {
+    DELETE_ACCOUNT_SCREEN,
+    EMAIL_CHANGE_SCREEN,
+    PASSWORD_CHANGE_SCREEN,
+} from "@utils/constants"
 
 import styles from "./style"
 
@@ -22,11 +26,13 @@ const Settings = ({ navigation }) => {
                 <Button
                     size="large"
                     label="Change Email"
+                    handlePress={() => navigation.navigate(EMAIL_CHANGE_SCREEN)}
                     buttonStyle={styles.button}
                 />
                 <Button
                     size="large"
                     label="Change Password"
+                    handlePress={() => navigation.navigate(PASSWORD_CHANGE_SCREEN)}
                     buttonStyle={styles.button}
                 />
                 <Button
