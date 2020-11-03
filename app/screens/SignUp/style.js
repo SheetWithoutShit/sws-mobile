@@ -14,33 +14,19 @@ const styles = StyleSheet.create({
     password: {
         marginTop: 25,
     },
-    passwordOptions: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginTop: 10,
-    },
-    passwordOptionsText: {
-        fontSize: 16,
-        fontFamily: FONTS.cairoRegular,
-        color: COLORS.gold,
-        marginLeft: 5,
-    },
-    rememberMe: {
-        flex: 1,
-    },
 
     buttonsContainer: {
         marginTop: 25,
         alignItems: "center",
     },
-    signUp: {
+    signIn: {
         flexDirection: "row",
         fontFamily: FONTS.cairoRegular,
         fontSize: 16,
         color: COLORS.gold,
         marginTop: 5,
     },
-    signUpBold: {
+    signInBold: {
         fontFamily: FONTS.cairoBold,
     },
 })

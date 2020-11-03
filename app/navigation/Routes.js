@@ -2,6 +2,9 @@ import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
 
 import Home from "@screens/Home/Home"
+import SignIn from "@screens/SignIn/SignIn"
+import SignUp from "@screens/SignUp/SignUp"
+import ForgotPassword from "@screens/ForgotPassword/ForgotPassword"
 import Transactions from "@screens/Transactions/Transactions"
 import Limits from "@screens/Limits/Limits"
 import LimitEdit from "@screens/Limits/LimitEdit/LimitEdit"
@@ -16,6 +19,9 @@ import PasswordChange from "@screens/Settings/PasswordChange/PasswordChange"
 import {
     TRANSACTIONS_SCREEN,
     HOME_SCREEN,
+    SIGNIN_SCREEN,
+    SIGNUP_SCREEN,
+    FORGOT_PASSWORD_SCREEN,
     LIMITS_SCREEN,
     LIMIT_EDIT_SCREEN,
     LIMIT_DETAILS_SCREEN,
@@ -38,6 +44,9 @@ const Routes = () => (
         }}
     >
         <Stack.Screen name={HOME_SCREEN} component={Home}/>
+        <Stack.Screen name={SIGNIN_SCREEN} component={SignIn}/>
+        <Stack.Screen name={SIGNUP_SCREEN} component={SignUp}/>
+        <Stack.Screen name={FORGOT_PASSWORD_SCREEN} component={ForgotPassword}/>
         <Stack.Screen name={PROFILE_SCREEN} component={Profile}/>
         <Stack.Screen name={TRANSACTIONS_SCREEN} component={Transactions} />
         <Stack.Screen name={LIMITS_SCREEN} component={Limits}/>
