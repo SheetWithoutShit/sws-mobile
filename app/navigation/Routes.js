@@ -11,6 +11,8 @@ import Profile from "@screens/Profile/Profile"
 import DeleteAccount from "@screens/Settings/DeleteAccount/DeleteAccount"
 import ReportDaily from "@screens/Reports/ReportDaily/ReportDaily"
 import ReportMonth from "@screens/Reports/ReportMonth/ReportMonth"
+import EmailChange from "@screens/Settings/EmailChange/EmailChange"
+import PasswordChange from "@screens/Settings/PasswordChange/PasswordChange"
 import {
     TRANSACTIONS_SCREEN,
     HOME_SCREEN,
@@ -22,6 +24,8 @@ import {
     DELETE_ACCOUNT_SCREEN,
     REPORT_DAILY_SCREEN,
     REPORT_MONTH_SCREEN,
+    EMAIL_CHANGE_SCREEN,
+    PASSWORD_CHANGE_SCREEN,
 } from "@utils/constants"
 
 
@@ -40,6 +44,8 @@ const Routes = () => (
         <Stack.Screen name={LIMIT_EDIT_SCREEN} component={LimitEdit}/>
         <Stack.Screen name={LIMIT_DETAILS_SCREEN} component={LimitDetails}/>
         <Stack.Screen name={SETTINGS_SCREEN} component={Settings}/>
+        <Stack.Screen name={EMAIL_CHANGE_SCREEN} component={EmailChange}/>
+        <Stack.Screen name={PASSWORD_CHANGE_SCREEN} component={PasswordChange}/>
         <Stack.Screen name={DELETE_ACCOUNT_SCREEN} component={DeleteAccount}/>
         <Stack.Screen name={REPORT_DAILY_SCREEN} component={ReportDaily}/>
         <Stack.Screen name={REPORT_MONTH_SCREEN} component={ReportMonth}/>

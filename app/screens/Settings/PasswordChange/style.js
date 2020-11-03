@@ -1,35 +1,22 @@
 import { StyleSheet } from "react-native"
 
 import COLORS from "@utils/colors"
-import FONTS from "@utils/fonts"
 
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: "center",
         backgroundColor: COLORS.black,
+        alignItems: "center",
     },
 
-    // edit form stuff
-    editContainer: {
-        width: 280,
-    },
-    info: {
-        fontFamily: FONTS.cairoRegular,
-        fontSize: 16,
-        color: COLORS.white,
-        lineHeight: 20,
-        textAlign: "justify",
+    password: {
         marginTop: 10,
-    },
-    defaultInfo: {
-        color: COLORS.grey,
     },
 
     // buttons stuff
     buttonsContainer: {
-        marginTop: 10,
+        marginTop: 20,
         flexDirection: "row",
         justifyContent: "flex-end",
     },

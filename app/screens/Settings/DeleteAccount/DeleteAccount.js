@@ -32,7 +32,7 @@ const DeleteAccount = ({ navigation }) => {
                         handlePress={() => navigation.goBack()}
                     />
                     <Button
-                        label="YES"
+                        label="Submit"
                         size="small"
                         color="red"
                     />

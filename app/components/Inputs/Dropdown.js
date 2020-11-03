@@ -8,12 +8,12 @@ import styles from "./style"
 const Dropdown = ({ label, items, placeholder, handleChange, style }) => {
     return (
         <View>
-            {label && <Text style={styles.label}>{label}</Text>}
+            {label && <Text style={styles.inputLabel}>{label}</Text>}
             <PickerSelect
                 style={{
-                    inputIOS: styles.input,
-                    inputAndroid: styles.input,
-                    placeholder: styles.dropdownPlaceholder,
+                    inputIOS: { ...styles.input, ...styles.inputText },
+                    inputAndroid: { ...styles.input, ...styles.inputText },
+                    placeholder: styles.placeholder,
                     style,
                 }}
                 useNativeAndroidPickerStyle={false}
