@@ -6,7 +6,7 @@ import COLORS from "@utils/colors"
 import Icon from "@utils/icon"
 import Stepper from "@components/Stepper/Stepper"
 import Button from "@components/Buttons/Button"
-import { SETTINGS_SCREEN } from "@utils/constants"
+import { SETTINGS_SCREEN, BUDGET_SCREEN } from "@utils/constants"
 
 import styles from "./style"
 
@@ -42,6 +42,7 @@ const Profile = ({ navigation }) => {
                 <Button
                     size="largeSquare"
                     color="gold"
+                    handlePress={() => navigation.navigate(BUDGET_SCREEN)}
                     buttonStyle={styles.button}
                     label="Budget"
                     labelStyle={styles.buttonText}
