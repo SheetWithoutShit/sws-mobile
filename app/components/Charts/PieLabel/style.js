@@ -5,13 +5,10 @@ import FONTS from "@utils/fonts"
 
 
 const styles = StyleSheet.create({
-    progressPie: {
-        height: 300,
-    },
     labelsContainer: {
         position: "absolute",
-        width: 150,
-        top: 100,
+        width: 200,
+        top: 105,
     },
     label: {
         textAlign: "center",
@@ -19,8 +16,8 @@ const styles = StyleSheet.create({
     },
     primaryText: {
         color: COLORS.gold,
-        fontSize: 32,
-        height: 40,
+        fontSize: 36,
+        height: 45,
     },
     secondaryText: {
         color: COLORS.white,

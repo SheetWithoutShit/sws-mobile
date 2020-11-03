@@ -11,7 +11,7 @@ import styles from "./style"
 
 
 const EMAIL_CHANGE_MESSAGE = "\
-\t\t\tIn order to change the email, you need to put below a new email, \
+In order to change the email, you need to put below a new email, \
 submit a changing request, and follow up instruction that we will send to your old email."
 
 const EmailChange = ({ navigation }) => {

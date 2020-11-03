@@ -53,7 +53,7 @@ const ReportMonth = ({ navigation }) => {
                             <Pie
                                 data={MOCK_MONTH_REPORTS}
                                 activeIndex={activeIndex}
-                                text={Math.round(percentage)}
+                                primaryText={`${percentage.toFixed(2)}%`}
                             />
                             <View style={styles.info}>
                                 <Text style={styles.primaryText}>{item.value} ₴</Text>

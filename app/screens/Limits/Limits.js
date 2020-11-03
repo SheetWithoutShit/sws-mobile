@@ -42,7 +42,7 @@ const MOCK_LIMITS = [
     },
 ]
 const EMPTY_LIMITS_MESSAGE = "\
-\t\t\tIf you want to limit your spending for some \
+If you want to limit your spending for some \
 category you can set it here and receives\
 an appropriate notification if the limit was exceeded. \
 Let's start with your first limit."

@@ -1,5 +1,5 @@
 import React from "react"
-import { createStackNavigator } from "@react-navigation/stack"
+import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack"
 
 import Home from "@screens/Home/Home"
 import SignIn from "@screens/SignIn/SignIn"
@@ -35,30 +35,29 @@ import {
 } from "@utils/constants"
 
 
-const Stack = createStackNavigator()
-
-const Routes = () => (
-    <Stack.Navigator
-        screenOptions={{
-            headerShown: false,
-        }}
-    >
-        <Stack.Screen name={HOME_SCREEN} component={Home}/>
-        <Stack.Screen name={SIGNIN_SCREEN} component={SignIn}/>
-        <Stack.Screen name={SIGNUP_SCREEN} component={SignUp}/>
-        <Stack.Screen name={FORGOT_PASSWORD_SCREEN} component={ForgotPassword}/>
-        <Stack.Screen name={PROFILE_SCREEN} component={Profile}/>
-        <Stack.Screen name={TRANSACTIONS_SCREEN} component={Transactions} />
-        <Stack.Screen name={LIMITS_SCREEN} component={Limits}/>
-        <Stack.Screen name={LIMIT_EDIT_SCREEN} component={LimitEdit}/>
-        <Stack.Screen name={LIMIT_DETAILS_SCREEN} component={LimitDetails}/>
-        <Stack.Screen name={SETTINGS_SCREEN} component={Settings}/>
-        <Stack.Screen name={EMAIL_CHANGE_SCREEN} component={EmailChange}/>
-        <Stack.Screen name={PASSWORD_CHANGE_SCREEN} component={PasswordChange}/>
-        <Stack.Screen name={DELETE_ACCOUNT_SCREEN} component={DeleteAccount}/>
-        <Stack.Screen name={REPORT_DAILY_SCREEN} component={ReportDaily}/>
-        <Stack.Screen name={REPORT_MONTH_SCREEN} component={ReportMonth}/>
-    </Stack.Navigator>
-)
+const NAVIGATOR_OPTIONS = { headerShown: false }
+const SCREEN_OPTIONS = { cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }
+const Routes = () => {
+    const Stack = createStackNavigator()
+    return (
+        <Stack.Navigator screenOptions={NAVIGATOR_OPTIONS} initialRouteName={HOME_SCREEN}>
+            <Stack.Screen name={HOME_SCREEN} component={Home} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={SIGNIN_SCREEN} component={SignIn} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={SIGNUP_SCREEN} component={SignUp} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={FORGOT_PASSWORD_SCREEN} component={ForgotPassword} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={PROFILE_SCREEN} component={Profile} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={TRANSACTIONS_SCREEN} component={Transactions} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={LIMITS_SCREEN} component={Limits} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={LIMIT_EDIT_SCREEN} component={LimitEdit} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={LIMIT_DETAILS_SCREEN} component={LimitDetails} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={SETTINGS_SCREEN} component={Settings} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={EMAIL_CHANGE_SCREEN} component={EmailChange} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={PASSWORD_CHANGE_SCREEN} component={PasswordChange} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={DELETE_ACCOUNT_SCREEN} component={DeleteAccount} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={REPORT_DAILY_SCREEN} component={ReportDaily} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={REPORT_MONTH_SCREEN} component={ReportMonth} options={SCREEN_OPTIONS}/>
+        </Stack.Navigator>
+    )
+}
 
 export default Routes

@@ -1,18 +1,17 @@
 import React from "react"
-import { View, Text, Dimensions } from "react-native"
+import { View } from "react-native"
 import { PieChart } from "react-native-svg-charts"
 
+import PieLabel from "@components/Charts/PieLabel/PieLabel"
 import COLORS from "@utils/colors"
 
 import styles from "./style"
 
 
-const Pie = ({ data, activeIndex, text }) => {
-    const deviceWidth = Dimensions.get("window").width
-    const labelWidth = styles.labelsContainer.width
+const Pie = ({ data, activeIndex, primaryText, secondaryText, handlePressText }) => {
     const segments = data.map((item, index) => {
         const outerRadius = index === activeIndex ? "100%" : "70%"
-        const innerRadius = index === activeIndex ? "70%" : "80%"
+        const innerRadius = index === activeIndex ? "70%" : "85%"
         return {
             key: item.key,
             value: item.value,
@@ -27,13 +26,11 @@ const Pie = ({ data, activeIndex, text }) => {
                 style={styles.pie}
                 data={segments}
             />
-            <View
-                style={[
-                    styles.labelsContainer,
-                    { left: deviceWidth / 2 - labelWidth / 2 },
-                ]}>
-                <Text style={styles.label}>{text}%</Text>
-            </View>
+            <PieLabel
+                primaryText={primaryText}
+                secondaryText={secondaryText}
+                handlePressText={handlePressText}
+            />
         </View>
     )
 }

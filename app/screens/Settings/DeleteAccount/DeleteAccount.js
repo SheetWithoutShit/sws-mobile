@@ -8,10 +8,10 @@ import Button from "@components/Buttons/Button"
 import styles from "./style"
 
 
-const DELETE_MESSAGE = "\t\t\tYou can delete your Spentless account at any time. \
+const DELETE_MESSAGE = "You can delete your Spentless account at any time. \
 If you change your mind, you might not be able to recover it. \
 You will lose all the data and content in that account. \
-\n\t\t\tAre you sure?"
+\nAre you sure?"
 
 const DeleteAccount = ({ navigation }) => {
     return (
