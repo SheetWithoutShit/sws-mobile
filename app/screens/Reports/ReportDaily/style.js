@@ -12,16 +12,13 @@ const styles = StyleSheet.create({
 
     // details stuff
     detailsContainer: {
-        marginTop: 30,
         alignItems: "center",
     },
-    details: {
+    detailsButton: {
         backgroundColor: COLORS.gold,
         width: 325,
         height: 80,
         marginTop: 15,
-        borderRadius: 15,
-        alignItems: "center",
         flexDirection: "row",
     },
     detailsText: {

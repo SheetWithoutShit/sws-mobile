@@ -5,8 +5,8 @@ import FONTS from "@utils/fonts"
 
 
 const styles = StyleSheet.create({
-    pie: {
-        height: 280,
+    progressPie: {
+        height: 300,
     },
     labelsContainer: {
         position: "absolute",
@@ -17,14 +17,14 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontFamily: FONTS.cairoBold,
     },
-    spend: {
+    primaryText: {
         color: COLORS.gold,
-        fontSize: 28,
-        height: 35,
+        fontSize: 32,
+        height: 40,
     },
-    balance: {
+    secondaryText: {
         color: COLORS.white,
-        fontSize: 18,
+        fontSize: 20,
         height: 25,
     },
 })
