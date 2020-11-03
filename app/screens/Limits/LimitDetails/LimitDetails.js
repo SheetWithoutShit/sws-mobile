@@ -2,7 +2,7 @@ import React from "react"
 import { View } from "react-native"
 
 import Header from "@components/Header/Header"
-import ProgressPie from "@components/Charts/ProgressPie/ProgressPie"
+import PieProgress from "@components/Charts/PieProgress/PieProgress"
 import TransactionsList from "@components/App/TransactionsList/TransactionsList"
 import { LIMIT_EDIT_SCREEN } from "@utils/constants"
 
@@ -78,14 +78,15 @@ const MOCK_TRANSACTIONS = [
 
 const LimitDetails = ({ route, navigation }) => {
     const { limit } = route.params
+
     return (
         <View style={styles.container}>
-            <Header text={limit.name.replace("and", "&")}/>
+            <Header text={limit.name}/>
             <View style={styles.pieContainer}>
-                <ProgressPie
+                <PieProgress
                     progress={0.4}
-                    spend={limit.spend}
-                    balance={limit.balance}
+                    primaryText={`${limit.spend} ₴`}
+                    secondaryText={`${limit.balance} ₴`}
                     handleTextPress={() => navigation.navigate(LIMIT_EDIT_SCREEN, { isEdit: true })}
                 />
             </View>

@@ -2,7 +2,7 @@ import React from "react"
 import { View, Text } from "react-native"
 
 import ReportHeader from "@screens/Reports/ReportHeader"
-import ProgressPie from "@components/Charts/ProgressPie/ProgressPie"
+import PieProgress from "@components/Charts/PieProgress/PieProgress"
 import Bar from "@components/Charts/Bar/Bar"
 import Button from "@components/Buttons/Button"
 
@@ -20,10 +20,10 @@ const ReportDaily = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <ReportHeader screen="Day" navigation={navigation}/>
-            <ProgressPie
+            <PieProgress
                 progress={progress}
-                spend={MOCK_SPEND.toFixed(2)}
-                balance={MOCK_BALANCE.toFixed(2)}
+                primaryText={`${MOCK_SPEND.toFixed(2)} ₴`}
+                secondaryText={`${MOCK_BALANCE.toFixed(2)} ₴`}
             />
             <View style={styles.detailsContainer}>
                 <Button buttonStyle={styles.detailsButton}>
