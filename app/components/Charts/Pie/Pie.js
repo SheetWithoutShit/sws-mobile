@@ -30,7 +30,6 @@ const Pie = ({ data, activeIndex, text }) => {
             <View
                 style={[
                     styles.labelsContainer,
-                    // eslint-disable-next-line
                     { left: deviceWidth / 2 - labelWidth / 2 },
                 ]}>
                 <Text style={styles.label}>{text}%</Text>
