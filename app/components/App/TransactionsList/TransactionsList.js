@@ -1,42 +1,13 @@
-import React from "react"
+import React, { useState } from "react"
 import { View, Text, FlatList } from "react-native"
 import moment from "moment"
 
 import Button from "@components/Buttons/Button"
-import { DATE_FORMAT, DATETIME_FORMAT } from "@utils/time"
+import TransactionDetails from "@components/App/TransactionDetails/TransactionDetails"
+import { DATE_FORMAT, DATETIME_FORMAT, RELATIVE_FORMAT } from "@utils/time"
 
 import styles from "./style"
 
-
-const CALENDAR_FORMAT = {
-    sameDay: "[Today]",
-    lastDay: "[Yesterday]",
-    lastWeek: "[Last] dddd",
-    sameElse: "DD.MM",
-}
-
-
-const renderDayTransactions = ({ item }) => {
-    const date = moment(item.date, DATE_FORMAT).calendar(CALENDAR_FORMAT)
-    return (
-        <View style={styles.dayTransactions} key={item.date}>
-            <Text style={styles.date}>{date}</Text>
-            {item.transactions.map(transaction => (
-                <View key={transaction.id}>
-                    <Button buttonStyle={styles.transaction}>
-                        <View style={styles.infoContainer}>
-                            <Text style={styles.info}>{transaction.info}</Text>
-                            <Text style={styles.category}>{transaction.category_name}</Text>
-                        </View>
-                        <View style={styles.amountContainer}>
-                            <Text style={styles.amount}>{transaction.amount} ₴</Text>
-                        </View>
-                    </Button>
-                </View>
-            ))}
-        </View>
-    )
-}
 
 const formatTransactions = (data) => {
     const transactions = {}
@@ -55,12 +26,45 @@ const formatTransactions = (data) => {
 
 
 const TransactionsList = ({ transactions }) => {
+    const [transactionDetails, setTransactionDetails] = useState(null)
+
+    const renderDayTransactions = ({ item }) => {
+        const date = moment(item.date, DATE_FORMAT).calendar(RELATIVE_FORMAT)
+        return (
+            <View style={styles.dayTransactions} key={item.date}>
+                <Text style={styles.date}>{date}</Text>
+                {item.transactions.map(transaction => (
+                    <View key={transaction.id}>
+                        <Button
+                            buttonStyle={styles.transaction}
+                            handlePress={() => setTransactionDetails(transaction)}
+                        >
+                            <View style={styles.infoContainer}>
+                                <Text style={styles.info}>{transaction.info}</Text>
+                                <Text style={styles.category}>{transaction.category_name}</Text>
+                            </View>
+                            <View style={styles.amountContainer}>
+                                <Text style={styles.amount}>{transaction.amount} ₴</Text>
+                            </View>
+                        </Button>
+                    </View>
+                ))}
+            </View>
+        )
+    }
     return (
-        <FlatList
-            data={formatTransactions(transactions)}
-            renderItem={renderDayTransactions}
-            keyExtractor={(item) => item.date}
-        />
+        <>
+            <FlatList
+                data={formatTransactions(transactions)}
+                renderItem={renderDayTransactions}
+                keyExtractor={(item) => item.date}
+            />
+            {transactionDetails && <TransactionDetails
+                visible={true}
+                transaction={transactionDetails}
+                handleClose={() => setTransactionDetails(null)}
+            />}
+        </>
     )
 }
 
