@@ -54,6 +54,7 @@ const Button = ({
                 styles.button,
                 buttonSizes[size],
                 buttonColors[color],
+                color !== "none" && styles.shadow,
                 buttonStyle,
             ]}
             onPress={handlePress}

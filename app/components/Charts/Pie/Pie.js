@@ -14,7 +14,7 @@ const Pie = ({ data, activeIndex, primaryText, secondaryText, handlePressText })
         const innerRadius = index === activeIndex ? "70%" : "85%"
         return {
             key: item.key,
-            value: item.value,
+            value: parseFloat(item.value),
             svg: { fill: index === activeIndex ? COLORS.gold : COLORS.darkGold },
             arc: { outerRadius, innerRadius },
         }

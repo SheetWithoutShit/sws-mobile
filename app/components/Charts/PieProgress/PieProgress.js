@@ -33,7 +33,7 @@ const PieProgress = ({ progress, primaryText, secondaryText, handleTextPress }) 
             <PieLabel
                 primaryText={primaryText}
                 secondaryText={secondaryText}
-                handlePressText={handleTextPress}
+                handleTextPress={handleTextPress}
             />
         </View>
     )

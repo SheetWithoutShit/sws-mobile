@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     },
 
     inputText : {
-        fontFamily: FONTS.cairoBold,
+        fontFamily: FONTS.cairoRegular,
         fontSize: 16,
         color: COLORS.white,
     },
