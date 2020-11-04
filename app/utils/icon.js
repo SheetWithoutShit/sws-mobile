@@ -16,6 +16,8 @@ const ICONS_FILES = {
     "question": require( "@assets/icons/question.svg"),
     "email": require( "@assets/icons/email.svg"),
     "lock": require( "@assets/icons/lock.svg"),
+    "success-circle": require( "@assets/icons/success-circle.svg"),
+    "error-circle": require( "@assets/icons/error-circle.svg"),
 }
 
 const Icon = ({ width, height, name, color }) => {

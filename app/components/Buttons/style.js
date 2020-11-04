@@ -66,6 +66,9 @@ export const buttonColors = StyleSheet.create({
     grey: {
         backgroundColor: COLORS.grey,
     },
+    darkGreen: {
+        backgroundColor: COLORS.darkGreen,
+    },
     none: {
         color: COLORS.gold,
     },

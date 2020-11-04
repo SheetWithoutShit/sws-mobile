@@ -5,6 +5,7 @@ const COLORS = {
     red: "#B06150",
     gold: "#D9BB6E",
     darkGold: "#6F6857",
+    darkGreen: "#748959",
 }
 
 export default COLORS
