@@ -9,6 +9,15 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 15,
+
+        shadowColor: COLORS.black,
+        shadowOffset: {
+            width: 0,
+            height: 7,
+        },
+        shadowOpacity: 0.4,
+        shadowRadius: 9,
+        elevation: 15,
     },
     label: {
         fontFamily: FONTS.cairoBold,
