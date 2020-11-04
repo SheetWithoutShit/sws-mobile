@@ -15,13 +15,15 @@ const MOCK_TRANSACTIONS = [
         "amount": "-19.60",
         "info": "Ашан",
         "timestamp": "2020.10.21 15:22:57",
-        "category_name": "Products and Supermarkets",
+        "cashback": "0.58",
+        "category_name": "Products & Supermarkets",
     },
     {
         "id": "knrZskdlKpNWGCAP",
         "amount": "-158.00",
         "info": "Ашан",
         "timestamp": "2020.10.17 15:05:22",
+        "cashback": "0.58",
         "category_name": "Products & Supermarkets",
     },
     {
@@ -29,6 +31,7 @@ const MOCK_TRANSACTIONS = [
         "amount": "-100.00",
         "info": "Something cool",
         "timestamp": "2020.10.17 19:51:50",
+        "cashback": "0.58",
         "category_name": "Products & Supermarkets",
     },
     {
@@ -36,6 +39,7 @@ const MOCK_TRANSACTIONS = [
         "amount": "-150.70",
         "info": "АТБ",
         "timestamp": "2020.10.14 19:20:41",
+        "cashback": "0.58",
         "category_name": "Products & Supermarkets",
     },
     {
@@ -43,6 +47,7 @@ const MOCK_TRANSACTIONS = [
         "amount": "-80.50",
         "info": "АТБ",
         "timestamp": "2020.10.13 21:51:26",
+        "cashback": "0.58",
         "category_name": "Products & Supermarkets",
     },
     {
@@ -50,13 +55,15 @@ const MOCK_TRANSACTIONS = [
         "amount": "-194.16",
         "info": "Сільпо",
         "timestamp": "2020.10.13 21:51:25",
-        "category_name": "OtProducts & Products & Supermarkets",
+        "cashback": "0.58",
+        "category_name": "Products & Supermarkets",
     },
     {
         "id": "Q3nogFANBH4wtL5L",
         "amount": "-285.78",
         "info": "Сільпо",
         "timestamp": "2020.10.13 21:51:25",
+        "cashback": "0.58",
         "category_name": "Products & Supermarkets",
     },
     {
@@ -64,6 +71,7 @@ const MOCK_TRANSACTIONS = [
         "amount": "-72.16",
         "info": "Сільпо",
         "timestamp": "2020.10.13 21:51:25",
+        "cashback": "0.58",
         "category_name": "Products & Supermarkets",
     },
     {
@@ -71,6 +79,7 @@ const MOCK_TRANSACTIONS = [
         "amount": "-292.00",
         "info": "Квартплата",
         "timestamp": "2020.10.13 21:51:24",
+        "cashback": "0.58",
         "category_name": "Other",
     },
 ]
