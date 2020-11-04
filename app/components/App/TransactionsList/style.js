@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         fontFamily: FONTS.cairoRegular,
         color: COLORS.white,
         fontSize: 16,
-        height: 22, // todo: figure out height for text components
+        height: 22,
     },
     dayTransactions: {
         marginBottom: 5,
@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         borderRadius: 5,
         marginTop: 5,
-        height: 50,
     },
 
     // transaction card stuff

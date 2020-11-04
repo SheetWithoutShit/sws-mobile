@@ -8,9 +8,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.black,
     },
-    pieContainer: {
-        marginBottom: 25,
-    },
 })
 
 export default styles

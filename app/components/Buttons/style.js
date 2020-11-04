@@ -9,7 +9,8 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 15,
-
+    },
+    shadow: {
         shadowColor: COLORS.black,
         shadowOffset: {
             width: 0,
@@ -17,7 +18,7 @@ export const styles = StyleSheet.create({
         },
         shadowOpacity: 0.4,
         shadowRadius: 9,
-        elevation: 15,
+        elevation: 5,
     },
     label: {
         fontFamily: FONTS.cairoBold,
@@ -34,8 +35,8 @@ export const buttonSizes = StyleSheet.create({
         width: 200,
         height: 50,
     },
-    large: {
-        width: 325,
+    wide: {
+        width: "90%",
         height: 50,
     },
     square: {

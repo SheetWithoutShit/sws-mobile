@@ -29,6 +29,7 @@ const Snackbar = ({ visible, text, level, duration, handlePress }) => {
     if (!visible || hide) return null
     return (
         <Button
+            size="wide"
             color={level === "success" ? "darkGreen" : "red"}
             buttonStyle={styles.snackbar}
             handlePress={handlePress}

@@ -82,14 +82,12 @@ const LimitDetails = ({ route, navigation }) => {
     return (
         <View style={styles.container}>
             <Header text={limit.name}/>
-            <View style={styles.pieContainer}>
-                <PieProgress
-                    progress={0.4}
-                    primaryText={`${limit.spend} ₴`}
-                    secondaryText={`${limit.balance} ₴`}
-                    handleTextPress={() => navigation.navigate(LIMIT_EDIT_SCREEN, { isEdit: true })}
-                />
-            </View>
+            <PieProgress
+                progress={0.4}
+                primaryText={`${limit.spend} ₴`}
+                secondaryText={`${limit.balance} ₴`}
+                handleTextPress={() => navigation.navigate(LIMIT_EDIT_SCREEN, { isEdit: true })}
+            />
             <TransactionsList transactions={MOCK_TRANSACTIONS}/>
         </View>
     )

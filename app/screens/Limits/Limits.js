@@ -16,7 +16,7 @@ const MOCK_LIMITS = [
         "id": 1,
         "balance": "5000.00",
         "spend": "800.00",
-        "name": "Products and Supermarkets",
+        "name": "Products & Supermarkets",
         "info": "Goods and services in supermarkets and specialty stores selling food and beverages",
     },
     {
@@ -30,7 +30,7 @@ const MOCK_LIMITS = [
         "id": 4,
         "balance": "1250.00",
         "spend": "800.00",
-        "name": "Clothes and Shoes",
+        "name": "Clothes & Shoes",
         "info": "Goods and services in specialized shops of clothes, footwear",
     },
     {
@@ -61,7 +61,7 @@ const Limits = ({ navigation }) => {
                 handlePress={() => navigation.navigate(LIMIT_DETAILS_SCREEN, { limit: item })}
             >
                 <Text style={styles.balance}>{balance}</Text>
-                <Text style={styles.category}>{item.name.replace("and", "&")}</Text>
+                <Text style={styles.category}>{item.name}</Text>
             </Button>
         )
     }
@@ -92,7 +92,7 @@ const Limits = ({ navigation }) => {
                 contentContainerStyle={styles.limitsContainer}
                 data={MOCK_LIMITS}
                 renderItem={renderLimit}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item.name}
                 ListFooterComponent={AddLimit}
                 showsVerticalScrollIndicator={false}
                 ListFooterComponentStyle={styles.addButton}

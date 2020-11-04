@@ -5,8 +5,6 @@ import FONTS from "@utils/fonts"
 
 const styles = StyleSheet.create({
     snackbar: {
-        height: 50,
-        width: "90%",
         position: "absolute",
         flexDirection: "row",
         top: 0,

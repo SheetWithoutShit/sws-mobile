@@ -22,17 +22,17 @@ const renderDayTransactions = ({ item }) => {
         <View style={styles.dayTransactions} key={item.date}>
             <Text style={styles.date}>{date}</Text>
             {item.transactions.map(transaction => (
-                <Button
-                    buttonStyle={styles.transaction}
-                >
-                    <View style={styles.infoContainer}>
-                        <Text style={styles.info}>{transaction.info}</Text>
-                        <Text style={styles.category}>{transaction.category_name}</Text>
-                    </View>
-                    <View style={styles.amountContainer}>
-                        <Text style={styles.amount}>{transaction.amount} ₴</Text>
-                    </View>
-                </Button>
+                <View key={transaction.id}>
+                    <Button buttonStyle={styles.transaction}>
+                        <View style={styles.infoContainer}>
+                            <Text style={styles.info}>{transaction.info}</Text>
+                            <Text style={styles.category}>{transaction.category_name}</Text>
+                        </View>
+                        <View style={styles.amountContainer}>
+                            <Text style={styles.amount}>{transaction.amount} ₴</Text>
+                        </View>
+                    </Button>
+                </View>
             ))}
         </View>
     )
