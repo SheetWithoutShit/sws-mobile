@@ -33,6 +33,7 @@ const SignIn = ({ navigation }) => {
                         handleChange={(value) => setPassword(value)}
                         value={password}
                         style={styles.input}
+                        visibleIcon={true}
                     />
                     <View style={styles.passwordOptions}>
                         <CheckBox
