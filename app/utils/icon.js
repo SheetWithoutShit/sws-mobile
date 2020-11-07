@@ -18,6 +18,8 @@ const ICONS_FILES = {
     "lock": require( "@assets/icons/lock.svg"),
     "success-circle": require( "@assets/icons/success-circle.svg"),
     "error-circle": require( "@assets/icons/error-circle.svg"),
+    "visible": require( "@assets/icons/visible.svg"),
+    "visible-off": require( "@assets/icons/visible-off.svg"),
 }
 
 const Icon = ({ width, height, name, color }) => {

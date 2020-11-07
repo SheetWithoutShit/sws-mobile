@@ -50,6 +50,7 @@ const PasswordChange = ({ navigation }) => {
                     handleChange={(value) => setOldPassword(value)}
                     value={oldPassword}
                     style={styles.password}
+                    visibleIcon={true}
                 />
                 <PasswordInput
                     placeholder="Enter new password..."
@@ -57,6 +58,7 @@ const PasswordChange = ({ navigation }) => {
                     value={newPassword}
                     style={styles.password}
                     errors={newPasswordErrors}
+                    visibleIcon={true}
                 />
                 <PasswordInput
                     placeholder="Confirm password..."
@@ -64,6 +66,7 @@ const PasswordChange = ({ navigation }) => {
                     value={confirmPassword}
                     style={styles.password}
                     errors={confirmErrors}
+                    visibleIcon={false}
                 />
                 <View style={styles.buttonsContainer}>
                     <Button

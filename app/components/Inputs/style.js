@@ -37,6 +37,10 @@ const styles = StyleSheet.create({
         zIndex: 1,
         bottom: 5,
     },
+    visibilityIcon: {
+        right: 0,
+        top: 25,
+    },
     iconInput: {
         borderWidth: 0,
         borderBottomWidth: 2,

@@ -69,6 +69,7 @@ const SignUp = ({ navigation }) => {
                         value={password}
                         style={styles.input}
                         errors={passwordErrors}
+                        visibleIcon={true}
                     />
                     <PasswordInput
                         placeholder="Enter confirm password..."
