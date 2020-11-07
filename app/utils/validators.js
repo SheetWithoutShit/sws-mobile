@@ -46,11 +46,3 @@ export const validateSavings = (value) => {
     }
     return errors.length ? errors : null
 }
-
-export const validateIncome = (value) => {
-    const errors = []
-    if (value < 0) {
-        errors.push("Income must be positive value.")
-    }
-    return errors.length ? errors : null
-}

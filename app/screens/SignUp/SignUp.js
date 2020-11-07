@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import { View, Text } from "react-native"
 
-import Input from "@components/Inputs/Input"
+import PasswordInput from "@components/Inputs/PasswordInput"
+import EmailInput from "@components/Inputs/EmailInput"
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
 import { SIGNIN_SCREEN } from "@utils/constants"
@@ -21,25 +22,27 @@ const SignUp = ({ navigation }) => {
 
     const [emailErrors, setEmailErrors] = useState(null)
     const [passwordErrors, setPasswordErrors] = useState(null)
-    const [confirmErrors, setConfirmPasswordErrors] = useState(null)
+    const [confirmPasswordErrors, setConfirmPasswordErrors] = useState(null)
 
-    const validatePasswordValue = () => {
-        const errors = validatePassword(password)
-        setPasswordErrors(errors)
-    }
-    const validateConfirmPasswordValue = () => {
-        const errors = validateConfirmPassword(password, confirmPassword)
-        setConfirmPasswordErrors(errors)
-    }
-    const validateEmailValue = () => {
-        const errors = validateEmail(email)
+    const handleEmailChange = (value) => {
+        setEmail(value)
+
+        const errors = validateEmail(value)
         setEmailErrors(errors)
     }
 
-    const handleSubmit = () => {
-        setEmailErrors(validateEmail(email))
-        setNewPasswordErrors(validatePassword(password))
-        setConfirmPasswordErrors(validateConfirmPassword(password, confirmPassword))
+    const handlePasswordChange = (value) => {
+        setPassword(value)
+
+        const errors = validatePassword(value)
+        setPasswordErrors(errors)
+    }
+
+    const handleConfirmPasswordChange = (value) => {
+        setConfirmPassword(value)
+
+        const errors = validateConfirmPassword(password, value)
+        setConfirmPasswordErrors(errors)
     }
 
     // email, new, confirm password shouldn't be null and errors should be empty
@@ -48,48 +51,31 @@ const SignUp = ({ navigation }) => {
         && confirmPassword
         && !emailErrors
         && !passwordErrors
-        && !confirmErrors
+        && !confirmPasswordErrors
     return (
         <View style={styles.container}>
             <Header isSecondary={true} text="Sign Up"/>
             <View>
                 <View>
-                    <Input
-                        icon={{ name: "email" }}
-                        keyboard="email-address"
-                        autoCompleteType="email"
-                        textContentType="emailAddress"
-                        placeholder="Enter an email..."
-                        handleChange={(value) => setEmail(value)}
+                    <EmailInput
+                        handleChange={handleEmailChange}
                         value={email}
-                        handleEndEditing={validateEmailValue}
+                        style={styles.input}
                         errors={emailErrors}
                     />
-                    <Input
-                        icon={{ name: "lock" }}
-                        keyboard="password"
-                        autoCompleteType="password"
-                        textContentType="password"
-                        placeholder="Enter new password..."
-                        handleChange={(value) => setPassword(value)}
+                    <PasswordInput
+                        placeholder="Enter password..."
+                        handleChange={handlePasswordChange}
                         value={password}
-                        style={styles.password}
-                        secureTextEntry={true}
+                        style={styles.input}
                         errors={passwordErrors}
-                        handleEndEditing={validatePasswordValue}
                     />
-                    <Input
-                        icon={{ name: "lock" }}
-                        keyboard="password"
-                        autoCompleteType="password"
-                        textContentType="password"
-                        placeholder="Confirm password..."
-                        handleChange={(value) => setConfirmPassword(value)}
+                    <PasswordInput
+                        placeholder="Enter confirm password..."
+                        handleChange={handleConfirmPasswordChange}
                         value={confirmPassword}
-                        style={styles.password}
-                        secureTextEntry={true}
-                        handleEndEditing={validateConfirmPasswordValue}
-                        errors={confirmErrors}
+                        style={styles.input}
+                        errors={confirmPasswordErrors}
                     />
                 </View>
                 <View style={styles.buttonsContainer}>
@@ -98,7 +84,6 @@ const SignUp = ({ navigation }) => {
                         label="Sign Up"
                         color={isValid ? "gold": "grey"}
                         disabled={!isValid}
-                        handlePress={handleSubmit}
                     />
                     <Button color="none" handlePress={() => navigation.navigate(SIGNIN_SCREEN)}>
                         <Text style={styles.signIn}>

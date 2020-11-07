@@ -2,34 +2,32 @@ import React, { useState } from "react"
 import { View } from "react-native"
 
 import Header from "@components/Header/Header"
-import Input from "@components/Inputs/Input"
+import MessageInfo from "@components/Messages/MessageInfo"
+import NumberInput from "@components/Inputs/NumberInput"
 import Button from "@components/Buttons/Button"
 import COLORS from "@utils/colors"
-import { validateSavings, validateIncome } from "@utils/validators"
+import { validateSavings } from "@utils/validators"
 
 import styles from "./style"
 
 
+const BUDGET_MESSAGE = "\
+In order to help cut off your spendings \
+we should know your income per month and how much in the percentage of budget you want to save."
+
 const Budget = ({ navigation }) => {
     const [income, setIncome] = useState(null)
-    const [saving, setSavings] = useState(null)
-    const [incomeErrors, setIncomeErrors] = useState(null)
+    const [savings, setSavings] = useState(null)
     const [savingErrors, setSavingsErrors] = useState(null)
 
-    const validateSavingValue = () => {
-        const errors = validateSavings(saving)
+    const handleSavingsChange = (value) => {
+        setSavings(value)
+
+        const errors = validateSavings(value)
         setSavingsErrors(errors)
     }
-    const validateIncomeValue = () => {
-        const errors = validateIncome(saving)
-        setIncomeErrors(errors)
-    }
-    const handleSubmit = () => {
-        setSavingsErrors(validateSavings(saving))
-        setIncomeErrors(validateIncome(income))
-    }
 
-    const isValid = income && saving && !savingErrors && !incomeErrors
+    const isValid = income && savings && !savingErrors
 
     return (
         <View style={styles.container}>
@@ -38,23 +36,17 @@ const Budget = ({ navigation }) => {
                 icon={{ name: "piggy", height: "18", width: "24", color: COLORS.gold }}
                 isSecondary={true}
             />
-            <View style={styles.editContainer}>
-                <Input
+            <View NumberInput={styles.editContainer}>
+                <MessageInfo text={BUDGET_MESSAGE}/>
+                <NumberInput
                     label="Income ₴"
-                    keyboard="number-pad"
-                    placeholder="0"
-                    handleEndEditing={validateIncomeValue}
                     value={income}
-                    handleChange={(value) => setIncome(value.replace(/[^0-9]]/g, ""))}
-                    errors={incomeErrors}
+                    handleChange={(value) => setIncome(value)}
                 />
-                <Input
+                <NumberInput
                     label="Savings %"
-                    keyboard="number-pad"
-                    placeholder="0"
-                    handleEndEditing={validateSavingValue}
-                    value={saving}
-                    handleChange={(value) => setSavings(value.replace(/[^0-9]]/g, ""))}
+                    value={savings}
+                    handleChange={handleSavingsChange}
                     errors={savingErrors}
                 />
                 <View style={styles.buttonsContainer}>
@@ -71,7 +63,6 @@ const Budget = ({ navigation }) => {
                         color={isValid ? "gold" : "grey"}
                         size="small"
                         disabled={!isValid}
-                        handlePress={handleSubmit}
                     />
                 </View>
             </View>

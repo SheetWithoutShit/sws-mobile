@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { View } from "react-native"
 
-import Input from "@components/Inputs/Input"
+import EmailInput from "@components/Inputs/EmailInput"
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
 import MessageInfo from "@components/Messages/MessageInfo"
@@ -16,8 +16,10 @@ const ForgotPassword = ({ navigation }) => {
     const [email, setEmail] = useState("")
     const [emailErrors, setEmailErrors] = useState(null)
 
-    const validateEmailValue = () => {
-        const errors = validateEmail(email)
+    const handleEmailChange = (value) => {
+        setEmail(value)
+
+        const errors = validateEmail(value)
         setEmailErrors(errors)
     }
 
@@ -27,15 +29,9 @@ const ForgotPassword = ({ navigation }) => {
             <Header isSecondary={true} text="Forgot Password"/>
             <MessageInfo text={FORGOT_PASSWORD_MESSAGE}/>
             <View>
-                <Input
-                    icon={{ name: "email" }}
-                    keyboard="email-address"
-                    autoCompleteType="email"
-                    textContentType="emailAddress"
-                    placeholder="Enter an email..."
-                    handleChange={(value) => setEmail(value)}
+                <EmailInput
+                    handleChange={handleEmailChange}
                     value={email}
-                    handleEndEditing={validateEmailValue}
                     errors={emailErrors}
                 />
                 <View style={styles.buttonsContainer}>
@@ -52,7 +48,6 @@ const ForgotPassword = ({ navigation }) => {
                         size="small"
                         color={isValid ? "gold" : "grey"}
                         disabled={!isValid}
-                        handlePress={validateEmailValue}
                     />
                 </View>
             </View>

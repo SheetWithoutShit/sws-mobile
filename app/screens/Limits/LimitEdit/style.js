@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 
     // buttons stuff
     buttonsContainer: {
-        marginTop: 10,
+        marginTop: 20,
         flexDirection: "row",
         justifyContent: "flex-end",
     },
