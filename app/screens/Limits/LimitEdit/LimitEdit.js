@@ -3,7 +3,7 @@ import { View, Text } from "react-native"
 
 import Header from "@components/Header/Header"
 import Dropdown from "@components/Inputs/Dropdown"
-import Input from "@components/Inputs/Input"
+import NumberInput from "@components/Inputs/NumberInput"
 import Button from "@components/Buttons/Button"
 import COLORS from "@utils/colors"
 
@@ -23,11 +23,11 @@ const MOCK_CATEGORIES = [
 ]
 
 const LimitEdit = ({ route, navigation }) => {
-    const [category, setCategory] = useState(null)
+    const [category, setCategory] = useState("")
     const [info, setInfo] = useState(DEFAULT_CATEGORY_INFO)
-    const [limit, setLimit] = useState(null)
+    const [limit, setLimit] = useState("")
 
-    const isValid = category && parseFloat(limit)
+    const isValid = category && limit
     const title = route.params.isEdit ? "Edit limit": "Create a limit"
 
     const handleChangeCategory = (value, index) => {
@@ -55,11 +55,9 @@ const LimitEdit = ({ route, navigation }) => {
                 ]}>
                     {info}
                 </Text>
-                <Input
+                <NumberInput
                     label="Limit ₴"
-                    keyboard="number-pad"
-                    placeholder="0"
-                    handleChange={(value) => setLimit(value.replace(/[^0-9]]/g, ""))}
+                    handleChange={(value) => setLimit(value)}
                     value={limit}
                 />
                 <View style={styles.buttonsContainer}>

@@ -3,7 +3,7 @@ import { View } from "react-native"
 
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
-import Input from "@components/Inputs/Input"
+import PasswordInput from "@components/Inputs/PasswordInput"
 import { validatePassword, validateConfirmPassword } from "@utils/validators"
 
 import styles from "./style"
@@ -17,17 +17,18 @@ const PasswordChange = ({ navigation }) => {
     const [newPasswordErrors, setNewPasswordErrors] = useState(null)
     const [confirmErrors, setConfirmPasswordErrors] = useState(null)
 
-    const validateNewPasswordValue = () => {
-        const errors = validatePassword(newPassword)
+    const handleNewPasswordChange = (value) => {
+        setNewPassword(value)
+
+        const errors = validatePassword(value)
         setNewPasswordErrors(errors)
     }
-    const validateConfirmPasswordValue = () => {
-        const errors = validateConfirmPassword(newPassword, confirmPassword)
+
+    const handleConfirmPasswordChange = (value) => {
+        setConfirmPassword(value)
+
+        const errors = validateConfirmPassword(newPassword, value)
         setConfirmPasswordErrors(errors)
-    }
-    const handleSubmit = () => {
-        setNewPasswordErrors(validatePassword(newPassword))
-        setConfirmPasswordErrors(validateConfirmPassword(newPassword, confirmPassword))
     }
 
     // Old, new, confirm password shouldn't be null and errors should be empty
@@ -44,41 +45,24 @@ const PasswordChange = ({ navigation }) => {
                 isSecondary={true}
             />
             <View>
-                <Input
-                    icon={{ name: "lock" }}
-                    keyboard="password"
-                    autoCompleteType="password"
-                    textContentType="password"
+                <PasswordInput
                     placeholder="Enter old password..."
                     handleChange={(value) => setOldPassword(value)}
                     value={oldPassword}
                     style={styles.password}
-                    secureTextEntry={true}
                 />
-                <Input
-                    icon={{ name: "lock" }}
-                    keyboard="password"
-                    autoCompleteType="password"
-                    textContentType="password"
+                <PasswordInput
                     placeholder="Enter new password..."
-                    handleChange={(value) => setNewPassword(value)}
+                    handleChange={handleNewPasswordChange}
                     value={newPassword}
                     style={styles.password}
-                    secureTextEntry={true}
                     errors={newPasswordErrors}
-                    handleEndEditing={validateNewPasswordValue}
                 />
-                <Input
-                    icon={{ name: "lock" }}
-                    keyboard="password"
-                    autoCompleteType="password"
-                    textContentType="password"
+                <PasswordInput
                     placeholder="Confirm password..."
-                    handleChange={(value) => setConfirmPassword(value)}
+                    handleChange={handleConfirmPasswordChange}
                     value={confirmPassword}
                     style={styles.password}
-                    secureTextEntry={true}
-                    handleEndEditing={validateConfirmPasswordValue}
                     errors={confirmErrors}
                 />
                 <View style={styles.buttonsContainer}>
@@ -95,7 +79,6 @@ const PasswordChange = ({ navigation }) => {
                         size="small"
                         color={isValid ? "gold" : "grey"}
                         disabled={!isValid}
-                        handlePress={handleSubmit}
                     />
                 </View>
             </View>

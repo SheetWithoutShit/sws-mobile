@@ -17,7 +17,7 @@ const renderIcon = (icon) => {
 const renderErrors = (errors) => {
     return (
         <View style={styles.errorContainer}>
-            {errors.map(error => <Text style={styles.error}>* {error}</Text>)}
+            {errors.map((error, index) => <Text key={index} style={styles.error}>* {error}</Text>)}
         </View>
     )
 }
@@ -34,7 +34,6 @@ const Input = ({
     disabled,
     textContentType,
     secureTextEntry,
-    handleEndEditing,
     errors,
 }) => {
     return (
@@ -58,7 +57,6 @@ const Input = ({
                     value={value}
                     editable={disabled}
                     secureTextEntry={secureTextEntry}
-                    onEndEditing={handleEndEditing}
                 />
             </View>
             {errors && renderErrors(errors)}

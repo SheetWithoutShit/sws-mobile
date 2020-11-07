@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     },
 
     password: {
-        marginTop: 10,
+        marginTop: 15,
     },
 
     // buttons stuff

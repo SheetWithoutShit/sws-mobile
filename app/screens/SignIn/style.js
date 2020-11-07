@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
 
-    password: {
-        marginTop: 25,
+    input: {
+        marginTop: 15,
     },
     passwordOptions: {
         flexDirection: "row",
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     },
 
     buttonsContainer: {
-        marginTop: 25,
+        marginTop: 20,
         alignItems: "center",
     },
     signUp: {
