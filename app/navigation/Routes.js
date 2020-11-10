@@ -18,6 +18,7 @@ import EmailChange from "@screens/Settings/EmailChange/EmailChange"
 import PasswordChange from "@screens/Settings/PasswordChange/PasswordChange"
 import Budget from "@screens/Budget/Budget"
 import Monobank from "@screens/Monobank/Monobank"
+import Notification from "@screens/Notification/Notification"
 import {
     TRANSACTIONS_SCREEN,
     HOME_SCREEN,
@@ -36,6 +37,7 @@ import {
     PASSWORD_CHANGE_SCREEN,
     BUDGET_SCREEN,
     MONOBANK_SCREEN,
+    NOTIFICATION_SCREEN,
 } from "@utils/constants"
 
 
@@ -53,6 +55,7 @@ const Routes = () => {
             <Stack.Screen name={PROFILE_SCREEN} component={Profile} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={BUDGET_SCREEN} component={Budget} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={MONOBANK_SCREEN} component={Monobank} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={NOTIFICATION_SCREEN} component={Notification} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={TRANSACTIONS_SCREEN} component={Transactions} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={LIMITS_SCREEN} component={Limits} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={LIMIT_EDIT_SCREEN} component={LimitEdit} options={SCREEN_OPTIONS}/>
