@@ -24,9 +24,11 @@ const Notification = () => {
             <View style={globalStyles.formContainer}>
                 <Text style={styles.header}>How to activate telegram bot?</Text>
                 <Text style={globalStyles.info}>
-                    1. Follow the link <Link url="telegram bot link" />{"\n"}
-                    2. It will take you to the telegram application.{"\n"}
-                    3. Click on the start button.{"\n"}
+                    In order to get notifications via telegram, you should follow the
+                    link: <Link url="https://t.me/SpentlessBot"/>. It will take you to our telegram
+                    bot and there you should use the command "/start" that will register your
+                    membership in our system. SpentlessBot will be sending you notifications
+                    about new appeared transactions and alerts for exceeded limits.
                 </Text>
                 <View style={[
                     styles.telegramContainer,

@@ -24,11 +24,10 @@ const Monobank = ({ navigation }) => {
                     How to get activation token?
                 </Text>
                 <Text style={globalStyles.info}>
-                    1. Follow the monobank authorization API link: <Link url="https://api.monobank.ua/"/>{"\n"}
-                    2. On the screen click on the barcode.{"\n"}
-                    3. It will take you to the monobank application in order to login into.{"\n"}
-                    4. Accept the authorization API token.{"\n"}
-                    5. Copy token from the section 'My token' and put it below.{"\n"}
+                    In order to visualize and make analytics, you may want to let us access your monobank.
+                    You should follow the link <Link url="https://api.monobank.ua/"/>, where will be a barcode;
+                    after clicking the barcode it will take you to monobank application where you can provide
+                    access and copy authorization token to the input placed below.
                 </Text>
                 <View>
                     <Input
