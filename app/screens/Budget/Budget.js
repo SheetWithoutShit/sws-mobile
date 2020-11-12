@@ -1,19 +1,14 @@
 import React, { useState } from "react"
-import { View } from "react-native"
+import { View, Text } from "react-native"
 
 import Header from "@components/Header/Header"
-import MessageInfo from "@components/Messages/MessageInfo"
 import NumberInput from "@components/Inputs/NumberInput"
 import Button from "@components/Buttons/Button"
 import COLORS from "@utils/colors"
 import { validateSavings } from "@utils/validators"
 
-import styles from "./style"
+import globalStyles from "@utils/styles"
 
-
-const BUDGET_MESSAGE = "\
-In order to help cut off your spendings \
-we should know your income per month and how much in the percentage of budget you want to save."
 
 const Budget = ({ navigation }) => {
     const [income, setIncome] = useState(null)
@@ -30,14 +25,18 @@ const Budget = ({ navigation }) => {
     const isValid = income && savings && !savingErrors
 
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <Header
                 text="Budget"
                 icon={{ name: "piggy", height: "18", width: "24", color: COLORS.gold }}
                 isSecondary={true}
             />
-            <View NumberInput={styles.editContainer}>
-                <MessageInfo text={BUDGET_MESSAGE}/>
+            <View style={globalStyles.formContainer}>
+                <Text style={globalStyles.info}>
+                    In order to help cut off your spending
+                    we should know your income per month and how much
+                    in the percentage of budget you want to save.
+                </Text>
                 <NumberInput
                     label="Income ₴"
                     value={income}
@@ -49,13 +48,13 @@ const Budget = ({ navigation }) => {
                     handleChange={handleSavingsChange}
                     errors={savingErrors}
                 />
-                <View style={styles.buttonsContainer}>
+                <View style={globalStyles.formButtonsContainer}>
                     <Button
                         label="Cancel"
                         color="none"
                         size="small"
                         labelColor="gold"
-                        labelStyle={styles.cancelButton}
+                        labelStyle={globalStyles.formCancelButton}
                         handlePress={() => navigation.goBack()}
                     />
                     <Button

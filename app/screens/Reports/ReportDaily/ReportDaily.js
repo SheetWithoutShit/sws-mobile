@@ -6,6 +6,7 @@ import PieProgress from "@components/Charts/PieProgress/PieProgress"
 import Bar from "@components/Charts/Bar/Bar"
 import Button from "@components/Buttons/Button"
 
+import globalStyles from "@utils/styles"
 import styles from "./style"
 
 
@@ -18,13 +19,15 @@ const ReportDaily = ({ navigation }) => {
     const progress = MOCK_SPEND / MOCK_BALANCE
 
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <ReportHeader screen="Day" navigation={navigation}/>
-            <PieProgress
-                progress={progress}
-                primaryText={`${MOCK_SPEND.toFixed(2)} ₴`}
-                secondaryText={`${MOCK_BALANCE.toFixed(2)} ₴`}
-            />
+            <View style={styles.pieContainer}>
+                <PieProgress
+                    progress={progress}
+                    primaryText={`${MOCK_SPEND.toFixed(2)} ₴`}
+                    secondaryText={`${MOCK_BALANCE.toFixed(2)} ₴`}
+                />
+            </View>
             <View style={styles.detailsContainer}>
                 <Button buttonStyle={styles.detailsButton}>
                     <Text style={styles.detailsText}>Spends</Text>

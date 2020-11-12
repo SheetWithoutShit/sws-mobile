@@ -6,6 +6,7 @@ import Button from "@components/Buttons/Button"
 import PasswordInput from "@components/Inputs/PasswordInput"
 import { validatePassword, validateConfirmPassword } from "@utils/validators"
 
+import globalStyles from "@utils/styles"
 import styles from "./style"
 
 
@@ -39,12 +40,12 @@ const PasswordChange = ({ navigation }) => {
         && !confirmErrors
 
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <Header
                 text="Change password"
                 isSecondary={true}
             />
-            <View>
+            <View style={globalStyles.formContainer}>
                 <PasswordInput
                     placeholder="Enter old password..."
                     handleChange={(value) => setOldPassword(value)}
@@ -68,13 +69,13 @@ const PasswordChange = ({ navigation }) => {
                     errors={confirmErrors}
                     visibleIcon={false}
                 />
-                <View style={styles.buttonsContainer}>
+                <View style={globalStyles.formButtonsContainer}>
                     <Button
                         label="Cancel"
                         size="small"
                         color="none"
                         labelColor="gold"
-                        labelStyle={styles.cancelButton}
+                        labelStyle={globalStyles.formCancelButton}
                         handlePress={() => navigation.goBack()}
                     />
                     <Button

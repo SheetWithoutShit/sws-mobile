@@ -5,9 +5,8 @@ import FONTS from "@utils/fonts"
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: COLORS.black,
+    pieContainer: {
+        width: "100%",
     },
 
     // details stuff

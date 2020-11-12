@@ -1,17 +1,14 @@
 import React, { useState } from "react"
-import { View } from "react-native"
+import { View, Text } from "react-native"
 
 import EmailInput from "@components/Inputs/EmailInput"
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
-import MessageInfo from "@components/Messages/MessageInfo"
 import { validateEmail } from "@utils/validators"
 
-import styles from "./style"
+import globalStyles from "@utils/styles"
 
-const FORGOT_PASSWORD_MESSAGE = "\
-We just need your registered email address to send you password reset link.\
-"
+
 const ForgotPassword = ({ navigation }) => {
     const [email, setEmail] = useState("")
     const [emailErrors, setEmailErrors] = useState(null)
@@ -25,22 +22,24 @@ const ForgotPassword = ({ navigation }) => {
 
     const isValid = email && !emailErrors
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <Header isSecondary={true} text="Forgot Password"/>
-            <MessageInfo text={FORGOT_PASSWORD_MESSAGE}/>
-            <View>
+            <View style={globalStyles.formContainer}>
+                <Text style={globalStyles.info}>
+                    We just need your registered email address to send you password reset link.
+                </Text>
                 <EmailInput
                     handleChange={handleEmailChange}
                     value={email}
                     errors={emailErrors}
                 />
-                <View style={styles.buttonsContainer}>
+                <View style={globalStyles.formButtonsContainer}>
                     <Button
                         label="Cancel"
                         size="small"
                         color="none"
                         labelColor="gold"
-                        labelStyle={styles.cancelButton}
+                        labelStyle={globalStyles.formCancelButton}
                         handlePress={() => navigation.goBack()}
                     />
                     <Button

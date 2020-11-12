@@ -10,12 +10,13 @@ import {
     PASSWORD_CHANGE_SCREEN,
 } from "@utils/constants"
 
+import globalStyles from "@utils/styles"
 import styles from "./style"
 
 
 const Settings = ({ navigation }) => {
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <Header
                 text="Settings"
                 icon={{ name: "settings", color: COLORS.gold }}

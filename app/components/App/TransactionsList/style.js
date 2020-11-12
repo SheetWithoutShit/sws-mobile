@@ -32,11 +32,13 @@ const styles = StyleSheet.create({
         fontFamily: FONTS.cairoBold,
         fontSize: 16,
         height: 22,
+        lineHeight: 26,
     },
     category: {
         color: COLORS.black,
         fontFamily: FONTS.cairoRegular,
         fontSize: 14,
+        lineHeight: 24,
     },
     amountContainer: {
         flex: 1,

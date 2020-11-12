@@ -12,6 +12,11 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
 
+    message: {
+        width: 280,
+        marginBottom: 10,
+    },
+
     // limit items stuff
     limitsContainer: {
         justifyContent: "center",
@@ -29,14 +34,14 @@ const styles = StyleSheet.create({
         textAlign: "center",
         textAlignVertical: "bottom",
         height: 50,
-        lineHeight: 8,
     },
     category: {
         fontFamily: FONTS.cairoRegular,
         fontSize: 14,
         color: COLORS.black,
         textAlign: "center",
-        height: 30,
+        height: 50,
+        width: "90%",
         lineHeight: 18,
     },
     addButton: {

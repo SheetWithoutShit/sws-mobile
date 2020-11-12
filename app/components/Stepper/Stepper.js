@@ -24,6 +24,9 @@ const STEPPER_CONFIGS = {
 
     stepIndicatorLabelFontSize: 0,
     currentStepIndicatorLabelFontSize: 0,
+    stepIndicatorLabelCurrentColor: COLORS.grey,
+    stepIndicatorLabelFinishedColor: COLORS.gold,
+    stepIndicatorLabelUnFinishedColor: COLORS.grey,
 
     labelColor: COLORS.grey,
     labelSize: 8,

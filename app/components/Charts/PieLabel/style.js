@@ -17,12 +17,12 @@ const styles = StyleSheet.create({
     primaryText: {
         color: COLORS.gold,
         fontSize: 36,
-        height: 45,
+        height: 48,
     },
     secondaryText: {
         color: COLORS.white,
         fontSize: 20,
-        height: 25,
+        height: 28,
     },
 })
 

@@ -5,11 +5,6 @@ import FONTS from "@utils/fonts"
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: COLORS.black,
-    },
-
     info: {
         alignItems: "center",
         margin: 20,

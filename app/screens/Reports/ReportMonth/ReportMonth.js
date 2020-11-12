@@ -5,6 +5,7 @@ import Swiper from "react-native-swiper"
 import ReportHeader from "@screens/Reports/ReportHeader"
 import Pie from "@components/Charts/Pie/Pie"
 
+import globalStyles from "@utils/styles"
 import styles from "./style"
 
 
@@ -32,7 +33,7 @@ const ReportMonth = ({ navigation }) => {
     const spends = MOCK_MONTH_REPORTS.map(item => parseFloat(item.value))
     const amount = spends.reduce((a, b) => a + b, 0)
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <ReportHeader screen="Month" navigation={navigation}/>
             <View style={styles.info}>
                 <Text style={styles.secondaryText}>July 2020</Text>
@@ -42,6 +43,7 @@ const ReportMonth = ({ navigation }) => {
                 style={styles.wrapper}
                 paginationStyle={styles.pagination}
                 dotStyle={styles.dot}
+                loadMini
                 activeDotStyle={[styles.dot, styles.activeDot]}
                 onIndexChanged={(index) => setActiveIndex(index)}
             >
