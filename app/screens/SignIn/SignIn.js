@@ -7,7 +7,7 @@ import Button from "@components/Buttons/Button"
 import COLORS from "@utils/colors"
 import EmailInput from "@components/Inputs/EmailInput"
 import PasswordInput from "@components/Inputs/PasswordInput"
-import { FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN } from "@utils/constants"
+import { FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN, HOME_SCREEN } from "@utils/constants"
 
 import globalStyles from "@utils/styles"
 import styles from "./style"
@@ -18,7 +18,8 @@ const SignIn = ({ navigation }) => {
     const [password, setPassword] = useState("")
     const [rememberMe, setRememberMe] = useState(false)
 
-    const isValid = password && email
+    // const isValid = password && email
+    const isValid = true // todo: for developer purposes
     return (
         <View style={globalStyles.container}>
             <Header isSecondary={true} text="Sign In"/>
@@ -60,6 +61,7 @@ const SignIn = ({ navigation }) => {
                         label="Sign In"
                         color={isValid ? "gold": "grey"}
                         disabled={!isValid}
+                        handlePress={() => navigation.navigate(HOME_SCREEN)}
                     />
                     <Button color="none" handlePress={() => navigation.navigate(SIGNUP_SCREEN)}>
                         <Text style={styles.signUp}>
