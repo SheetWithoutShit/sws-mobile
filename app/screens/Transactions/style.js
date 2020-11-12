@@ -17,6 +17,19 @@ const styles = StyleSheet.create({
         color: COLORS.gold,
         fontSize: 20,
     },
+    containerInfo: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    info: {
+        fontFamily: FONTS.cairoRegular,
+        color: COLORS.grey,
+        fontSize: 30,
+        textAlign: "center",
+        marginBottom: 150,
+    },
 })
 
 export default styles

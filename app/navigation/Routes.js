@@ -47,7 +47,7 @@ const SCREEN_OPTIONS = { cardStyleInterpolator: CardStyleInterpolators.forHorizo
 const Routes = () => {
     const Stack = createStackNavigator()
     return (
-        <Stack.Navigator screenOptions={NAVIGATOR_OPTIONS} initialRouteName={SIGNIN_SCREEN}>
+        <Stack.Navigator screenOptions={NAVIGATOR_OPTIONS} initialRouteName={HOME_SCREEN}>
             <Stack.Screen name={HOME_SCREEN} component={Home} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={SIGNIN_SCREEN} component={SignIn} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={SIGNUP_SCREEN} component={SignUp} options={SCREEN_OPTIONS}/>
