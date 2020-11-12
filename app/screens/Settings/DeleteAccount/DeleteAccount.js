@@ -1,34 +1,33 @@
 import React from "react"
-import { View } from "react-native"
+import { View, Text } from "react-native"
 
 import Header from "@components/Header/Header"
-import MessageInfo from "@components/Messages/MessageInfo"
 import Button from "@components/Buttons/Button"
 
-import styles from "./style"
+import globalStyles from "@utils/styles"
 
-
-const DELETE_MESSAGE = "You can delete your Spentless account at any time. \
-If you change your mind, you might not be able to recover it. \
-You will lose all the data and content in that account. \
-\nAre you sure?"
 
 const DeleteAccount = ({ navigation }) => {
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <Header
                 text="Delete an account"
                 isSecondary={true}
             />
-            <View>
-                <MessageInfo text={DELETE_MESSAGE}/>
-                <View style={styles.buttonsContainer}>
+            <View style={globalStyles.formContainer}>
+                <Text style={globalStyles.info}>
+                    You can delete your Spentless account at any time.
+                    If you change your mind, you might not be able to recover it.
+                    You will lose all the data and content in that account.{"\n"}
+                    Are you sure?
+                </Text>
+                <View style={globalStyles.formButtonsContainer}>
                     <Button
                         label="Cancel"
                         size="small"
                         color="none"
                         labelColor="gold"
-                        labelStyle={styles.cancelButton}
+                        labelStyle={globalStyles.formCancelButton}
                         handlePress={() => navigation.goBack()}
                     />
                     <Button

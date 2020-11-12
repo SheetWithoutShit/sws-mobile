@@ -12,6 +12,7 @@ import {
     validateConfirmPassword,
 } from "@utils/validators"
 
+import globalStyles from "@utils/styles"
 import styles from "./style"
 
 
@@ -53,10 +54,10 @@ const SignUp = ({ navigation }) => {
         && !passwordErrors
         && !confirmPasswordErrors
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <Header isSecondary={true} text="Sign Up"/>
             <View>
-                <View>
+                <View style={globalStyles.formContainer}>
                     <EmailInput
                         handleChange={handleEmailChange}
                         value={email}

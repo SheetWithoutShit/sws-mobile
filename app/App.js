@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
         fontFamily: FONTS.cairoBold,
         fontSize: 20,
         color: COLORS.gold,
+        paddingBottom: 5,
     },
 })
 

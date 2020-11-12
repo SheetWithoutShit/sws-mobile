@@ -9,6 +9,7 @@ import EmailInput from "@components/Inputs/EmailInput"
 import PasswordInput from "@components/Inputs/PasswordInput"
 import { FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN } from "@utils/constants"
 
+import globalStyles from "@utils/styles"
 import styles from "./style"
 
 
@@ -19,10 +20,10 @@ const SignIn = ({ navigation }) => {
 
     const isValid = password && email
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <Header isSecondary={true} text="Sign In"/>
             <View>
-                <View>
+                <View style={globalStyles.formContainer}>
                     <EmailInput
                         handleChange={(value) => setEmail(value)}
                         style={styles.input}

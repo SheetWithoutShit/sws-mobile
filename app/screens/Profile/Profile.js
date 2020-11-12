@@ -8,6 +8,7 @@ import Stepper from "@components/Stepper/Stepper"
 import Button from "@components/Buttons/Button"
 import { SETTINGS_SCREEN, BUDGET_SCREEN, MONOBANK_SCREEN, NOTIFICATION_SCREEN } from "@utils/constants"
 
+import globalStyles from "@utils/styles"
 import styles from "./style"
 
 
@@ -20,7 +21,7 @@ const Profile = ({ navigation }) => {
         { label: "Ready to use!", event: () => {} },
     ]
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <Header
                 text="Ihor Titomir"
                 icon={{ name: "person", height: "24", width: "24", color: COLORS.gold }}

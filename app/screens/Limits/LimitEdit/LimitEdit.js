@@ -7,6 +7,7 @@ import NumberInput from "@components/Inputs/NumberInput"
 import Button from "@components/Buttons/Button"
 import COLORS from "@utils/colors"
 
+import globalStyles from "@utils/styles"
 import styles from "./style"
 
 
@@ -36,13 +37,13 @@ const LimitEdit = ({ route, navigation }) => {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <Header
                 text={title}
                 icon={{ name: "speedometer", height: "18", width: "24", color: COLORS.gold }}
                 isSecondary={true}
             />
-            <View style={styles.editContainer}>
+            <View style={globalStyles.formContainer}>
                 <Dropdown
                     label="Category"
                     placeholder="Select a category..."
@@ -51,6 +52,7 @@ const LimitEdit = ({ route, navigation }) => {
                 />
                 <Text style={[
                     styles.info,
+                    globalStyles.info,
                     DEFAULT_CATEGORY_INFO === info && styles.defaultInfo,
                 ]}>
                     {info}
@@ -60,13 +62,13 @@ const LimitEdit = ({ route, navigation }) => {
                     handleChange={(value) => setLimit(value)}
                     value={limit}
                 />
-                <View style={styles.buttonsContainer}>
+                <View style={globalStyles.formButtonsContainer}>
                     <Button
                         label="Cancel"
                         color="none"
                         size="small"
                         labelColor="gold"
-                        labelStyle={styles.cancelButton}
+                        labelStyle={globalStyles.formCancelButton}
                         handlePress={() => navigation.goBack()}
                     />
                     <Button

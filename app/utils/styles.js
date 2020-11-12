@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native"
 
 import COLORS from "@utils/colors"
+import FONTS from "@utils/fonts"
 
 const styles = StyleSheet.create({
     container: {
@@ -9,18 +10,26 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.black,
     },
 
-    // edit form stuff
-    editContainer: {
-        width: 280,
+    info: {
+        fontFamily: FONTS.cairoRegular,
+        fontSize: 16,
+        color: COLORS.white,
+        lineHeight: 24,
+        textAlign: "justify",
     },
 
-    // buttons stuff
-    buttonsContainer: {
+    // form stuff
+    formContainer: {
+        width: 280,
+        alignItems: "center",
+    },
+    formButtonsContainer: {
+        width: "100%",
         marginTop: 20,
         flexDirection: "row",
         justifyContent: "flex-end",
     },
-    cancelButton: {
+    formCancelButton: {
         fontSize: 16,
     },
 })

@@ -1,18 +1,13 @@
 import React, { useState } from "react"
-import { View } from "react-native"
+import { View, Text } from "react-native"
 
 import Header from "@components/Header/Header"
-import MessageInfo from "@components/Messages/MessageInfo"
 import Button from "@components/Buttons/Button"
 import EmailInput from "@components/Inputs/EmailInput"
 import { validateEmail } from "@utils/validators"
 
-import styles from "./style"
+import globalStyles from "@utils/styles"
 
-
-const EMAIL_CHANGE_MESSAGE = "\
-In order to change the email, you need to put below a new email, \
-submit a changing request, and follow up instruction that we will send to your old email."
 
 const EmailChange = ({ navigation }) => {
     const [email, setEmail] = useState(null)
@@ -28,25 +23,28 @@ const EmailChange = ({ navigation }) => {
     const isValid = email && !emailErrors
 
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <Header
                 text="Change email"
                 isSecondary={true}
             />
-            <MessageInfo text={EMAIL_CHANGE_MESSAGE}/>
-            <View>
+            <View style={globalStyles.formContainer}>
+                <Text style={globalStyles.info}>
+                    In order to change the email, you need to put below a new email,
+                    submit a changing request, and follow up instruction that we will send to your old email.
+                </Text>
                 <EmailInput
                     handleChange={handleEmailChange}
                     value={email}
                     errors={emailErrors}
                 />
-                <View style={styles.buttonsContainer}>
+                <View style={globalStyles.formButtonsContainer}>
                     <Button
                         label="Cancel"
                         size="small"
                         color="none"
                         labelColor="gold"
-                        labelStyle={styles.cancelButton}
+                        labelStyle={globalStyles.formCancelButton}
                         handlePress={() => navigation.goBack()}
                     />
                     <Button

@@ -3,10 +3,10 @@ import { View, Text, FlatList } from "react-native"
 
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
-import MessageInfo from "@components/Messages/MessageInfo"
 import COLORS from "@utils/colors"
 import { LIMIT_DETAILS_SCREEN, LIMIT_EDIT_SCREEN } from "@utils/constants"
 
+import globalStyles from "@utils/styles"
 import styles from "./style"
 
 
@@ -41,11 +41,6 @@ const MOCK_LIMITS = [
         "info": "Taxi services",
     },
 ]
-const EMPTY_LIMITS_MESSAGE = "\
-If you want to limit your spending for some \
-category you can set it here and receives\
-an appropriate notification if the limit was exceeded. \
-Let's start with your first limit."
 
 
 const Limits = ({ navigation }) => {
@@ -56,7 +51,7 @@ const Limits = ({ navigation }) => {
         return (
             <Button
                 size="largeSquare"
-                color={balance < spend ? "darkGold": "gold"}
+                color={balance < spend ? "red": "gold"}
                 buttonStyle={styles.limit}
                 handlePress={() => navigation.navigate(LIMIT_DETAILS_SCREEN, { limit: item })}
             >
@@ -76,14 +71,19 @@ const Limits = ({ navigation }) => {
 
     if (!MOCK_LIMITS.length) {
         return (
-            <View style={styles.container}>
-                <MessageInfo text={EMPTY_LIMITS_MESSAGE} style={{ marginBottom: 10 }}/>
+            <View style={globalStyles.container}>
+                <Text style={[globalStyles.info, styles.message]}>
+                    If you want to limit your spending for some
+                    category you can set it here and receives
+                    an appropriate notification if the limit was exceeded.
+                    Let's start with your first limit.
+                </Text>
                 <AddLimit/>
             </View>
         )
     }
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <Header
                 icon={{ name: "speedometer", height: "18", width: "24", color: COLORS.gold }}
                 text="Limits"

@@ -4,11 +4,6 @@ import COLORS from "@utils/colors"
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: COLORS.black,
-    },
-
     menu: {
         justifyContent: "center",
         flexDirection: "row",
@@ -44,6 +39,7 @@ const styles = StyleSheet.create({
     },
 
     stepper: {
+        width: "100%",
         marginTop: 25,
     },
 })
