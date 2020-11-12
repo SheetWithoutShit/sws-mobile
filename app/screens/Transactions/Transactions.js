@@ -1,5 +1,5 @@
 import React from "react"
-import { View } from "react-native"
+import { Text, View } from "react-native"
 import moment from "moment"
 
 import Header from "@components/Header/Header"
@@ -113,7 +113,11 @@ const Transactions = () => {
     return (
         <View style={styles.container}>
             <Header text={currentDate}/>
-            <TransactionsList transactions={MOCK_TRANSACTIONS}/>
+            {MOCK_TRANSACTIONS.length
+                ? <TransactionsList transactions={MOCK_TRANSACTIONS}/>
+                : <View style={styles.containerInfo}>
+                    <Text style={styles.info} isSecondary={true}>No existing transactions.</Text>
+                </View>}
         </View>
     )
 }
