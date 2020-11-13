@@ -56,7 +56,7 @@ const Routes = () => {
     const Stack = createStackNavigator()
     return (
         <Stack.Navigator screenOptions={NAVIGATOR_OPTIONS} initialRouteName={SIGNIN_SCREEN}>
-            <Stack.Screen name={HOME_SCREEN} component={Home} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={HOME_SCREEN} component={Home} options={SCREEN_FADE_OPTIONS}/>
             <Stack.Screen name={SIGNIN_SCREEN} component={SignIn} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={SIGNUP_SCREEN} component={SignUp} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={FORGOT_PASSWORD_SCREEN} component={ForgotPassword} options={SCREEN_OPTIONS}/>

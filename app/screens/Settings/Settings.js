@@ -1,10 +1,11 @@
 import React from "react"
-import { View } from "react-native"
+import { View, Alert } from "react-native"
 
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
 import COLORS from "@utils/colors"
 import {
+    SIGNIN_SCREEN,
     DELETE_ACCOUNT_SCREEN,
     EMAIL_CHANGE_SCREEN,
     PASSWORD_CHANGE_SCREEN,
@@ -15,6 +16,15 @@ import styles from "./style"
 
 
 const Settings = ({ navigation }) => {
+    const handleLogoutPress = () => Alert.alert(
+        "Are you sure?",
+        "Are you sure you want to sign out from Spentless?",
+        [
+            { text: "Cancel", style: "default" },
+            { text: "YES", style: "destructive", onPress: () => navigation.navigate(SIGNIN_SCREEN) },
+        ],
+        { cancelable: true },
+    )
     return (
         <View style={globalStyles.container}>
             <Header
@@ -46,6 +56,7 @@ const Settings = ({ navigation }) => {
                 buttonStyle={styles.logoutButton}
                 label="Logout"
                 labelStyle={styles.logoutText}
+                handlePress={handleLogoutPress}
                 icon={{ name: "exit" }}
             >
             </Button>
