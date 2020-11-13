@@ -41,8 +41,16 @@ import {
 } from "@utils/constants"
 
 
+const forFade = ({ current }) => ({
+    cardStyle: {
+        opacity: current.progress,
+    },
+})
+
 const NAVIGATOR_OPTIONS = { headerShown: false }
+const SCREEN_FADE_OPTIONS = { cardStyleInterpolator: forFade }
 const SCREEN_OPTIONS = { cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }
+
 
 const Routes = () => {
     const Stack = createStackNavigator()
@@ -65,7 +73,7 @@ const Routes = () => {
             <Stack.Screen name={PASSWORD_CHANGE_SCREEN} component={PasswordChange} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={DELETE_ACCOUNT_SCREEN} component={DeleteAccount} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={REPORT_DAILY_SCREEN} component={ReportDaily} options={SCREEN_OPTIONS}/>
-            <Stack.Screen name={REPORT_MONTH_SCREEN} component={ReportMonth} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={REPORT_MONTH_SCREEN} component={ReportMonth} options={SCREEN_FADE_OPTIONS}/>
         </Stack.Navigator>
     )
 }
