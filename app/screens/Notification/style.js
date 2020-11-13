@@ -20,11 +20,12 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
     telegramContainer: {
-        width: "100%",
+        width: 280,
         height: 50,
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 10,
+        marginBottom: 10,
     },
 
     deactivatedText: {

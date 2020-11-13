@@ -1,18 +1,18 @@
-import React from "react"
+import React, { useState } from "react"
 import { View, Text } from "react-native"
 
 import Header from "@components/Header/Header"
 import Link from "@components/Link/Link"
 import COLORS from "@utils/colors"
+import Switch from "@components/Switch/Switch"
 
 import globalStyles from "@utils/styles"
 import styles from "./style"
 
 
 const Notification = () => {
-    const isEnabled = false
-
-    const status = isEnabled ? "activated" : "deactivated"
+    const [notificationEnabled, setNotificationEnabled] = useState(false)
+    const telegramBotEnabled = false
 
     return (
         <View style={globalStyles.container}>
@@ -32,12 +32,18 @@ const Notification = () => {
                 </Text>
                 <View style={[
                     styles.telegramContainer,
-                    isEnabled ? styles.labelActivated : styles.labelDeactivated,
+                    telegramBotEnabled ? styles.labelActivated : styles.labelDeactivated,
                 ]}>
-                    <Text style={isEnabled ? styles.activatedText : styles.deactivatedText}>
-                        Telegram bot is {status}
+                    <Text style={telegramBotEnabled ? styles.activatedText : styles.deactivatedText}>
+                        Telegram bot is {telegramBotEnabled ? "activated" : "deactivated"}
                     </Text>
                 </View>
+                <Switch
+                    leftText="Disabled"
+                    rightText="Enabled"
+                    enabled={notificationEnabled}
+                    handleSwitch={() => setNotificationEnabled(!notificationEnabled)}
+                />
             </View>
         </View>
     )
