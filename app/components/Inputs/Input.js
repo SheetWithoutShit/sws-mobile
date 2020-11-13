@@ -1,10 +1,15 @@
 import React from "react"
-import { View, Text, TextInput } from "react-native"
+import { View, Text, TextInput, Platform } from "react-native"
 
 import Icon from "@utils/icon"
 
+import COLORS from "@utils/colors"
 import styles from "./style"
 
+const SELECTION_COLOR = Platform.select({
+    "ios": COLORS.white,
+    "android": `${COLORS.gold}50`,
+})
 
 const renderIcon = (icon) => {
     return (
@@ -52,7 +57,7 @@ const Input = ({
                     onChangeText={handleChange}
                     placeholder={placeholder}
                     placeholderTextColor={styles.placeholder.color}
-                    selectionColor={styles.inputText.color}
+                    selectionColor={SELECTION_COLOR}
                     autoCompleteType={autoCompleteType}
                     textContentType={textContentType}
                     blurOnSubmit={true}
