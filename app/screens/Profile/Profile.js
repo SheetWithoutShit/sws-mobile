@@ -15,9 +15,9 @@ import styles from "./style"
 const Profile = ({ navigation }) => {
     const steps = [
         { label: "Registered", event: () => {} },
-        { label: "Monobank access", event: () => {} },
-        { label: "Set up budget", event: () => {} },
-        { label: "Enable telegram bot", event: () => {} },
+        { label: "Monobank access", event: () => navigation.navigate(MONOBANK_SCREEN) },
+        { label: "Set up budget", event: () => navigation.navigate(BUDGET_SCREEN) },
+        { label: "Enable telegram bot", event: () => navigation.navigate(NOTIFICATION_SCREEN) },
         { label: "Ready to use!", event: () => {} },
     ]
     return (
