@@ -1,12 +1,14 @@
-import React from "react"
-import { registerRootComponent } from "expo"
+import React, { useState } from "react"
+import { registerRootComponent, AppLoading } from "expo"
 import { NavigationContainer } from "@react-navigation/native"
 import { View, Text, StyleSheet } from "react-native"
+import { loadAsync as fontLoadAsync } from "expo-font"
+import { Asset } from "expo-asset"
 
-import { useFonts } from "expo-font"
 import Routes from "@navigation/Routes"
 import COLORS from "@utils/colors"
 import FONTS from "@utils/fonts"
+import { ICONS_PATHS } from "@utils/constants"
 
 
 const styles = StyleSheet.create({
@@ -24,15 +26,28 @@ const styles = StyleSheet.create({
     },
 })
 
-
 const App = () => {
-    const [fontsLoaded] = useFonts({
-        [FONTS.cairoBold]: require("./assets/fonts/Cairo-Bold.ttf"),
-        [FONTS.cairoRegular]: require("./assets/fonts/Cairo-Regular.ttf"),
-    })
+    const [ready, setReady] = useState(false)
 
-    // TODO: implement loading screen
-    if (!fontsLoaded) return <View><Text>Loading...</Text></View>
+    const loadAssets = async () => {
+        const fontAssets = fontLoadAsync({
+            [FONTS.cairoBold]: require("./assets/fonts/Cairo-Bold.ttf"),
+            [FONTS.cairoRegular]: require("./assets/fonts/Cairo-Regular.ttf"),
+        })
+        const imageAssets = Object.values(ICONS_PATHS).map(imagePath => {
+            return Asset.fromModule(imagePath).downloadAsync()
+        })
+        await Promise.all([fontAssets, ...imageAssets])
+    }
+    if (!ready) {
+        return (
+            <AppLoading
+                startAsync={loadAssets}
+                onFinish={() => setReady(true)}
+                onError={console.warn}
+            />
+        )
+    }
     return (
         <View style={styles.app}>
             <NavigationContainer>
