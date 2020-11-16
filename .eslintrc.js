@@ -29,7 +29,7 @@ const config = {
         "operator-linebreak": ["error", "before"],
         "no-compare-neg-zero": "error",
         "no-debugger": "error",
-        "no-console": "error",
+        "no-console": ["error",  { "allow": ["warn", "error"] }],
         "no-alert": "error",
         "no-multi-spaces": "error",
         "no-unused-vars": ["error", {"vars": "local", "varsIgnorePattern": "React"}],
