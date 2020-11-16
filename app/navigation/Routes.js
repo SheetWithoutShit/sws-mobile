@@ -51,12 +51,13 @@ const NAVIGATOR_OPTIONS = { headerShown: false }
 const SCREEN_FADE_OPTIONS = { cardStyleInterpolator: forFade }
 const SCREEN_OPTIONS = { cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }
 
+const HOME_SCREEN_OPTIONS = { ...SCREEN_FADE_OPTIONS, gestureEnabled: false }
 
 const Routes = () => {
     const Stack = createStackNavigator()
     return (
-        <Stack.Navigator screenOptions={NAVIGATOR_OPTIONS} initialRouteName={SIGNIN_SCREEN}>
-            <Stack.Screen name={HOME_SCREEN} component={Home} options={SCREEN_FADE_OPTIONS}/>
+        <Stack.Navigator screenOptions={NAVIGATOR_OPTIONS} initialRouteName={SIGNIN_SCREEN} gestureEnabled={false}>
+            <Stack.Screen name={HOME_SCREEN} component={Home} options={HOME_SCREEN_OPTIONS}/>
             <Stack.Screen name={SIGNIN_SCREEN} component={SignIn} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={SIGNUP_SCREEN} component={SignUp} options={SCREEN_OPTIONS}/>
             <Stack.Screen name={FORGOT_PASSWORD_SCREEN} component={ForgotPassword} options={SCREEN_OPTIONS}/>
