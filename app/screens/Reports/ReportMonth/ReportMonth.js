@@ -43,7 +43,7 @@ const ReportMonth = ({ navigation }) => {
                 style={styles.wrapper}
                 paginationStyle={styles.pagination}
                 dotStyle={styles.dot}
-                loadMini
+                loop={false}
                 activeDotStyle={[styles.dot, styles.activeDot]}
                 onIndexChanged={(index) => setActiveIndex(index)}
             >
