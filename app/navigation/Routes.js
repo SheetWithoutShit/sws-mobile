@@ -49,7 +49,7 @@ const forFade = ({ current }) => ({
 
 const NAVIGATOR_OPTIONS = { headerShown: false }
 const SCREEN_FADE_OPTIONS = { cardStyleInterpolator: forFade }
-const SCREEN_OPTIONS = { cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }
+const SCREEN_SWIPE_OPTIONS = { cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }
 
 const HOME_SCREEN_OPTIONS = { ...SCREEN_FADE_OPTIONS, gestureEnabled: false }
 
@@ -58,22 +58,22 @@ const Routes = () => {
     return (
         <Stack.Navigator screenOptions={NAVIGATOR_OPTIONS} initialRouteName={SIGNIN_SCREEN} gestureEnabled={false}>
             <Stack.Screen name={HOME_SCREEN} component={Home} options={HOME_SCREEN_OPTIONS}/>
-            <Stack.Screen name={SIGNIN_SCREEN} component={SignIn} options={SCREEN_OPTIONS}/>
-            <Stack.Screen name={SIGNUP_SCREEN} component={SignUp} options={SCREEN_OPTIONS}/>
-            <Stack.Screen name={FORGOT_PASSWORD_SCREEN} component={ForgotPassword} options={SCREEN_OPTIONS}/>
-            <Stack.Screen name={PROFILE_SCREEN} component={Profile} options={SCREEN_OPTIONS}/>
-            <Stack.Screen name={BUDGET_SCREEN} component={Budget} options={SCREEN_OPTIONS}/>
-            <Stack.Screen name={MONOBANK_SCREEN} component={Monobank} options={SCREEN_OPTIONS}/>
-            <Stack.Screen name={NOTIFICATION_SCREEN} component={Notification} options={SCREEN_OPTIONS}/>
-            <Stack.Screen name={TRANSACTIONS_SCREEN} component={Transactions} options={SCREEN_OPTIONS}/>
-            <Stack.Screen name={LIMITS_SCREEN} component={Limits} options={SCREEN_OPTIONS}/>
-            <Stack.Screen name={LIMIT_EDIT_SCREEN} component={LimitEdit} options={SCREEN_OPTIONS}/>
-            <Stack.Screen name={LIMIT_DETAILS_SCREEN} component={LimitDetails} options={SCREEN_OPTIONS}/>
-            <Stack.Screen name={SETTINGS_SCREEN} component={Settings} options={SCREEN_OPTIONS}/>
-            <Stack.Screen name={EMAIL_CHANGE_SCREEN} component={EmailChange} options={SCREEN_OPTIONS}/>
-            <Stack.Screen name={PASSWORD_CHANGE_SCREEN} component={PasswordChange} options={SCREEN_OPTIONS}/>
-            <Stack.Screen name={DELETE_ACCOUNT_SCREEN} component={DeleteAccount} options={SCREEN_OPTIONS}/>
-            <Stack.Screen name={REPORT_DAILY_SCREEN} component={ReportDaily} options={SCREEN_OPTIONS}/>
+            <Stack.Screen name={SIGNIN_SCREEN} component={SignIn} options={SCREEN_SWIPE_OPTIONS}/>
+            <Stack.Screen name={SIGNUP_SCREEN} component={SignUp} options={SCREEN_SWIPE_OPTIONS}/>
+            <Stack.Screen name={FORGOT_PASSWORD_SCREEN} component={ForgotPassword} options={SCREEN_SWIPE_OPTIONS}/>
+            <Stack.Screen name={PROFILE_SCREEN} component={Profile} options={SCREEN_FADE_OPTIONS}/>
+            <Stack.Screen name={BUDGET_SCREEN} component={Budget} options={SCREEN_SWIPE_OPTIONS}/>
+            <Stack.Screen name={MONOBANK_SCREEN} component={Monobank} options={SCREEN_SWIPE_OPTIONS}/>
+            <Stack.Screen name={NOTIFICATION_SCREEN} component={Notification} options={SCREEN_SWIPE_OPTIONS}/>
+            <Stack.Screen name={TRANSACTIONS_SCREEN} component={Transactions} options={SCREEN_FADE_OPTIONS}/>
+            <Stack.Screen name={LIMITS_SCREEN} component={Limits} options={SCREEN_FADE_OPTIONS}/>
+            <Stack.Screen name={LIMIT_EDIT_SCREEN} component={LimitEdit} options={SCREEN_SWIPE_OPTIONS}/>
+            <Stack.Screen name={LIMIT_DETAILS_SCREEN} component={LimitDetails} options={SCREEN_SWIPE_OPTIONS}/>
+            <Stack.Screen name={SETTINGS_SCREEN} component={Settings} options={SCREEN_FADE_OPTIONS}/>
+            <Stack.Screen name={EMAIL_CHANGE_SCREEN} component={EmailChange} options={SCREEN_SWIPE_OPTIONS}/>
+            <Stack.Screen name={PASSWORD_CHANGE_SCREEN} component={PasswordChange} options={SCREEN_SWIPE_OPTIONS}/>
+            <Stack.Screen name={DELETE_ACCOUNT_SCREEN} component={DeleteAccount} options={SCREEN_SWIPE_OPTIONS}/>
+            <Stack.Screen name={REPORT_DAILY_SCREEN} component={ReportDaily} options={SCREEN_FADE_OPTIONS}/>
             <Stack.Screen name={REPORT_MONTH_SCREEN} component={ReportMonth} options={SCREEN_FADE_OPTIONS}/>
         </Stack.Navigator>
     )
