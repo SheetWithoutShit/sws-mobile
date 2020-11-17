@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { View, Text } from "react-native"
 
 import Header from "@components/Header/Header"
@@ -6,6 +6,7 @@ import Dropdown from "@components/Inputs/Dropdown"
 import NumberInput from "@components/Inputs/NumberInput"
 import Button from "@components/Buttons/Button"
 import COLORS from "@utils/colors"
+import { discardChangesEffect } from "@utils/effects"
 
 import globalStyles from "@utils/styles"
 import styles from "./style"
@@ -16,20 +17,31 @@ const MOCK_CATEGORIES = [
     { label: "Other", value: "Other" },
     { label: "Travel", value: "Travel",
         info: "Flights, train tickets, car rentals, hotels and much more for your vacation" },
-    { label: "Beauty and Medicine", value: "Beauty and Medicine" },
-    { label: "Entertainment and Sports", value: "Entertainment and Sports" },
-    { label: "Cafes and Restaurants", value: "Cafes and Restaurants" },
-    { label: "Products and Supermarkets", value: "Products and Supermarkets" },
+    { label: "Beauty & Medicine", value: "Beauty & Medicine" },
+    { label: "Entertainment and Sports", value: "Entertainment & Sports" },
+    { label: "Cafes & Restaurants", value: "Cafes & Restaurants" },
+    { label: "Products & Supermarkets", value: "Products & Supermarkets",
+        info: "Goods and services in supermarkets and specialty stores selling food and beverages" },
     { label: "Cinema", value: "Cinema" },
 ]
 
 const LimitEdit = ({ route, navigation }) => {
-    const [category, setCategory] = useState("")
-    const [info, setInfo] = useState(DEFAULT_CATEGORY_INFO)
-    const [limit, setLimit] = useState("")
+    const { params } = route
+    const categoryItem = MOCK_CATEGORIES.find(c => c.label === params.category)
+
+    const [category, setCategory] = useState(params.category)
+    const [limit, setLimit] = useState(params.limit)
+    const [info, setInfo] = useState(categoryItem?.info || DEFAULT_CATEGORY_INFO)
 
     const isValid = category && limit
-    const title = route.params.isEdit ? "Edit limit": "Create a limit"
+    const title = params.isEdit ? "Edit limit": "Create a limit"
+    const initialState = { category: params.category, limit: params.limit }
+    const hasUnsavedChanges = category !== initialState.category || limit !== initialState.limit
+
+    useEffect(
+        () => discardChangesEffect(navigation, hasUnsavedChanges),
+        [navigation, hasUnsavedChanges],
+    )
 
     const handleChangeCategory = (value, index) => {
         setCategory(value)
@@ -46,7 +58,8 @@ const LimitEdit = ({ route, navigation }) => {
             <View style={globalStyles.formContainer}>
                 <Dropdown
                     label="Category"
-                    placeholder="Select a category..."
+                    placeholder={"Select a category..."}
+                    item={categoryItem}
                     items={MOCK_CATEGORIES}
                     handleChange={handleChangeCategory}
                 />

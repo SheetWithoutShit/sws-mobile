@@ -88,14 +88,22 @@ const MOCK_TRANSACTIONS = [
 const LimitDetails = ({ route, navigation }) => {
     const { limit } = route.params
 
+    const navigateEditForm = () => {
+        navigation.navigate(LIMIT_EDIT_SCREEN, {
+            isEdit: true,
+            category: limit.name,
+            limit: parseInt(limit.balance, 10).toString(),
+        })
+    }
+
     return (
         <View style={styles.container}>
             <Header text={limit.name}/>
             <PieProgress
-                progress={0.4}
+                progress={limit.spend / limit.balance}
                 primaryText={`${limit.spend} ₴`}
                 secondaryText={`${limit.balance} ₴`}
-                handleTextPress={() => navigation.navigate(LIMIT_EDIT_SCREEN, { isEdit: true })}
+                handleTextPress={navigateEditForm}
             />
             <TransactionsList transactions={MOCK_TRANSACTIONS}/>
         </View>

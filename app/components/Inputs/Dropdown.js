@@ -5,7 +5,7 @@ import PickerSelect from "react-native-picker-select"
 import styles from "./style"
 
 
-const Dropdown = ({ label, items, placeholder, handleChange, style }) => {
+const Dropdown = ({ label, items, item, placeholder, handleChange, style }) => {
     return (
         <View>
             {label && <Text style={styles.inputLabel}>{label}</Text>}
@@ -21,6 +21,7 @@ const Dropdown = ({ label, items, placeholder, handleChange, style }) => {
                 placeholder={{ label: placeholder }}
                 blurOnSubmit={true}
                 items={items}
+                value={item?.value}
             />
         </View>
     )
