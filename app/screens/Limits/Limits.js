@@ -35,12 +35,32 @@ const MOCK_LIMITS = [
     },
     {
         "id": 2,
-        "balance": "500.00",
-        "spend": "800.00",
+        "balance": "1000.00",
+        "spend": "00.00",
         "name": "Taxi",
         "info": "Taxi services",
     },
 ]
+const LIMIT_COLORS = [
+    "#D9BB6E",
+    "#D4B16B",
+    "#D0A767",
+    "#CB9D64",
+    "#C79361",
+    "#C2895D",
+    "#BE7F5A",
+    "#B97557",
+    "#B56B53",
+    "#B06150",
+]
+
+const getLimitColor = (balance, spend) => {
+    if (spend === 0) return LIMIT_COLORS[0]
+
+    const percentage = Math.min((spend * 100.0) / balance, 100)
+    const index = Math.ceil(percentage / 10) - 1
+    return LIMIT_COLORS[index]
+}
 
 
 const Limits = ({ navigation }) => {
@@ -48,11 +68,11 @@ const Limits = ({ navigation }) => {
     const renderLimit = ({ item }) => {
         const balance = parseFloat(item.balance)
         const spend = parseFloat(item.spend)
+        const limitColor = getLimitColor(balance, spend)
         return (
             <Button
                 size="largeSquare"
-                color={balance < spend ? "red": "gold"}
-                buttonStyle={styles.limit}
+                buttonStyle={[styles.limit, { backgroundColor: limitColor }]}
                 handlePress={() => navigation.navigate(LIMIT_DETAILS_SCREEN, { limit: item })}
             >
                 <Text style={styles.balance}>{balance}</Text>
