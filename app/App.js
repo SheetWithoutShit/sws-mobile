@@ -1,24 +1,15 @@
 import React, { useState } from "react"
-import { registerRootComponent, AppLoading } from "expo"
+import { AppLoading } from "expo"
 import { NavigationContainer } from "@react-navigation/native"
-import { View, Text, StyleSheet } from "react-native"
+import { Text, StyleSheet } from "react-native"
 import { loadAsync as fontLoadAsync } from "expo-font"
 import { Asset } from "expo-asset"
-import { Provider } from "react-redux"
-import store from "./store"
-
 import Routes from "@navigation/Routes"
 import COLORS from "@utils/colors"
 import FONTS from "@utils/fonts"
 import { ICONS_PATHS } from "@utils/constants"
 
-
 const styles = StyleSheet.create({
-    app: {
-        height: "100%",
-        backgroundColor: COLORS.black,
-        paddingTop: 35,
-    },
     wordmark: {
         textAlign: "center",
         fontFamily: FONTS.cairoBold,
@@ -41,27 +32,22 @@ const App = () => {
         })
         await Promise.all([fontAssets, ...imageAssets])
     }
+
     if (!ready) {
         return (
-            <Provider store={store}>
-                <AppLoading
-                    startAsync={loadAssets}
-                    onFinish={() => setReady(true)}
-                    onError={console.warn}
-                />
-            </Provider>
+            <AppLoading
+                startAsync={loadAssets}
+                onFinish={() => setReady(true)}
+                onError={console.warn}
+            />
         )
     }
     return (
-        <View style={styles.app}>
-            <Provider store={store}>
-                <NavigationContainer>
-                    <Routes />
-                    <Text style={styles.wordmark}>Spentless</Text>
-                </NavigationContainer>
-            </Provider>
-        </View>
+        <NavigationContainer>
+            <Routes />
+            <Text style={styles.wordmark}>Spentless</Text>
+        </NavigationContainer>
     )
 }
 
-registerRootComponent(App)
+export default App
