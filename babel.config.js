@@ -12,7 +12,8 @@ module.exports = function(api) {
                         '@components': './app/components',
                         '@navigation': './app/navigation',
                         '@screens': './app/screens',
-                        '@utils': './app/utils'
+                        '@utils': './app/utils',
+                        '@redux': "./app/redux"
                     },
                 },
             ],
