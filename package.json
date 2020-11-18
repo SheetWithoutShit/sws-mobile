@@ -1,5 +1,5 @@
 {
-  "main": "app/App.js",
+  "main": "app/index.js",
   "scripts": {
     "start": "expo start",
     "clean": "rm -rf node_modules/ dist/",
