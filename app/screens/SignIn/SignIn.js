@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { View, Text } from "react-native"
+import { useDispatch } from "react-redux"
 import CheckBox from "react-native-check-box"
 
 import Header from "@components/Header/Header"
@@ -7,6 +8,7 @@ import Button from "@components/Buttons/Button"
 import COLORS from "@utils/colors"
 import EmailInput from "@components/Inputs/EmailInput"
 import PasswordInput from "@components/Inputs/PasswordInput"
+import { setLoggedIn } from "@redux/user/actions"
 import { FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN, HOME_SCREEN } from "@utils/constants"
 
 import globalStyles from "@utils/styles"
@@ -14,12 +16,20 @@ import styles from "./style"
 
 
 const SignIn = ({ navigation }) => {
+    const dispatch = useDispatch()
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [rememberMe, setRememberMe] = useState(false)
 
     // const isValid = password && email
     const isValid = true // todo: for developer purposes
+
+    const handleLogin = () => {
+        dispatch(setLoggedIn(true))
+        navigation.navigate(HOME_SCREEN)
+    }
+
     return (
         <View style={globalStyles.container}>
             <Header isSecondary={true} text="Sign In"/>
@@ -61,7 +71,7 @@ const SignIn = ({ navigation }) => {
                         label="Sign In"
                         color={isValid ? "gold": "grey"}
                         disabled={!isValid}
-                        handlePress={() => navigation.navigate(HOME_SCREEN)}
+                        handlePress={handleLogin}
                     />
                     <Button color="none" handlePress={() => navigation.navigate(SIGNUP_SCREEN)}>
                         <Text style={styles.signUp}>
