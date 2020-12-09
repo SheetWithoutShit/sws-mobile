@@ -1,8 +1,6 @@
 import React, { useState } from "react"
 import { View, Text } from "react-native"
-import { useDispatch } from "react-redux"
 import CheckBox from "react-native-check-box"
-import * as SecureStore from "expo-secure-store"
 
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
@@ -10,8 +8,6 @@ import COLORS from "@utils/colors"
 import EmailInput from "@components/Inputs/EmailInput"
 import PasswordInput from "@components/Inputs/PasswordInput"
 import { signIn } from "@api/auth"
-import { setLoading, setMessage } from "@redux/app/actions"
-import { setLoggedIn } from "@redux/user/actions"
 import { FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN } from "@utils/constants"
 
 import globalStyles from "@utils/styles"
@@ -19,8 +15,6 @@ import styles from "./style"
 
 
 const SignIn = ({ navigation }) => {
-    const dispatch = useDispatch()
-
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [rememberMe, setRememberMe] = useState(false)
@@ -29,17 +23,7 @@ const SignIn = ({ navigation }) => {
     const isValid = true // todo: for developer purposes
 
     const handleSignIn = async () => {
-        dispatch(setLoading(true))
-        try {
-            const { data: body } = await signIn(email.toLowerCase(), password)
-            await SecureStore.setItemAsync("auth", JSON.stringify(body.data))
-            dispatch(setLoggedIn(true))
-        } catch (error) {
-            const { message } = error.response.data
-            dispatch(setMessage({ text: message, level: "error" }))
-        } finally {
-            dispatch(setLoading(false))
-        }
+        await signIn(email.toLowerCase(), password)
     }
 
     return (
