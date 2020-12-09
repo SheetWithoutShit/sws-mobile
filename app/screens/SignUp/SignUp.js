@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { View, Text } from "react-native"
+import { useDispatch } from "react-redux"
 
 import PasswordInput from "@components/Inputs/PasswordInput"
 import EmailInput from "@components/Inputs/EmailInput"
@@ -21,6 +22,7 @@ const SignUp = ({ navigation }) => {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
     const [confirmPassword, setConfirmPassword] = useState(null)
+    const dispatch = useDispatch()
 
     const [emailErrors, setEmailErrors] = useState(null)
     const [passwordErrors, setPasswordErrors] = useState(null)
@@ -47,8 +49,8 @@ const SignUp = ({ navigation }) => {
         setConfirmPasswordErrors(errors)
     }
 
-    const handleSignUp = async () => {
-        await signUp(email.toLowerCase(), password)
+    const handleSignUp = () => {
+        dispatch(signUp(email.toLowerCase(), password))
     }
 
     // email, new, confirm password shouldn't be null and errors should be empty

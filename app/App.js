@@ -53,7 +53,7 @@ const App = () => {
         if (!userLoggedIn) return
 
         dispatch(setLoggedIn(true))
-        await getUser()
+        dispatch(getUser())
     }
 
     const loadAssets = async () => {

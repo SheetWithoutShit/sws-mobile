@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { View, Text } from "react-native"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 
 import Header from "@components/Header/Header"
 import Input from "@components/Inputs/Input"
@@ -18,9 +18,10 @@ const SECURE_MONOBANK_TOKEN = "ha-ha it's a secret"
 const Monobank = ({ navigation }) => {
     const monobankEnabled = useSelector(state => state.user.monobankEnabled)
     const [monobankToken, setMonobankToken] = useState(monobankEnabled ? SECURE_MONOBANK_TOKEN : null)
+    const dispatch = useDispatch()
 
     const handleSubmit = async () => {
-        await updateMonobankToken(monobankToken)
+        dispatch(updateMonobankToken(monobankToken))
         setMonobankToken(SECURE_MONOBANK_TOKEN)
     }
 
