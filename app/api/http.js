@@ -1,40 +1,33 @@
 import axios from "axios"
 
+const API_HOST = process.env.API_HOST
+const API_VERSION = "v1"
 
 const getAccessToken = () => "for now it is test string"
+const getAPIUrl = (path) => `http://${API_HOST}/${API_VERSION}/${path}`
 
-const get = (url, params) => {
-    return axios.get(url, {
-        params,
-        headers: {
-            Authorization: getAccessToken(),
-        },
-    })
+const get = (path, params) => {
+    const url = getAPIUrl(path)
+    const headers = { Authorization: getAccessToken() }
+    return axios.get(url, { params, headers })
 }
 
-const post = (url, params) => {
-    return axios.post(url, params, {
-        headers: {
-            Authorization: getAccessToken(),
-        },
-    })
+const post = (path, body) => {
+    const url = getAPIUrl(path)
+    const headers = { Authorization: getAccessToken() }
+    return axios.post(url, body, { headers })
 }
 
-
-const put = (url, params) => {
-    return axios.put(url, params, {
-        headers: {
-            Authorization: getAccessToken(),
-        },
-    })
+const put = (path, body) => {
+    const url = getAPIUrl(path)
+    const headers = { Authorization: getAccessToken() }
+    return axios.put(url, body, { headers })
 }
 
-const del = (url) => {
-    return axios.delete(url, {
-        headers: {
-            Authorization: getAccessToken(),
-        },
-    })
+const del = (path) => {
+    const url = getAPIUrl(path)
+    const headers = { Authorization: getAccessToken() }
+    return axios.delete(url, { headers })
 }
 
 export default {

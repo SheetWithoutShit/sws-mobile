@@ -1,8 +1,10 @@
-import React, { useState } from "react"
-import { Text } from "react-native"
+import React from "react"
+import { Text, TouchableOpacity } from "react-native"
+import { useDispatch } from "react-redux"
 
 import Icon from "@utils/icon"
-import Button from "@components/Buttons/Button"
+import { TOUCH_OPACITY } from "@utils/constants"
+import { setMessage } from "@redux/app/actions"
 
 import styles from "./style"
 
@@ -18,25 +20,26 @@ const SNACKBAR_ICONS = {
 }
 
 
-const Snackbar = ({ visible, text, level, duration, handlePress }) => {
-    const [hide, setHide] = useState(false)
+const Snackbar = ({ text, level, duration = "infinity" }) => {
+    const dispatch = useDispatch()
+    const hideMessage = () => dispatch(setMessage(null))
 
     const hideTime = SNACKBAR_DURATIONS[duration]
-    if (hideTime) {
-        setTimeout(() => setHide(true), hideTime)
-    }
+    if (hideTime) setTimeout(hideMessage, hideTime)
 
-    if (!visible || hide) return null
     return (
-        <Button
-            size="wide"
-            color={level === "success" ? "darkGreen" : "red"}
-            buttonStyle={styles.snackbar}
-            handlePress={handlePress}
+        <TouchableOpacity
+            style={[
+                styles.snackbar,
+                level === "error" && styles.error,
+                level === "success" && styles.success,
+            ]}
+            activeOpacity={TOUCH_OPACITY}
+            onPress={hideMessage}
         >
             {SNACKBAR_ICONS[level]}
             <Text style={styles.text}>{text}</Text>
-        </Button>
+        </TouchableOpacity>
     )
 }
 

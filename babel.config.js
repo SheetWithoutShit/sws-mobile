@@ -8,6 +8,7 @@ module.exports = function(api) {
                 "module-resolver",
                 {
                     alias: {
+                        "@app": "./app",
                         "@assets": "./app/assets",
                         "@components": "./app/components",
                         "@navigation": "./app/navigation",
@@ -18,6 +19,7 @@ module.exports = function(api) {
                     },
                 },
             ],
+            "inline-dotenv"
         ],
     };
 };

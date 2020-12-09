@@ -39,6 +39,7 @@ import {
     MONOBANK_SCREEN,
     NOTIFICATION_SCREEN,
 } from "@utils/constants"
+import { useSelector } from "react-redux"
 
 
 const forFade = ({ current }) => ({
@@ -53,14 +54,21 @@ const SCREEN_SWIPE_OPTIONS = { cardStyleInterpolator: CardStyleInterpolators.for
 
 const HOME_SCREEN_OPTIONS = { ...SCREEN_FADE_OPTIONS, gestureEnabled: false }
 
-const Routes = () => {
+const AuthStack = () => {
     const Stack = createStackNavigator()
     return (
         <Stack.Navigator screenOptions={NAVIGATOR_OPTIONS} initialRouteName={SIGNIN_SCREEN} gestureEnabled={false}>
-            <Stack.Screen name={HOME_SCREEN} component={Home} options={HOME_SCREEN_OPTIONS}/>
             <Stack.Screen name={SIGNIN_SCREEN} component={SignIn} options={SCREEN_SWIPE_OPTIONS}/>
             <Stack.Screen name={SIGNUP_SCREEN} component={SignUp} options={SCREEN_SWIPE_OPTIONS}/>
             <Stack.Screen name={FORGOT_PASSWORD_SCREEN} component={ForgotPassword} options={SCREEN_SWIPE_OPTIONS}/>
+        </Stack.Navigator>
+    )
+}
+const AppStack = () => {
+    const Stack = createStackNavigator()
+    return (
+        <Stack.Navigator screenOptions={NAVIGATOR_OPTIONS} initialRouteName={HOME_SCREEN} gestureEnabled={false}>
+            <Stack.Screen name={HOME_SCREEN} component={Home} options={HOME_SCREEN_OPTIONS}/>
             <Stack.Screen name={PROFILE_SCREEN} component={Profile} options={SCREEN_FADE_OPTIONS}/>
             <Stack.Screen name={BUDGET_SCREEN} component={Budget} options={SCREEN_SWIPE_OPTIONS}/>
             <Stack.Screen name={MONOBANK_SCREEN} component={Monobank} options={SCREEN_SWIPE_OPTIONS}/>
@@ -77,6 +85,12 @@ const Routes = () => {
             <Stack.Screen name={REPORT_MONTH_SCREEN} component={ReportMonth} options={SCREEN_FADE_OPTIONS}/>
         </Stack.Navigator>
     )
+}
+
+
+const Routes = () => {
+    const userLogged = useSelector(state => state.user.loggedIn)
+    return userLogged ? <AppStack/> : <AuthStack/>
 }
 
 export default Routes
