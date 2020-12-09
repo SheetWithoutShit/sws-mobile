@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         top: 40,
         flexDirection: "row",
         borderRadius: 5,
-        padding: 10,
+        padding: 12,
         alignItems: "center",
     },
     success: {
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
         fontFamily: FONTS.cairoBold,
         color: COLORS.black,
         fontSize: 14,
+        lineHeight: 20,
         marginLeft: 10,
         textAlign: "justify",
     },
