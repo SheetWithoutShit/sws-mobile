@@ -2,7 +2,7 @@ import axios from "axios"
 import * as SecureStore from "expo-secure-store"
 
 
-const API_HOST = process.env.API_HOST
+const API_HOST = process.env.API_HOST || "spentless.herokuapp.com"
 const API_VERSION = "v1"
 
 const getAPIUrl = (path) => `http://${API_HOST}/${API_VERSION}/${path}`
