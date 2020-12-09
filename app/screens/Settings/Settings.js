@@ -5,6 +5,7 @@ import * as SecureStore from "expo-secure-store"
 
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
+import { setLoading } from "@redux/app/actions"
 import { setLoggedIn } from "@redux/user/actions"
 import COLORS from "@utils/colors"
 import {
@@ -21,8 +22,12 @@ const Settings = ({ navigation }) => {
     const dispatch = useDispatch()
 
     const logout = async () => {
+        dispatch(setLoading(true))
+
         await SecureStore.deleteItemAsync("auth")
         dispatch(setLoggedIn(false))
+
+        dispatch(setLoading(false))
     }
 
     const handleLogoutPress = () => Alert.alert(

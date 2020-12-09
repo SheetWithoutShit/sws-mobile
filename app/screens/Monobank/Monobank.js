@@ -1,17 +1,45 @@
 import React, { useState } from "react"
 import { View, Text } from "react-native"
+import { useDispatch, useSelector } from "react-redux"
 
 import Header from "@components/Header/Header"
 import Input from "@components/Inputs/Input"
 import Button from "@components/Buttons/Button"
 import Link from "@components/Link/Link"
+import { setMonobankEnabled } from "@redux/user/actions"
+import { setMessage, setLoading } from "@redux/app/actions"
+import { updateMonobankToken } from "@api/user"
 
 import globalStyles from "@utils/styles"
 import styles from "./style"
 
 
+const SECURE_MONOBANK_TOKEN = "**********************************************"
+
+
 const Monobank = ({ navigation }) => {
-    const [activationCode, setActivationCode] = useState(null)
+    const dispatch = useDispatch()
+    const monobankEnabled = useSelector(state => state.user.monobankEnabled)
+
+    const [monobankToken, setMonobankToken] = useState(monobankEnabled ? SECURE_MONOBANK_TOKEN : null)
+
+    const handleSubmit = async () => {
+        dispatch(setLoading(true))
+
+        try {
+            const { data: body } = await updateMonobankToken(monobankToken)
+            setMonobankToken(SECURE_MONOBANK_TOKEN)
+
+            dispatch(setMessage({ text: body.message, level: "success" }))
+            dispatch(setMonobankEnabled(true))
+        } catch (error) {
+            const { message } = error.response.data
+            dispatch(setMessage({ text: message, level: "error" }))
+            dispatch(setMonobankEnabled(false))
+        } finally {
+            dispatch(setLoading(false))
+        }
+    }
 
     return (
         <View style={globalStyles.container}>
@@ -33,8 +61,8 @@ const Monobank = ({ navigation }) => {
                     <Input
                         placeholder="Enter activation code..."
                         secureTextEntry={true}
-                        value={activationCode}
-                        handleChange={(value) => setActivationCode(value)}
+                        value={monobankToken}
+                        handleChange={(value) => setMonobankToken(value)}
                     />
                     <View style={globalStyles.formButtonsContainer}>
                         <Button
@@ -47,9 +75,10 @@ const Monobank = ({ navigation }) => {
                         />
                         <Button
                             label="Submit"
-                            color={activationCode ? "gold" : "grey"}
+                            color={monobankToken && monobankToken !== SECURE_MONOBANK_TOKEN ? "gold" : "grey"}
                             size="small"
-                            disabled={!activationCode}
+                            disabled={!monobankToken || monobankToken === SECURE_MONOBANK_TOKEN}
+                            handlePress={handleSubmit}
                         />
                     </View>
                 </View>
