@@ -11,9 +11,7 @@ import Routes from "@navigation/Routes"
 import LoadingIndicator from "@components/LoadingIndicator/LoadingIndicator"
 import Snackbar from "@components/Snackbar/Snackbar"
 import { getUser } from "@api/user"
-import { setMessage } from "@redux/app/actions"
 import { setLoggedIn } from "@redux/user/actions"
-import { setMonobankEnabled } from "@redux/user/actions"
 import COLORS from "@utils/colors"
 import FONTS from "@utils/fonts"
 import { ICONS_PATHS } from "@utils/constants"
@@ -55,15 +53,7 @@ const App = () => {
         if (!userLoggedIn) return
 
         dispatch(setLoggedIn(true))
-        try {
-            const { data: body } = await getUser()
-            const { monobank_enabled: monobankEnabled } = body.data
-
-            dispatch(setMonobankEnabled(monobankEnabled))
-        } catch (error) {
-            const { message } = error.response.data
-            dispatch(setMessage({ text: message, level: "error" }))
-        }
+        await getUser()
     }
 
     const loadAssets = async () => {
