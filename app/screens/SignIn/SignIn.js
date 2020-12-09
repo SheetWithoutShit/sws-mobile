@@ -2,14 +2,17 @@ import React, { useState } from "react"
 import { View, Text } from "react-native"
 import { useDispatch } from "react-redux"
 import CheckBox from "react-native-check-box"
+import * as SecureStore from "expo-secure-store"
 
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
 import COLORS from "@utils/colors"
 import EmailInput from "@components/Inputs/EmailInput"
 import PasswordInput from "@components/Inputs/PasswordInput"
+import { signIn } from "@api/auth"
+import { setLoading, setMessage } from "@redux/app/actions"
 import { setLoggedIn } from "@redux/user/actions"
-import { FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN, HOME_SCREEN } from "@utils/constants"
+import { FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN } from "@utils/constants"
 
 import globalStyles from "@utils/styles"
 import styles from "./style"
@@ -25,9 +28,18 @@ const SignIn = ({ navigation }) => {
     // const isValid = password && email
     const isValid = true // todo: for developer purposes
 
-    const handleLogin = () => {
-        dispatch(setLoggedIn(true))
-        navigation.navigate(HOME_SCREEN)
+    const handleSignIn = async () => {
+        dispatch(setLoading(true))
+        try {
+            const { data: body } = await signIn(email.toLowerCase(), password)
+            await SecureStore.setItemAsync("auth", JSON.stringify(body.data))
+            dispatch(setLoggedIn(true))
+        } catch (error) {
+            const { message } = error.response.data
+            dispatch(setMessage({ text: message, level: "error" }))
+        } finally {
+            dispatch(setLoading(false))
+        }
     }
 
     return (
@@ -71,7 +83,7 @@ const SignIn = ({ navigation }) => {
                         label="Sign In"
                         color={isValid ? "gold": "grey"}
                         disabled={!isValid}
-                        handlePress={handleLogin}
+                        handlePress={handleSignIn}
                     />
                     <Button color="none" handlePress={() => navigation.navigate(SIGNUP_SCREEN)}>
                         <Text style={styles.signUp}>

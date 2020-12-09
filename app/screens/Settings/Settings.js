@@ -1,6 +1,7 @@
 import React from "react"
 import { View, Alert } from "react-native"
 import { useDispatch } from "react-redux"
+import * as SecureStore from "expo-secure-store"
 
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
@@ -19,12 +20,17 @@ import styles from "./style"
 const Settings = ({ navigation }) => {
     const dispatch = useDispatch()
 
+    const logout = async () => {
+        await SecureStore.deleteItemAsync("auth")
+        dispatch(setLoggedIn(false))
+    }
+
     const handleLogoutPress = () => Alert.alert(
         "Are you sure?",
         "Are you sure you want to sign out from Spentless?",
         [
             { text: "Cancel", style: "default" },
-            { text: "YES", style: "destructive", onPress: () => dispatch(setLoggedIn(false)) },
+            { text: "YES", style: "destructive", onPress: logout },
         ],
         { cancelable: true },
     )
