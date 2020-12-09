@@ -5,12 +5,14 @@ import { Text, StyleSheet } from "react-native"
 import { loadAsync as fontLoadAsync } from "expo-font"
 import { Asset } from "expo-asset"
 import { useSelector, useDispatch } from "react-redux"
+import * as SecureStore from "expo-secure-store"
 
 import Routes from "@navigation/Routes"
 import LoadingIndicator from "@components/LoadingIndicator/LoadingIndicator"
 import Snackbar from "@components/Snackbar/Snackbar"
 import { getUser } from "@api/user"
 import { setMessage } from "@redux/app/actions"
+import { setLoggedIn } from "@redux/user/actions"
 import { setMonobankEnabled } from "@redux/user/actions"
 import COLORS from "@utils/colors"
 import FONTS from "@utils/fonts"
@@ -38,7 +40,21 @@ const App = () => {
         await Promise.all([loadUser(), loadAssets()])
     }
 
+    const isUserLoggedIn = async () => {
+        const authJson = await SecureStore.getItemAsync("auth")
+        if (!authJson) return false
+
+        const { access_token_exp: accessTokenExpire } = JSON.parse(authJson)
+        const now = Date.now() / 1000
+
+        return accessTokenExpire > now
+    }
+
     const loadUser = async () => {
+        const userLoggedIn = await isUserLoggedIn()
+        if (!userLoggedIn) return
+
+        dispatch(setLoggedIn(true))
         try {
             const { data: body } = await getUser()
             const { monobank_enabled: monobankEnabled } = body.data
