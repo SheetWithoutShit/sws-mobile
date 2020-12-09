@@ -1,11 +1,12 @@
 import React from "react"
 import { View, Alert } from "react-native"
+import { useDispatch } from "react-redux"
 
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
+import { setLoggedIn } from "@redux/user/actions"
 import COLORS from "@utils/colors"
 import {
-    SIGNIN_SCREEN,
     DELETE_ACCOUNT_SCREEN,
     EMAIL_CHANGE_SCREEN,
     PASSWORD_CHANGE_SCREEN,
@@ -16,15 +17,18 @@ import styles from "./style"
 
 
 const Settings = ({ navigation }) => {
+    const dispatch = useDispatch()
+
     const handleLogoutPress = () => Alert.alert(
         "Are you sure?",
         "Are you sure you want to sign out from Spentless?",
         [
             { text: "Cancel", style: "default" },
-            { text: "YES", style: "destructive", onPress: () => navigation.navigate(SIGNIN_SCREEN) },
+            { text: "YES", style: "destructive", onPress: () => dispatch(setLoggedIn(false)) },
         ],
         { cancelable: true },
     )
+
     return (
         <View style={globalStyles.container}>
             <Header

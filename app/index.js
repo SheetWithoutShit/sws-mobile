@@ -10,6 +10,7 @@ import COLORS from "@utils/colors"
 const styles = StyleSheet.create({
     app: {
         height: "100%",
+        width: "100%",
         backgroundColor: COLORS.black,
         paddingTop: 35,
     },

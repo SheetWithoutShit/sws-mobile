@@ -10,13 +10,13 @@ const INDICATOR_SIZE = Platform.select({
     ios: "large",
     android: 70,
 })
-const LoadingIndicator = ({ }) => {
 
+const LoadingIndicator = () => {
     return (
         <View style={styles.container}>
             <ActivityIndicator
                 size={INDICATOR_SIZE}
-                color={COLORS.gold}
+                color={COLORS.white}
             />
         </View>
     )
