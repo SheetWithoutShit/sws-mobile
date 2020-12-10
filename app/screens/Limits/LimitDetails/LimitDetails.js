@@ -96,13 +96,16 @@ const LimitDetails = ({ route, navigation }) => {
         })
     }
 
+    const primaryText = `${parseFloat(limit.spent).toFixed(2)} ₴`
+    const secondaryText = `${limit.balance} ₴`
+
     return (
         <View style={styles.container}>
             <Header text={limit.name}/>
             <PieProgress
-                progress={limit.spend / limit.balance}
-                primaryText={`${limit.spend} ₴`}
-                secondaryText={`${limit.balance} ₴`}
+                progress={limit.spent / limit.balance}
+                primaryText={primaryText}
+                secondaryText={secondaryText}
                 handleTextPress={navigateEditForm}
             />
             <TransactionsList transactions={MOCK_TRANSACTIONS}/>

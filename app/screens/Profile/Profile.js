@@ -42,7 +42,7 @@ const Profile = ({ navigation }) => {
             event: () => navigation.navigate(NOTIFICATION_SCREEN),
         },
     ]
-    dynamicSteps.sort((a, b) => a.passed ? -1 : 1)
+    dynamicSteps.sort((a) => a.passed ? -1 : 1)
     const passedDynamicSteps = dynamicSteps.reduce((acc, x) => acc + x.passed, 0)
 
     const steps = [
