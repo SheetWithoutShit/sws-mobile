@@ -7,6 +7,8 @@ const initialState = {
     monobankEnabled: false,
     notificationsEnabled: false,
     telegramId: null,
+    savings: null,
+    income: null,
 }
 
 export const reducer = (state = initialState, action) => {
