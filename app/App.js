@@ -11,6 +11,7 @@ import Routes from "@navigation/Routes"
 import LoadingIndicator from "@components/LoadingIndicator/LoadingIndicator"
 import Snackbar from "@components/Snackbar/Snackbar"
 import { getUser } from "@api/user"
+import { getBudget } from "@api/budget"
 import { setLoggedIn } from "@redux/user/actions"
 import COLORS from "@utils/colors"
 import FONTS from "@utils/fonts"
@@ -54,6 +55,7 @@ const App = () => {
 
         dispatch(setLoggedIn(true))
         dispatch(getUser())
+        dispatch(getBudget())
     }
 
     const loadAssets = async () => {

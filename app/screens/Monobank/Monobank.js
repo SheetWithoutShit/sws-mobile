@@ -7,6 +7,7 @@ import Input from "@components/Inputs/Input"
 import Button from "@components/Buttons/Button"
 import Link from "@components/Link/Link"
 import { updateMonobankToken } from "@api/user"
+import { PROFILE_SCREEN } from "@utils/constants"
 
 import globalStyles from "@utils/styles"
 import styles from "./style"
@@ -23,6 +24,7 @@ const Monobank = ({ navigation }) => {
     const handleSubmit = async () => {
         dispatch(updateMonobankToken(monobankToken))
         setMonobankToken(SECURE_MONOBANK_TOKEN)
+        navigation.navigate(PROFILE_SCREEN)
     }
 
     return (

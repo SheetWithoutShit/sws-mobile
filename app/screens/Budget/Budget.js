@@ -1,37 +1,53 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { View, Text } from "react-native"
+import { useSelector, useDispatch } from "react-redux"
 
 import Header from "@components/Header/Header"
 import NumberInput from "@components/Inputs/NumberInput"
 import Button from "@components/Buttons/Button"
 import COLORS from "@utils/colors"
 import { validateSavings } from "@utils/validators"
-import { discardChangesEffect } from "@utils/effects"
+import { updateBudget } from "@api/budget"
 
 import globalStyles from "@utils/styles"
 
 
 const Budget = ({ navigation }) => {
-    const [income, setIncome] = useState(null)
-    const [savings, setSavings] = useState(null)
+    const dispatch = useDispatch()
+
+    const { income: userIncome, savings: userSavings } = useSelector(state => state.user)
+    const [income, setIncome] = useState(userIncome)
+
+    const [savings, setSavings] = useState(userSavings)
     const [savingErrors, setSavingsErrors] = useState(null)
 
-    const initialState = { savings: null, income: null }
-    const hasUnsavedChanges = income !== initialState.income || savings !== initialState.savings
-
-    useEffect(
-        () => discardChangesEffect(navigation, hasUnsavedChanges),
-        [navigation, hasUnsavedChanges],
-    )
+    // TODO: fix effect
+    // const hasUnsavedChanges = income !== userIncome || savings !== userSavings
+    // useEffect(
+    //     () => discardChangesEffect(navigation, hasUnsavedChanges),
+    //     [navigation, hasUnsavedChanges],
+    // )
 
     const handleSavingsChange = (value) => {
-        setSavings(value)
+        const newValue = parseInt(value)
+        setSavings(!isNaN(newValue) ? newValue : null)
 
         const errors = validateSavings(value)
         setSavingsErrors(errors)
     }
+    const handleIncomeChange = (value) => {
+        const newValue = parseInt(value)
+        setIncome(!isNaN(newValue) ? newValue : null)
+    }
 
-    const isValid = income && savings && !savingErrors
+    const handleSubmit = async () => {
+        dispatch(updateBudget(income, savings))
+    }
+
+    const isValid = income !== null
+        && savings !== null
+        && !savingErrors
+        && (income !== userIncome || savings !== userSavings)
 
     return (
         <View style={globalStyles.container}>
@@ -48,12 +64,12 @@ const Budget = ({ navigation }) => {
                 </Text>
                 <NumberInput
                     label="Income ₴"
-                    value={income}
-                    handleChange={(value) => setIncome(value)}
+                    value={income !== null ? income.toString() : null}
+                    handleChange={handleIncomeChange}
                 />
                 <NumberInput
                     label="Savings %"
-                    value={savings}
+                    value={savings !== null ? savings.toString() : null}
                     handleChange={handleSavingsChange}
                     errors={savingErrors}
                 />
@@ -71,6 +87,7 @@ const Budget = ({ navigation }) => {
                         color={isValid ? "gold" : "grey"}
                         size="small"
                         disabled={!isValid}
+                        handlePress={handleSubmit}
                     />
                 </View>
             </View>
