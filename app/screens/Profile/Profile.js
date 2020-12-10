@@ -14,18 +14,47 @@ import styles from "./style"
 
 
 const Profile = ({ navigation }) => {
-    const { firstName = "", lastName = "" } = useSelector(state => state.user)
-    const steps = [
-        { label: "Registered", event: () => {} },
-        { label: "Monobank access", event: () => navigation.navigate(MONOBANK_SCREEN) },
-        { label: "Set up budget", event: () => navigation.navigate(BUDGET_SCREEN) },
-        { label: "Enable telegram bot", event: () => navigation.navigate(NOTIFICATION_SCREEN) },
-        { label: "Ready to use!", event: () => {} },
+    const {
+        firstName,
+        lastName,
+        monobankEnabled,
+        savings,
+        income,
+        telegramId,
+    } = useSelector(state => state.user)
+    const budgetSetup = savings !== null && income !== null
+    const telegramSetup = telegramId !== null
+
+    const dynamicSteps = [
+        {
+            label: "Monobank access",
+            passed: monobankEnabled,
+            event: () => navigation.navigate(MONOBANK_SCREEN),
+        },
+        {
+            label: "Set up budget",
+            passed: budgetSetup,
+            event: () => navigation.navigate(BUDGET_SCREEN),
+        },
+        {
+            label: "Enable telegram bot",
+            passed: telegramSetup,
+            event: () => navigation.navigate(NOTIFICATION_SCREEN),
+        },
     ]
+    dynamicSteps.sort((a, b) => a.passed ? -1 : 1)
+    const passedDynamicSteps = dynamicSteps.reduce((acc, x) => acc + x.passed, 0)
+
+    const steps = [
+        { label: "Registered", passed: true, event: () => {} },
+        ...dynamicSteps,
+        { label: "Ready to use!", passed: passedDynamicSteps === dynamicSteps.length, event: () => {} },
+    ]
+
     return (
         <View style={globalStyles.container}>
             <Header
-                text={`${firstName} ${lastName}`}
+                text={(firstName && lastName) ? `${firstName} ${lastName}` : "Hey, Stranger"}
                 icon={{ name: "person", height: "24", width: "24", color: COLORS.gold }}
                 isSecondary={true}
             />
@@ -39,8 +68,11 @@ const Profile = ({ navigation }) => {
                     labelStyle={styles.buttonText}
                     icon={{ name: "monobank" }}
                 >
-                    <View style={[styles.label, styles.labelSuccess]}>
-                        <Icon name="success"/>
+                    <View style={[
+                        styles.label,
+                        monobankEnabled && styles.labelSuccess,
+                    ]}>
+                        <Icon name={monobankEnabled ? "success": "question"}/>
                     </View>
                 </Button>
                 <Button
@@ -52,8 +84,11 @@ const Profile = ({ navigation }) => {
                     labelStyle={styles.buttonText}
                     icon={{ name: "piggy" }}
                 >
-                    <View style={styles.label}>
-                        <Icon name="question"/>
+                    <View style={[
+                        styles.label,
+                        budgetSetup && styles.labelSuccess,
+                    ]}>
+                        <Icon name={budgetSetup ? "success": "question"}/>
                     </View>
                 </Button>
                 <Button
@@ -65,8 +100,11 @@ const Profile = ({ navigation }) => {
                     labelStyle={styles.buttonText}
                     icon={{ name: "notifications" }}
                 >
-                    <View style={styles.label}>
-                        <Icon name="question"/>
+                    <View style={[
+                        styles.label,
+                        telegramSetup && styles.labelSuccess,
+                    ]}>
+                        <Icon name={telegramSetup ? "success": "question"}/>
                     </View>
                 </Button>
                 <Button
@@ -81,7 +119,7 @@ const Profile = ({ navigation }) => {
             </View>
             <View style={styles.stepper}>
                 <Stepper
-                    stepPosition={2}
+                    stepPosition={steps.reduce((acc, x) => acc + x.passed, 0)}
                     steps={steps}
                 />
             </View>
