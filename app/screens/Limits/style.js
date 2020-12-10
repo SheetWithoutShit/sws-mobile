@@ -16,6 +16,10 @@ const styles = StyleSheet.create({
         width: 280,
         marginBottom: 10,
     },
+    messageContainer: {
+        justifyContent: "center",
+        alignItems: "center",
+    },
 
     // limit items stuff
     limitsContainer: {

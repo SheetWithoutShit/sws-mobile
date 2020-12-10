@@ -1,46 +1,17 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { View, Text, FlatList } from "react-native"
+import { useDispatch, useSelector } from "react-redux"
 
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
 import COLORS from "@utils/colors"
+import { getLimits } from "@api/limits"
 import { LIMIT_DETAILS_SCREEN, LIMIT_EDIT_SCREEN } from "@utils/constants"
 
 import globalStyles from "@utils/styles"
 import styles from "./style"
 
 
-// TODO: replace with API data
-const MOCK_LIMITS = [
-    {
-        "id": 1,
-        "balance": "5000.00",
-        "spend": "800.00",
-        "name": "Products & Supermarkets",
-        "info": "Goods and services in supermarkets and specialty stores selling food and beverages",
-    },
-    {
-        "id": 3,
-        "balance": "300.00",
-        "spend": "800.00",
-        "name": "Cinema",
-        "info": "Cinema services and goods, rent and purchase of goods in related stores",
-    },
-    {
-        "id": 4,
-        "balance": "1250.00",
-        "spend": "800.00",
-        "name": "Clothes & Shoes",
-        "info": "Goods and services in specialized shops of clothes, footwear",
-    },
-    {
-        "id": 2,
-        "balance": "1000.00",
-        "spend": "00.00",
-        "name": "Taxi",
-        "info": "Taxi services",
-    },
-]
 const LIMIT_COLORS = [
     "#D9BB6E",
     "#D4B16B",
@@ -54,21 +25,29 @@ const LIMIT_COLORS = [
     "#B06150",
 ]
 
-const getLimitColor = (balance, spend) => {
-    if (spend === 0) return LIMIT_COLORS[0]
+const getLimitColor = (balance, spent) => {
+    if (spent === 0) return LIMIT_COLORS[0]
 
-    const percentage = Math.min((spend * 100.0) / balance, 100)
+    const percentage = Math.min((spent * 100.0) / balance, 100)
     const index = Math.ceil(percentage / 10) - 1
     return LIMIT_COLORS[index]
 }
 
 
 const Limits = ({ navigation }) => {
+    const dispatch = useDispatch()
+
+    const { limits } = useSelector(state => state.limits)
+
+    useEffect(() => {
+        dispatch(getLimits())
+    }, [getLimits])
 
     const renderLimit = ({ item }) => {
         const balance = parseFloat(item.balance)
-        const spend = parseFloat(item.spend)
-        const limitColor = getLimitColor(balance, spend)
+        const spent = parseFloat(item.spent)
+        const limitColor = getLimitColor(balance, spent)
+
         return (
             <Button
                 size="largeSquare"
@@ -89,9 +68,9 @@ const Limits = ({ navigation }) => {
         />
     )
 
-    if (!MOCK_LIMITS.length) {
+    if (!limits.length) {
         return (
-            <View style={globalStyles.container}>
+            <View style={[globalStyles.container, styles.messageContainer]}>
                 <Text style={[globalStyles.info, styles.message]}>
                     If you want to limit your spending for some
                     category you can set it here and receives
@@ -110,7 +89,7 @@ const Limits = ({ navigation }) => {
             />
             <FlatList
                 contentContainerStyle={styles.limitsContainer}
-                data={MOCK_LIMITS}
+                data={limits}
                 renderItem={renderLimit}
                 keyExtractor={(item) => item.name}
                 ListFooterComponent={AddLimit}
