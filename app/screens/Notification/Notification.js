@@ -18,7 +18,7 @@ const Notification = () => {
     const { notificationsEnabled: userNotificationsEnabled, telegramId } = useSelector(state => state.user)
 
     const [notificationsEnabled, setNotificationsEnabled] = useState(userNotificationsEnabled)
-    const telegramBotEnabled = isNaN(telegramId)
+    const telegramBotEnabled = telegramId !== null
 
     const handleNotificationSwitch = async () => {
         setNotificationsEnabled(!notificationsEnabled)
