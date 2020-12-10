@@ -1,18 +1,29 @@
 import React, { useState } from "react"
 import { View, Text } from "react-native"
+import { useSelector, useDispatch } from "react-redux"
 
 import Header from "@components/Header/Header"
 import Link from "@components/Link/Link"
 import COLORS from "@utils/colors"
 import Switch from "@components/Switch/Switch"
+import { setUser } from "@redux/user/actions"
 
 import globalStyles from "@utils/styles"
 import styles from "./style"
 
 
 const Notification = () => {
-    const [notificationEnabled, setNotificationEnabled] = useState(false)
-    const telegramBotEnabled = false
+    const dispatch = useDispatch()
+
+    const { notificationsEnabled: userNotificationsEnabled, telegramId } = useSelector(state => state.user)
+
+    const [notificationsEnabled, setNotificationsEnabled] = useState(userNotificationsEnabled)
+    const telegramBotEnabled = isNaN(telegramId)
+
+    const handleNotificationSwitch = async () => {
+        setNotificationsEnabled(!notificationsEnabled)
+        dispatch(setUser({ notificationsEnabled: !notificationsEnabled }))
+    }
 
     return (
         <View style={globalStyles.container}>
@@ -41,8 +52,8 @@ const Notification = () => {
                 <Switch
                     leftText="Disabled"
                     rightText="Enabled"
-                    enabled={notificationEnabled}
-                    handleSwitch={() => setNotificationEnabled(!notificationEnabled)}
+                    enabled={notificationsEnabled}
+                    handleSwitch={handleNotificationSwitch}
                 />
             </View>
         </View>

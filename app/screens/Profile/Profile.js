@@ -1,5 +1,6 @@
 import React from "react"
 import { View, Text } from "react-native"
+import { useSelector } from "react-redux"
 
 import Header from "@components/Header/Header"
 import COLORS from "@utils/colors"
@@ -13,6 +14,7 @@ import styles from "./style"
 
 
 const Profile = ({ navigation }) => {
+    const { firstName = "", lastName = "" } = useSelector(state => state.user)
     const steps = [
         { label: "Registered", event: () => {} },
         { label: "Monobank access", event: () => navigation.navigate(MONOBANK_SCREEN) },
@@ -23,7 +25,7 @@ const Profile = ({ navigation }) => {
     return (
         <View style={globalStyles.container}>
             <Header
-                text="Ihor Titomir"
+                text={`${firstName} ${lastName}`}
                 icon={{ name: "person", height: "24", width: "24", color: COLORS.gold }}
                 isSecondary={true}
             />
