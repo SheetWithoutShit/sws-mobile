@@ -16,7 +16,7 @@ const SECURE_MONOBANK_TOKEN = "ha-ha it's a secret"
 
 
 const Monobank = ({ navigation }) => {
-    const monobankEnabled = useSelector(state => state.user.monobankEnabled)
+    const { monobankEnabled } = useSelector(state => state.user)
     const [monobankToken, setMonobankToken] = useState(monobankEnabled ? SECURE_MONOBANK_TOKEN : null)
     const dispatch = useDispatch()
 

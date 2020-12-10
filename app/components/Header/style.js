@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: FONTS.cairoBold,
-        fontSize: 28,
+        fontSize: 24,
         color: COLORS.gold,
         marginLeft: 10,
     },

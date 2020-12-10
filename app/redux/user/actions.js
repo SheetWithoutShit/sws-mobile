@@ -1,6 +1,6 @@
 export const actionType = {
     SET_LOGGED_IN: "SET_LOGGED_IN",
-    SET_MONOBANK_ENABLED: "SET_MONOBANK_ENABLED",
+    SET_USER: "SET_USER",
 }
 
 export const setLoggedIn = (loggedIn) => {
@@ -10,9 +10,9 @@ export const setLoggedIn = (loggedIn) => {
     }
 }
 
-export const setMonobankEnabled = (isEnabled) => {
+export const setUser = (user) => {
     return {
-        type: actionType.SET_MONOBANK_ENABLED,
-        monobankEnabled: isEnabled,
+        type: actionType.SET_USER,
+        user,
     }
 }

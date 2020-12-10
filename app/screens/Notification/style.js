@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     },
     activatedText: {
         fontSize: 16,
+        color: COLORS.black,
         fontFamily: FONTS.cairoBold,
     },
 })
