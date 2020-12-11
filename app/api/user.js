@@ -15,10 +15,14 @@ export const updateMonobankToken = (token) => {
 
             dispatch(setMessage({ text: body.message, level: "success" }))
             dispatch(setUser({ monobankEnabled: true }))
+
+            return true
         } catch (error) {
             const { message } = error.response.data
             dispatch(setMessage({ text: message, level: "error" }))
             dispatch(setUser({ monobankEnabled: false }))
+
+            return false
         } finally {
             dispatch(setLoading(false))
         }

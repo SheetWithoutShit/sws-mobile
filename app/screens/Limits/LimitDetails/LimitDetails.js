@@ -91,8 +91,7 @@ const LimitDetails = ({ route, navigation }) => {
     const navigateEditForm = () => {
         navigation.navigate(LIMIT_EDIT_SCREEN, {
             isEdit: true,
-            category: limit.name,
-            limit: parseInt(limit.balance, 10).toString(),
+            limit: limit,
         })
     }
 
