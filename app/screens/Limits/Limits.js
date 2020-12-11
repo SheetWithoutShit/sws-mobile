@@ -41,7 +41,7 @@ const Limits = ({ navigation }) => {
 
     useEffect(() => {
         dispatch(getLimits())
-    }, [getLimits])
+    }, [dispatch])
 
     const renderLimit = ({ item }) => {
         const balance = parseFloat(item.balance)
