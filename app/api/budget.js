@@ -31,9 +31,13 @@ export const updateBudget = (income, savings) => {
             const { data: body } = await http.put(BUDGET_PATH, { income, savings })
             dispatch(setMessage({ text: body.message, level: "success" }))
             dispatch(setUser({ income: parseInt(income), savings: parseInt(savings) }))
+
+            return true
         } catch (error) {
             const { message } = error.response.data
             dispatch(setMessage({ text: message, level: "error" }))
+
+            return false
         } finally {
             dispatch(setLoading(false))
         }

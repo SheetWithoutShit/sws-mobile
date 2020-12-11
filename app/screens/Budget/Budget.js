@@ -6,6 +6,7 @@ import Header from "@components/Header/Header"
 import NumberInput from "@components/Inputs/NumberInput"
 import Button from "@components/Buttons/Button"
 import COLORS from "@utils/colors"
+import { PROFILE_SCREEN } from "@utils/constants"
 import { validateSavings } from "@utils/validators"
 import { updateBudget } from "@api/budget"
 
@@ -42,6 +43,9 @@ const Budget = ({ navigation }) => {
 
     const handleSubmit = async () => {
         dispatch(updateBudget(income, savings))
+            .then((success) => {
+                if (success) navigation.navigate(PROFILE_SCREEN)
+            })
     }
 
     const isValid = income !== null

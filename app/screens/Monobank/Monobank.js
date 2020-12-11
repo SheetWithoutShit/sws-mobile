@@ -6,8 +6,8 @@ import Header from "@components/Header/Header"
 import Input from "@components/Inputs/Input"
 import Button from "@components/Buttons/Button"
 import Link from "@components/Link/Link"
-import { updateMonobankToken } from "@api/user"
 import { PROFILE_SCREEN } from "@utils/constants"
+import { updateMonobankToken } from "@api/user"
 
 import globalStyles from "@utils/styles"
 import styles from "./style"
@@ -23,8 +23,12 @@ const Monobank = ({ navigation }) => {
 
     const handleSubmit = async () => {
         dispatch(updateMonobankToken(monobankToken))
-        setMonobankToken(SECURE_MONOBANK_TOKEN)
-        navigation.navigate(PROFILE_SCREEN)
+            .then((success) => {
+                if (success) {
+                    setMonobankToken(SECURE_MONOBANK_TOKEN)
+                    navigation.navigate(PROFILE_SCREEN)
+                }
+            })
     }
 
     return (

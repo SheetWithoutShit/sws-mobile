@@ -7,7 +7,8 @@ import Dropdown from "@components/Inputs/Dropdown"
 import NumberInput from "@components/Inputs/NumberInput"
 import Button from "@components/Buttons/Button"
 import COLORS from "@utils/colors"
-import { getCategories } from "@api/limits"
+import { LIMITS_SCREEN } from "@utils/constants"
+import { getCategories, createLimit, updateLimit } from "@api/limits"
 
 import globalStyles from "@utils/styles"
 import styles from "./style"
@@ -24,22 +25,32 @@ const LimitEdit = ({ route, navigation }) => {
         info: category.info,
     }))
 
-    const { params } = route
+    const { limit, isEdit } = route.params
 
-    const [category, setCategory] = useState(params.category)
-    const [limit, setLimit] = useState(params.limit)
-    const [info, setInfo] = useState(categoryItem?.info || DEFAULT_CATEGORY_INFO)
+    const [category, setCategory] = useState(limit?.name)
+    const [amount, setAmount] = useState(limit?.balance)
+    const [info, setInfo] = useState(limit?.info || DEFAULT_CATEGORY_INFO)
 
-    const title = params.isEdit ? "Edit limit": "Create a limit"
+    const title = isEdit ? "Edit limit": "Create a limit"
     const categoryItem = categories.find(c => c.label === category)
 
     const isValid = category
-        && limit !== null
-        && (category !== params.category || limit !== params.limit)
+        && amount
+        && (category !== limit?.name || amount !== limit?.balance)
 
     useEffect(() => {
         dispatch(getCategories())
     }, [dispatch])
+
+    const handleSubmit = async () => {
+        const handler = isEdit
+            ? updateLimit(limit.id, parseFloat(amount))
+            : createLimit(category, parseFloat(amount))
+
+        dispatch(handler).then((success) => {
+            if (success) navigation.navigate(LIMITS_SCREEN)
+        })
+    }
 
     // TODO: fix discard changes effect
     // const initialState = { category: params.category, limit: params.limit }
@@ -78,8 +89,8 @@ const LimitEdit = ({ route, navigation }) => {
                 </Text>
                 <NumberInput
                     label="Limit ₴"
-                    handleChange={(value) => setLimit(value)}
-                    value={limit}
+                    handleChange={(value) => setAmount(value)}
+                    value={amount}
                 />
                 <View style={globalStyles.formButtonsContainer}>
                     <Button
@@ -95,6 +106,7 @@ const LimitEdit = ({ route, navigation }) => {
                         color={isValid ? "gold" : "grey"}
                         size="small"
                         disabled={!isValid}
+                        handlePress={handleSubmit}
                     />
                 </View>
             </View>
