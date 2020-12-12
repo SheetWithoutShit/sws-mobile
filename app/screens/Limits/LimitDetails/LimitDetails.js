@@ -5,7 +5,6 @@ import Header from "@components/Header/Header"
 import PieProgress from "@components/Charts/PieProgress/PieProgress"
 import TransactionsList from "@components/App/TransactionsList/TransactionsList"
 import { LIMIT_EDIT_SCREEN } from "@utils/constants"
-import { getProgressColor } from "@utils/misc";
 
 import styles from "./style"
 

@@ -4,7 +4,7 @@ import moment from "moment"
 
 import Button from "@components/Buttons/Button"
 import TransactionDetails from "@components/App/TransactionDetails/TransactionDetails"
-import { DATE_FORMAT, DATETIME_FORMAT, RELATIVE_FORMAT } from "@utils/time"
+import { DATE_FORMAT, DATETIME_FORMAT, CALENDAR_FORMAT } from "@utils/time"
 
 import styles from "./style"
 
@@ -29,7 +29,7 @@ const TransactionsList = ({ transactions }) => {
     const [transactionDetails, setTransactionDetails] = useState(null)
 
     const renderDayTransactions = ({ item }) => {
-        const date = moment(item.date, DATE_FORMAT).calendar(RELATIVE_FORMAT)
+        const date = moment(item.date, DATE_FORMAT).calendar(null, CALENDAR_FORMAT)
         return (
             <View style={styles.dayTransactions} key={item.date}>
                 <Text style={styles.date}>{date}</Text>
@@ -52,6 +52,8 @@ const TransactionsList = ({ transactions }) => {
             </View>
         )
     }
+
+    transactions.reverse()
     return (
         <>
             <FlatList
