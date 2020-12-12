@@ -4,6 +4,7 @@ import { ProgressCircle } from "react-native-svg-charts"
 
 import PieLabel from "@components/Charts/PieLabel/PieLabel"
 import COLORS from "@utils/colors"
+import { getProgressColor } from "@utils/misc";
 
 import styles from "./style"
 
@@ -16,14 +17,13 @@ const PIE_END_ANGLE = Math.PI * PIE_ANGLE_COEFFICIENT
 
 
 const PieProgress = ({ progress, primaryText, secondaryText, handleTextPress }) => {
-    const progressColor = progress < 1 ? COLORS.gold : COLORS.red
 
     return (
         <View>
             <ProgressCircle
                 style={styles.progressPie}
                 progress={progress}
-                progressColor={progressColor}
+                progressColor={getProgressColor(progress)}
                 backgroundColor={COLORS.darkGold}
                 strokeWidth={PIE_STROKE_WIDTH}
                 cornerRadius={PIE_CORNER_RADIUS}

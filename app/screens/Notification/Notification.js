@@ -50,8 +50,8 @@ const Notification = () => {
                     </Text>
                 </View>
                 <Switch
-                    leftText="Disabled"
-                    rightText="Enabled"
+                    rightText="Disabled"
+                    leftText="Enabled"
                     enabled={notificationsEnabled}
                     handleSwitch={handleNotificationSwitch}
                 />
