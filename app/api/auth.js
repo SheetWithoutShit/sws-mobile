@@ -9,6 +9,7 @@ const SIGN_UP_PATH = "auth/signup"
 const SIGN_IN_PATH = "auth/signin"
 const RESET_PASSWORD_PATH = "auth/reset_password"
 const CHANGE_PASSWORD_PATH = "auth/change_password"
+const CHANGE_EMAIL_PATH = "auth/change_email"
 
 export const signUp = (email, password) => {
     return async (dispatch) => {
@@ -66,7 +67,6 @@ export const resetPassword = (email) => {
     }
 }
 
-
 export const changePassword = (oldPassword, newPassword) => {
     return async (dispatch) => {
         dispatch(setLoading(true))
@@ -76,6 +76,26 @@ export const changePassword = (oldPassword, newPassword) => {
                 CHANGE_PASSWORD_PATH,
                 { "old_password": oldPassword, "new_password": newPassword },
             )
+            dispatch(setMessage({ text: body.message, level: "success" }))
+
+            return true
+        } catch (error) {
+            const { message } = error.response.data
+            dispatch(setMessage({ text: message, level: "error" }))
+
+            return false
+        } finally {
+            dispatch(setLoading(false))
+        }
+    }
+}
+
+export const changeEmail = (email) => {
+    return async (dispatch) => {
+        dispatch(setLoading(true))
+
+        try {
+            const { data: body } = await http.post(CHANGE_EMAIL_PATH, { "new_email": email })
             dispatch(setMessage({ text: body.message, level: "success" }))
 
             return true

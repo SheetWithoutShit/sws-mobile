@@ -1,15 +1,20 @@
 import React, { useState } from "react"
 import { View, Text } from "react-native"
+import { useDispatch } from "react-redux"
 
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
 import EmailInput from "@components/Inputs/EmailInput"
-import { validateEmail } from "@utils/validators"
 
+import { changeEmail } from "@api/auth"
+import { SETTINGS_SCREEN } from "@utils/constants"
+import { validateEmail } from "@utils/validators"
 import globalStyles from "@utils/styles"
 
 
 const EmailChange = ({ navigation }) => {
+    const dispatch = useDispatch()
+
     const [email, setEmail] = useState(null)
     const [emailErrors, setEmailErrors] = useState(null)
 
@@ -21,6 +26,13 @@ const EmailChange = ({ navigation }) => {
     }
 
     const isValid = email && !emailErrors
+
+    const handleSubmit = () => {
+        dispatch(changeEmail(email))
+            .then((success) => {
+                if (success) navigation.navigate(SETTINGS_SCREEN)
+            })
+    }
 
     return (
         <View style={globalStyles.container}>
@@ -52,6 +64,7 @@ const EmailChange = ({ navigation }) => {
                         size="small"
                         color={isValid ? "gold" : "grey"}
                         disabled={!isValid}
+                        handlePress={handleSubmit}
                     />
                 </View>
             </View>
