@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { View, Text } from "react-native"
 import CheckBox from "react-native-check-box"
+import { useDispatch } from "react-redux"
 
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
@@ -15,6 +16,8 @@ import styles from "./style"
 
 
 const SignIn = ({ navigation }) => {
+    const dispatch = useDispatch()
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [rememberMe, setRememberMe] = useState(false)
@@ -23,7 +26,7 @@ const SignIn = ({ navigation }) => {
     const isValid = true // todo: for developer purposes
 
     const handleSignIn = async () => {
-        await signIn(email.toLowerCase(), password)
+        dispatch(signIn(email.toLowerCase(), password))
     }
 
     return (
