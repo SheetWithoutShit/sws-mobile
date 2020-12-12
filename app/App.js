@@ -12,7 +12,7 @@ import LoadingIndicator from "@components/LoadingIndicator/LoadingIndicator"
 import Snackbar from "@components/Snackbar/Snackbar"
 import { getUser } from "@api/user"
 import { getBudget } from "@api/budget"
-import { setLoggedIn } from "@redux/user/actions"
+import { loginUser } from "@redux/user/actions"
 import COLORS from "@utils/colors"
 import FONTS from "@utils/fonts"
 import { ICONS_PATHS } from "@utils/constants"
@@ -53,7 +53,7 @@ const App = () => {
         const userLoggedIn = await isUserLoggedIn()
         if (!userLoggedIn) return
 
-        dispatch(setLoggedIn(true))
+        dispatch(loginUser())
         dispatch(getUser())
         dispatch(getBudget())
     }

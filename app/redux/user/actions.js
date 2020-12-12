@@ -1,12 +1,20 @@
 export const actionType = {
-    SET_LOGGED_IN: "SET_LOGGED_IN",
+    LOGIN_USER: "LOGIN_USER",
+    LOGOUT_USER: "LOGOUT_USER",
     SET_USER: "SET_USER",
 }
 
-export const setLoggedIn = (loggedIn) => {
+export const loginUser = () => {
     return {
-        type: actionType.SET_LOGGED_IN,
-        loggedIn: loggedIn,
+        type: actionType.LOGIN_USER,
+        loggedIn: true,
+    }
+}
+
+export const logoutUser = () => {
+    return {
+        type: actionType.LOGOUT_USER,
+        loggedIn: false,
     }
 }
 

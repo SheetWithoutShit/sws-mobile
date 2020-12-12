@@ -6,7 +6,7 @@ import * as SecureStore from "expo-secure-store"
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
 import { setLoading } from "@redux/app/actions"
-import { setLoggedIn } from "@redux/user/actions"
+import { logoutUser } from "@redux/user/actions"
 import COLORS from "@utils/colors"
 import {
     DELETE_ACCOUNT_SCREEN,
@@ -25,7 +25,7 @@ const Settings = ({ navigation }) => {
         dispatch(setLoading(true))
 
         await SecureStore.deleteItemAsync("auth")
-        dispatch(setLoggedIn(false))
+        dispatch(logoutUser())
 
         dispatch(setLoading(false))
     }

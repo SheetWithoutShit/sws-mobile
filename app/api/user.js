@@ -1,7 +1,8 @@
 import http from "@api/http"
 
 import { setMessage, setLoading } from "@redux/app/actions"
-import { setUser } from "@redux/user/actions"
+import { setUser, logoutUser } from "@redux/user/actions"
+import * as SecureStore from "expo-secure-store"
 
 const MONOBANK_TOKEN_PATH = "user/monobank"
 const USER_PATH = "user"
@@ -50,6 +51,25 @@ export const getUser = () => {
                 lastName,
             }
             dispatch(setUser(user))
+        } catch (error) {
+            const { message } = error.response.data
+            dispatch(setMessage({ text: message, level: "error" }))
+        } finally {
+            dispatch(setLoading(false))
+        }
+    }
+}
+
+export const deleteUser = () => {
+    return async (dispatch) => {
+        dispatch(setLoading(true))
+
+        try {
+            const { data: body } = await http.delete(USER_PATH)
+            dispatch(setMessage({ text: body.message, level: "success" }))
+            await SecureStore.deleteItemAsync("auth")
+
+            dispatch(logoutUser())
         } catch (error) {
             const { message } = error.response.data
             dispatch(setMessage({ text: message, level: "error" }))
