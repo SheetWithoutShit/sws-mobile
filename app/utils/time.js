@@ -6,6 +6,6 @@ export const FRIENDLY_DATETIME_FORMAT = "llll"
 export const CALENDAR_FORMAT = {
     sameDay: "[Today]",
     lastDay: "[Yesterday]",
-    lastWeek: "[Last] dddd",
+    lastWeek: "dddd",
     sameElse: "DD.MM",
 }

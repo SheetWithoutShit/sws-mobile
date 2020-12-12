@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
 import COLORS from "@utils/colors"
-import { getProgressColor } from "@utils/misc";
+import { getProgressColor } from "@utils/misc"
 import { getLimits } from "@api/limits"
 import { LIMIT_DETAILS_SCREEN, LIMIT_EDIT_SCREEN } from "@utils/constants"
 

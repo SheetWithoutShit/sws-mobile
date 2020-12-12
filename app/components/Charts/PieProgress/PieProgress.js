@@ -4,7 +4,7 @@ import { ProgressCircle } from "react-native-svg-charts"
 
 import PieLabel from "@components/Charts/PieLabel/PieLabel"
 import COLORS from "@utils/colors"
-import { getProgressColor } from "@utils/misc";
+import { getProgressColor } from "@utils/misc"
 
 import styles from "./style"
 
