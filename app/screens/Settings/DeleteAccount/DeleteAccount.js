@@ -1,13 +1,21 @@
 import React from "react"
 import { View, Text } from "react-native"
+import { useDispatch } from "react-redux"
 
 import Header from "@components/Header/Header"
 import Button from "@components/Buttons/Button"
+import { deleteUser } from "@api/user"
 
 import globalStyles from "@utils/styles"
 
 
 const DeleteAccount = ({ navigation }) => {
+    const dispatch = useDispatch()
+
+    const handleSubmit = () => {
+        dispatch(deleteUser())
+    }
+
     return (
         <View style={globalStyles.container}>
             <Header
@@ -34,6 +42,7 @@ const DeleteAccount = ({ navigation }) => {
                         label="Submit"
                         size="small"
                         color="red"
+                        handlePress={handleSubmit}
                     />
                 </View>
             </View>
