@@ -1,37 +1,35 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { View, Text } from "react-native"
 import Swiper from "react-native-swiper"
+import { useDispatch, useSelector } from "react-redux"
 
 import ReportHeader from "@screens/Reports/ReportHeader"
 import Pie from "@components/Charts/Pie/Pie"
+import { getMonthReport } from "@api/transactions"
 
 import globalStyles from "@utils/styles"
 import styles from "./style"
 
 
-const MOCK_MONTH_REPORTS = [
-    {
-        key: "Card transfers",
-        value: "400.00",
-    },
-    {
-        key: "Products & Supermarket",
-        value: "300.00",
-    },
-    {
-        key: "Utilities & Internet",
-        value: "100.00",
-    },
-    {
-        key: "Cinema",
-        value: "100.00",
-    },
-]
-
 const ReportMonth = ({ navigation }) => {
+    const dispatch = useDispatch()
+
+    const monthReport = useSelector(state => state.transactions.monthReport)
+        .map(report => ({ key: report.name, value: parseFloat(report.amount) }))
+
+    monthReport.sort((a, b) => a.value < b.value)
     const [activeIndex, setActiveIndex] = useState(0)
-    const spends = MOCK_MONTH_REPORTS.map(item => parseFloat(item.value))
+    const spends = monthReport.map(item => parseFloat(item.value))
+
     const amount = spends.reduce((a, b) => a + b, 0)
+
+    useEffect(() => {
+        dispatch(getMonthReport())
+    }, [dispatch])
+
+    // TODO: implement empty message
+    if (!monthReport.length) return null
+
     return (
         <View style={globalStyles.container}>
             <ReportHeader screen="Month" navigation={navigation}/>
@@ -47,13 +45,13 @@ const ReportMonth = ({ navigation }) => {
                 activeDotStyle={[styles.dot, styles.activeDot]}
                 onIndexChanged={(index) => setActiveIndex(index)}
             >
-                {MOCK_MONTH_REPORTS.map((item, index) => {
+                {monthReport.map((item, index) => {
                     const spend = parseFloat(item.value).toFixed(2)
                     const percentage = (spend * 100.0) / amount
                     return (
                         <View key={index}>
                             <Pie
-                                data={MOCK_MONTH_REPORTS}
+                                data={monthReport}
                                 activeIndex={activeIndex}
                                 primaryText={`${percentage.toFixed(2)}%`}
                             />
