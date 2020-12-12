@@ -12,18 +12,18 @@ const Switch = ({ enabled, handleSwitch, leftText, rightText }) => {
             <TouchableOpacity
                 activeOpacity={TOUCH_OPACITY}
                 onPress={handleSwitch}
-                style={[styles.inner, !enabled && styles.innerEnabled]}
+                style={[styles.inner, enabled && styles.innerEnabled]}
             >
-                <Text style={[styles.disabledText, !enabled && styles.enabledText]}>
+                <Text style={[styles.disabledText, enabled && styles.enabledText]}>
                     {leftText}
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity
                 activeOpacity={TOUCH_OPACITY}
                 onPress={handleSwitch}
-                style={[styles.inner, enabled && styles.innerEnabled]}
+                style={[styles.inner, !enabled && styles.innerEnabled]}
             >
-                <Text style={[styles.disabledText, enabled && styles.enabledText]}>
+                <Text style={[styles.disabledText, !enabled && styles.enabledText]}>
                     {rightText}
                 </Text>
             </TouchableOpacity>

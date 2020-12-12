@@ -10,7 +10,7 @@ import globalStyles from "@utils/styles"
 import styles from "./style"
 
 
-const MOCK_SPEND = 64.50
+const MOCK_SPEND = 44.50
 const MOCK_BALANCE = 365.00
 const MOCK_SPENDS = [10, 20, 30, 40, 50, 60, 50]
 const MOCK_SAVINGS = [70, 60, 30, 40, 30, 60, 10]
