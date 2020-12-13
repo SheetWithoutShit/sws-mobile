@@ -1,22 +1,36 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { View, Text } from "react-native"
+import { useDispatch, useSelector } from "react-redux"
+import moment from "moment"
 
 import ReportHeader from "@screens/Reports/ReportHeader"
 import PieProgress from "@components/Charts/PieProgress/PieProgress"
 import Bar from "@components/Charts/Bar/Bar"
 import Button from "@components/Buttons/Button"
+import { getDailyReport } from "@api/transactions"
 
 import globalStyles from "@utils/styles"
 import styles from "./style"
 
 
-const MOCK_SPEND = 44.50
-const MOCK_BALANCE = 365.00
-const MOCK_SPENDS = [10, 20, 30, 40, 50, 60, 50]
-const MOCK_SAVINGS = [70, 60, 30, 40, 30, 60, 10]
-
 const ReportDaily = ({ navigation }) => {
-    const progress = MOCK_SPEND / MOCK_BALANCE
+    const dispatch = useDispatch()
+
+    const { income, savings } = useSelector(state => state.user)
+    const { dailyReport } = useSelector(state => state.transactions)
+
+    const incomeAfterSavings = income - (income / 100.00) * savings
+    const daysInMonth = moment().daysInMonth()
+    const balance = incomeAfterSavings / daysInMonth
+    const spend = dailyReport.length ? dailyReport.slice(-1)[0].amount : 0
+    const progress = spend / (balance || 1)
+
+    const weekSpends = dailyReport.map(d => d.amount)
+    const weekSavings = dailyReport.map(d => balance - d.amount)
+
+    useEffect(() => {
+        dispatch(getDailyReport())
+    }, [dispatch])
 
     return (
         <View style={globalStyles.container}>
@@ -24,21 +38,21 @@ const ReportDaily = ({ navigation }) => {
             <View style={styles.pieContainer}>
                 <PieProgress
                     progress={progress}
-                    primaryText={`${MOCK_SPEND.toFixed(2)} ₴`}
-                    secondaryText={`${MOCK_BALANCE.toFixed(2)} ₴`}
+                    primaryText={`${spend.toFixed(2)} ₴`}
+                    secondaryText={`${balance.toFixed(2)} ₴`}
                 />
             </View>
             <View style={styles.detailsContainer}>
                 <Button buttonStyle={styles.detailsButton}>
                     <Text style={styles.detailsText}>Spends</Text>
                     <View style={styles.detailsChart}>
-                        <Bar data={MOCK_SPENDS}/>
+                        <Bar data={weekSpends}/>
                     </View>
                 </Button>
                 <Button buttonStyle={styles.detailsButton}>
                     <Text style={styles.detailsText}>Savings</Text>
                     <View style={styles.detailsChart}>
-                        <Bar data={MOCK_SAVINGS}/>
+                        <Bar data={weekSavings}/>
                     </View>
                 </Button>
             </View>
