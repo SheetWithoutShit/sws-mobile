@@ -6,7 +6,7 @@ import Header from "@components/Header/Header"
 import Link from "@components/Link/Link"
 import COLORS from "@utils/colors"
 import Switch from "@components/Switch/Switch"
-import { setUser } from "@redux/user/actions"
+import { updateNotifications } from "@api/user"
 
 import globalStyles from "@utils/styles"
 import styles from "./style"
@@ -21,8 +21,10 @@ const Notification = () => {
     const telegramBotEnabled = telegramId !== null
 
     const handleNotificationSwitch = async () => {
-        setNotificationsEnabled(!notificationsEnabled)
-        dispatch(setUser({ notificationsEnabled: !notificationsEnabled }))
+        dispatch(updateNotifications(!notificationsEnabled))
+            .then((success) => {
+                if (success) setNotificationsEnabled(!notificationsEnabled)
+            })
     }
 
     return (

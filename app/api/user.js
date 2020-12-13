@@ -5,6 +5,7 @@ import { setUser, logoutUser } from "@redux/user/actions"
 import * as SecureStore from "expo-secure-store"
 
 const MONOBANK_TOKEN_PATH = "user/monobank"
+const NOTIFICATIONS_PATH = "user/notifications"
 const USER_PATH = "user"
 
 export const updateMonobankToken = (token) => {
@@ -73,6 +74,28 @@ export const deleteUser = () => {
         } catch (error) {
             const { message } = error.response.data
             dispatch(setMessage({ text: message, level: "error" }))
+        } finally {
+            dispatch(setLoading(false))
+        }
+    }
+}
+
+export const updateNotifications = (enabled) => {
+    return async (dispatch) => {
+        dispatch(setLoading(true))
+
+        try {
+            const { data: body } = await http.put(NOTIFICATIONS_PATH, { enabled })
+
+            dispatch(setMessage({ text: body.message, level: "success" }))
+            dispatch(setUser({ notificationsEnabled: enabled }))
+
+            return true
+        } catch (error) {
+            const { message } = error.response.data
+            dispatch(setMessage({ text: message, level: "error" }))
+
+            return false
         } finally {
             dispatch(setLoading(false))
         }
