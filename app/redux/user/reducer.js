@@ -7,6 +7,7 @@ const initialState = {
     monobankEnabled: false,
     notificationsEnabled: false,
     telegramId: null,
+    telegramInvitation: null,
     savings: null,
     income: null,
 }
