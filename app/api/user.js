@@ -6,6 +6,7 @@ import * as SecureStore from "expo-secure-store"
 
 const MONOBANK_TOKEN_PATH = "user/monobank"
 const NOTIFICATIONS_PATH = "user/notifications"
+const TELEGRAM_INVITATION_PATH = "user/telegram"
 const USER_PATH = "user"
 
 export const updateMonobankToken = (token) => {
@@ -44,6 +45,7 @@ export const getUser = () => {
                 first_name: firstName,
                 last_name: lastName,
             } = body.data
+
             const user = {
                 monobankEnabled,
                 notificationsEnabled,
@@ -52,6 +54,24 @@ export const getUser = () => {
                 lastName,
             }
             dispatch(setUser(user))
+        } catch (error) {
+            const { message } = error.response.data
+            dispatch(setMessage({ text: message, level: "error" }))
+        } finally {
+            dispatch(setLoading(false))
+        }
+    }
+}
+
+export const getTelegramInvitation = () => {
+    return async (dispatch) => {
+        dispatch(setLoading(true))
+
+        try {
+            const { data: body } = await http.get(TELEGRAM_INVITATION_PATH)
+            const { link, exp } = body.data
+            const telegramInvitation = { link, expiredAt: exp }
+            dispatch(setUser({ telegramInvitation }))
         } catch (error) {
             const { message } = error.response.data
             dispatch(setMessage({ text: message, level: "error" }))
