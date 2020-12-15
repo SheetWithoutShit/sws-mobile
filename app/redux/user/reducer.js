@@ -10,6 +10,8 @@ const initialState = {
     telegramInvitation: null,
     savings: null,
     income: null,
+    dailyBudget: 0.0,
+    todaySpent: 0.0,
 }
 
 export const reducer = (state = initialState, action) => {

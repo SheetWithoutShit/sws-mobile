@@ -1,5 +1,6 @@
 import React from "react"
 import { View } from "react-native"
+import { useSelector } from "react-redux"
 
 import Button from "@components/Buttons/Button"
 import {
@@ -13,6 +14,9 @@ import styles from "./style"
 
 
 const Home = ({ navigation }) => {
+    const { dailyBudget, todaySpent } = useSelector(state => state.user)
+    const balance = (dailyBudget - todaySpent).toFixed(2)
+
     return (
         <View style={styles.container}>
             <View style={styles.menu}>
@@ -36,7 +40,7 @@ const Home = ({ navigation }) => {
                 />
                 <Button
                     labelStyle={styles.balance}
-                    label="-354.50 ₴"
+                    label={`${balance} ₴`}
                     buttonStyle={styles.largeButton}
                     handlePress={() => navigation.navigate(TRANSACTIONS_SCREEN)}
                 >

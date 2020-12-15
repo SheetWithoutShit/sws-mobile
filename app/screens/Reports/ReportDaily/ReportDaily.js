@@ -8,6 +8,7 @@ import PieProgress from "@components/Charts/PieProgress/PieProgress"
 import Bar from "@components/Charts/Bar/Bar"
 import Button from "@components/Buttons/Button"
 import { getDailyReport } from "@api/transactions"
+import { DATETIME_FORMAT } from "@utils/time"
 
 import globalStyles from "@utils/styles"
 import styles from "./style"
@@ -16,20 +17,22 @@ import styles from "./style"
 const ReportDaily = ({ navigation }) => {
     const dispatch = useDispatch()
 
-    const { income, savings } = useSelector(state => state.user)
+    const { dailyBudget } = useSelector(state => state.user)
     const { dailyReport } = useSelector(state => state.transactions)
 
-    const incomeAfterSavings = income - (income / 100.00) * savings
-    const daysInMonth = moment().daysInMonth()
-    const balance = incomeAfterSavings / daysInMonth
     const spend = dailyReport.length ? dailyReport.slice(-1)[0].amount : 0
-    const progress = spend / (balance || 1)
+    const progress = spend / (dailyBudget || 1)
 
     const weekSpends = dailyReport.map(d => d.amount)
-    const weekSavings = dailyReport.map(d => balance - d.amount)
+    const weekSavings = dailyReport.map(d => dailyBudget - d.amount)
 
     useEffect(() => {
-        dispatch(getDailyReport())
+        const startDate = moment()
+            .subtract(7, "d")
+            .startOf("day")
+            .format(DATETIME_FORMAT)
+        const endDate = moment().format(DATETIME_FORMAT)
+        dispatch(getDailyReport(startDate, endDate))
     }, [dispatch])
 
     return (

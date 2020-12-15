@@ -13,6 +13,7 @@ import Snackbar from "@components/Snackbar/Snackbar"
 import { getUser } from "@api/user"
 import { getBudget } from "@api/budget"
 import { loginUser } from "@redux/user/actions"
+import { getTodayReport } from "@api/transactions"
 import COLORS from "@utils/colors"
 import FONTS from "@utils/fonts"
 import { ICONS_PATHS } from "@utils/constants"
@@ -56,6 +57,7 @@ const App = () => {
         dispatch(loginUser())
         dispatch(getUser())
         dispatch(getBudget())
+        dispatch(getTodayReport())
     }
 
     const loadAssets = async () => {

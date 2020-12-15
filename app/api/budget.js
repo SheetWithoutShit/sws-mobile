@@ -1,4 +1,5 @@
 import http from "@api/http"
+import moment from "moment"
 
 import { setUser } from "@redux/user/actions"
 import { setMessage, setLoading } from "@redux/app/actions"
@@ -12,8 +13,14 @@ export const getBudget = () => {
 
         try {
             const { data: body } = await http.get(BUDGET_PATH)
-            const { income, savings } = body.data
-            dispatch(setUser({ income: parseInt(income), savings: parseInt(savings) }))
+            const income = parseInt(body.data.income)
+            const savings = parseInt(body.data.savings)
+
+            const incomeAfterSavings = income - (income / 100.00) * savings
+            const daysInMonth = moment().daysInMonth()
+            const dailyBudget = incomeAfterSavings / daysInMonth
+
+            dispatch(setUser({ income, savings, dailyBudget }))
         } catch (error) {
             const { message } = error.response.data
             dispatch(setMessage({ text: message, level: "error" }))
