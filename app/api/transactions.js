@@ -1,7 +1,10 @@
-import http from "@api/http"
+import moment from "moment"
 
+import http from "@api/http"
+import { setUser } from "@redux/user/actions"
 import { setLoading, setMessage } from "@redux/app/actions"
 import { setTransactions, setMonthReport, setDailyReport } from "@redux/transactions/actions"
+import { DATETIME_FORMAT } from "@utils/time"
 
 const TRANSACTIONS_PATH = "transactions"
 const MONTH_REPORT_PATH = "transactions/report/month"
@@ -40,12 +43,15 @@ export const getMonthReport = () => {
     }
 }
 
-export const getDailyReport = () => {
+export const getDailyReport = (startDate, endDate) => {
     return async (dispatch) => {
         dispatch(setLoading(true))
 
         try {
-            const { data: body } = await http.get(DAILY_REPORT_PATH)
+            const { data: body } = await http.get(
+                DAILY_REPORT_PATH,
+                { "start_date": startDate, "end_date": endDate },
+            )
             const dailyReport = body.data.map(d => {
                 return {
                     date: d.date,
@@ -53,6 +59,36 @@ export const getDailyReport = () => {
                 }
             })
             dispatch(setDailyReport(dailyReport))
+        } catch (error) {
+            const { message } = error.response.data
+            dispatch(setMessage({ text: message, level: "error" }))
+        } finally {
+            dispatch(setLoading(false))
+        }
+    }
+}
+
+export const getTodayReport = () => {
+    return async (dispatch) => {
+        dispatch(setLoading(true))
+
+        const startDate = moment()
+            .startOf("day")
+            .format(DATETIME_FORMAT)
+        const endDate = moment().format(DATETIME_FORMAT)
+        try {
+            const { data: body } = await http.get(
+                DAILY_REPORT_PATH,
+                { "start_date": startDate, "end_date": endDate },
+            )
+            const reports = body.data.map(d => {
+                return {
+                    date: d.date,
+                    amount: parseFloat(d.amount),
+                }
+            })
+            const todaySpent = reports.length ? parseFloat(reports[0].amount) : 0.0
+            dispatch(setUser({ todaySpent }))
         } catch (error) {
             const { message } = error.response.data
             dispatch(setMessage({ text: message, level: "error" }))

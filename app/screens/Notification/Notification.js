@@ -32,9 +32,12 @@ const Notification = () => {
             })
     }
     useEffect(() => {
-        const isExpired = (Date.now() / 1000) > telegramInvitation.expiredAt
-        if (telegramInvitation && isExpired)
+        const now = Date.now() / 1000
+        if (!telegramInvitation) {
             dispatch(getTelegramInvitation())
+        } else if (now > telegramInvitation.expiredAt) {
+            dispatch(getTelegramInvitation())
+        }
     }, [dispatch])
 
     return (
