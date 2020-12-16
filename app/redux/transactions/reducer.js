@@ -5,6 +5,7 @@ const initialState = {
     transactions: [],
     monthReport: [],
     dailyReport: [],
+    categoriesTransactions: {},
 }
 
 export const reducer = (state = initialState, action) => {
@@ -15,6 +16,9 @@ export const reducer = (state = initialState, action) => {
         return { ...state, monthReport: action.monthReport }
     case actionType.SET_DAILY_REPORT:
         return { ...state, dailyReport: action.dailyReport }
+    case actionType.SET_CATEGORY_TRANSACTIONS:
+        state.categoriesTransactions[action.category] = action.transactions
+        return state
     }
 
     return state
