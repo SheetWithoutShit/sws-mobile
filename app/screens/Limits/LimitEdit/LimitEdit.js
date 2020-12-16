@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { View, Text } from "react-native"
+import { View, Text, Alert } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 
 import Header from "@components/Header/Header"
@@ -8,7 +8,7 @@ import NumberInput from "@components/Inputs/NumberInput"
 import Button from "@components/Buttons/Button"
 import COLORS from "@utils/colors"
 import { LIMITS_SCREEN } from "@utils/constants"
-import { getCategories, createLimit, updateLimit } from "@api/limits"
+import { getCategories, createLimit, updateLimit, deleteLimit } from "@api/limits"
 
 import globalStyles from "@utils/styles"
 import styles from "./style"
@@ -65,13 +65,38 @@ const LimitEdit = ({ route, navigation }) => {
         index ? setInfo(categories[index - 1].info) : setInfo(DEFAULT_CATEGORY_INFO)
     }
 
+    const handleDeleteLimit = () => {
+        dispatch(deleteLimit(limit.id)).then((success) => {
+            if (success) navigation.navigate(LIMITS_SCREEN)
+        })
+    }
+
+    const handleDeletePress = () => Alert.alert(
+        "Are you sure?",
+        `Are you sure you want to delete limit for ${category} category?`,
+        [
+            { text: "Cancel", style: "default" },
+            { text: "YES", style: "destructive", onPress: handleDeleteLimit },
+        ],
+        { cancelable: true },
+    )
+
     return (
         <View style={globalStyles.container}>
-            <Header
-                text={title}
-                icon={{ name: "speedometer", height: "18", width: "24", color: COLORS.gold }}
-                isSecondary={true}
-            />
+            { isEdit
+                ? <Header
+                    text={category}
+                    icon={{ name: "trash", height: "18", width: "24", color: COLORS.red }}
+                    iconEvent={handleDeletePress}
+                    isSecondary={true}
+                />
+                : <Header
+                    text={title}
+                    icon={{ name: "speedometer", height: "18", width: "24", color: COLORS.gold }}
+                    isSecondary={true}
+                />
+
+            }
             <View style={globalStyles.formContainer}>
                 <Dropdown
                     label="Category"
