@@ -81,3 +81,25 @@ export const updateLimit = (limitId, amount) => {
         }
     }
 }
+
+export const deleteLimit = (limitId) => {
+    return async (dispatch) => {
+        dispatch(setLoading(true))
+
+        const path = `${LIMITS_PATH}/${limitId}`
+        try {
+            const { data: body } = await http.delete(path)
+            dispatch(setMessage({ text: body.message, level: "success" }))
+            dispatch(getLimits())
+
+            return true
+        } catch (error) {
+            const { message } = error.response.data
+            dispatch(setMessage({ text: message, level: "error" }))
+
+            return false
+        } finally {
+            dispatch(setLoading(false))
+        }
+    }
+}
