@@ -9,6 +9,19 @@ const styles = StyleSheet.create({
         color: COLORS.gold,
         fontFamily: FONTS.cairoBold,
     },
+
+    monobankTokenContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+    },
+    monobankToken: {
+        width: 250,
+    },
+
+    trashStyle: {
+        height: "auto",
+        width: "auto",
+    },
 })
 
 export default styles

@@ -32,6 +32,28 @@ export const updateMonobankToken = (token) => {
     }
 }
 
+export const deleteMonobankToken = () => {
+    return async (dispatch) => {
+        dispatch(setLoading(true))
+
+        try {
+            const { data: body } = await http.delete(MONOBANK_TOKEN_PATH)
+
+            dispatch(setMessage({ text: body.message, level: "success" }))
+            dispatch(setUser({ monobankEnabled: false }))
+
+            return true
+        } catch (error) {
+            const { message } = error.response.data
+            dispatch(setMessage({ text: message, level: "error" }))
+
+            return false
+        } finally {
+            dispatch(setLoading(false))
+        }
+    }
+}
+
 export const getUser = () => {
     return async (dispatch) => {
         dispatch(setLoading(true))
