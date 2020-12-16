@@ -27,9 +27,6 @@ const ReportMonth = ({ navigation }) => {
         dispatch(getMonthReport())
     }, [dispatch])
 
-    // TODO: implement empty message
-    if (!monthReport.length) return null
-
     return (
         <View style={globalStyles.container}>
             <ReportHeader screen="Month" navigation={navigation}/>
@@ -37,32 +34,38 @@ const ReportMonth = ({ navigation }) => {
                 <Text style={styles.secondaryText}>July 2020</Text>
                 <Text style={styles.primaryText}>{amount.toFixed(2)} ₴</Text>
             </View>
-            <Swiper
-                style={styles.wrapper}
-                paginationStyle={styles.pagination}
-                dotStyle={styles.dot}
-                loop={false}
-                activeDotStyle={[styles.dot, styles.activeDot]}
-                onIndexChanged={(index) => setActiveIndex(index)}
-            >
-                {monthReport.map((item, index) => {
-                    const spend = parseFloat(item.value).toFixed(2)
-                    const percentage = (spend * 100.0) / amount
-                    return (
-                        <View key={index}>
-                            <Pie
-                                data={monthReport}
-                                activeIndex={activeIndex}
-                                primaryText={`${percentage.toFixed(2)}%`}
-                            />
-                            <View style={styles.info}>
-                                <Text style={styles.primaryText}>{item.value} ₴</Text>
-                                <Text style={styles.secondaryText}>{item.key}</Text>
+            {monthReport.length
+                ? <View style={styles.emptyContainer}>
+                    <Text style={styles.emptyMessage} isSecondary={true}>No month reports for current month.</Text>
+                </View>
+                : <Swiper
+                    style={styles.wrapper}
+                    paginationStyle={styles.pagination}
+                    dotStyle={styles.dot}
+                    loop={false}
+                    activeDotStyle={[styles.dot, styles.activeDot]}
+                    onIndexChanged={(index) => setActiveIndex(index)}
+                >
+                    {monthReport.map((item, index) => {
+                        const spend = parseFloat(item.value).toFixed(2)
+                        const percentage = (spend * 100.0) / amount
+                        return (
+                            <View key={index}>
+                                <Pie
+                                    data={monthReport}
+                                    activeIndex={activeIndex}
+                                    primaryText={`${percentage.toFixed(2)}%`}
+                                />
+                                <View style={styles.info}>
+                                    <Text style={styles.primaryText}>{item.value} ₴</Text>
+                                    <Text style={styles.secondaryText}>{item.key}</Text>
+                                </View>
                             </View>
-                        </View>
-                    )
-                })}
-            </Swiper>
+                        )
+                    })}
+                </Swiper>
+            }
+
         </View>
     )
 }
