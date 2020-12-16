@@ -3,7 +3,12 @@ import moment from "moment"
 import http from "@api/http"
 import { setUser } from "@redux/user/actions"
 import { setLoading, setMessage } from "@redux/app/actions"
-import { setTransactions, setMonthReport, setDailyReport } from "@redux/transactions/actions"
+import {
+    setTransactions,
+    setMonthReport,
+    setDailyReport,
+    setCategoryTransactions,
+} from "@redux/transactions/actions"
 import { DATETIME_FORMAT } from "@utils/time"
 
 const TRANSACTIONS_PATH = "transactions"
@@ -18,6 +23,25 @@ export const getTransactions = () => {
         try {
             const { data: body } = await http.get(TRANSACTIONS_PATH)
             dispatch(setTransactions(body.data))
+        } catch (error) {
+            const { message } = error.response.data
+            dispatch(setMessage({ text: message, level: "error" }))
+        } finally {
+            dispatch(setLoading(false))
+        }
+    }
+}
+
+export const getCategoryTransactions = (category, startDate, endDate) => {
+    return async (dispatch) => {
+        dispatch(setLoading(true))
+
+        try {
+            const { data: body } = await http.get(
+                TRANSACTIONS_PATH,
+                { "category": category, "start_date": startDate, "end_date": endDate },
+            )
+            dispatch(setCategoryTransactions(category, body.data))
         } catch (error) {
             const { message } = error.response.data
             dispatch(setMessage({ text: message, level: "error" }))
