@@ -42,7 +42,7 @@ const ReportDaily = ({ navigation }) => {
                 <PieProgress
                     progress={progress}
                     primaryText={`${spend.toFixed(2)} ₴`}
-                    secondaryText={`${balance.toFixed(2)} ₴`}
+                    secondaryText={`${dailyBudget.toFixed(2)} ₴`}
                 />
             </View>
             <View style={styles.detailsContainer}>

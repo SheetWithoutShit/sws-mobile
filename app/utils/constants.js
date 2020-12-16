@@ -39,4 +39,5 @@ export const ICONS_PATHS = {
     "error-circle": require( "@assets/icons/error-circle.svg"),
     "visible": require( "@assets/icons/visible.svg"),
     "visible-off": require( "@assets/icons/visible-off.svg"),
+    "trash": require( "@assets/icons/trash.svg"),
 }
