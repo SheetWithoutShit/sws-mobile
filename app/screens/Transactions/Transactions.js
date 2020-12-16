@@ -27,7 +27,8 @@ const Transactions = () => {
                 ? <TransactionsList transactions={transactions}/>
                 : <View style={styles.containerInfo}>
                     <Text style={styles.info} isSecondary={true}>No existing transactions</Text>
-                </View>}
+                </View>
+            }
         </View>
     )
 }

@@ -22,6 +22,21 @@ const styles = StyleSheet.create({
         lineHeight: 36,
     },
 
+    emptyContainer: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        width: 280,
+    },
+    emptyMessage: {
+        fontFamily: FONTS.cairoRegular,
+        color: COLORS.grey,
+        fontSize: 30,
+        textAlign: "center",
+        marginBottom: 150,
+    },
+
     // pagination stuff
     dot: {
         marginLeft: 8,
