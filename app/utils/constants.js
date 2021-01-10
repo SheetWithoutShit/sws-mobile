@@ -40,4 +40,5 @@ export const ICONS_PATHS = {
     "visible": require( "@assets/icons/visible.svg"),
     "visible-off": require( "@assets/icons/visible-off.svg"),
     "trash": require( "@assets/icons/trash.svg"),
+    "calendar": require( "@assets/icons/calendar.svg"),
 }

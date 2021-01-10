@@ -27,6 +27,10 @@ export const styles = StyleSheet.create({
 })
 
 export const buttonSizes = StyleSheet.create({
+    extraSmall: {
+        width: 55,
+        height: 50,
+    },
     small: {
         width: 90,
         height: 40,
